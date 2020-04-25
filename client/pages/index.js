@@ -22,7 +22,7 @@ class Index extends Component {
                         <div className="row">
                             <div className="col-md-6 column-left">
                                 <div className="container column-container">
-                                    <img class="section-image" src={hrdImage} alt=""/>
+                                    <img className="section-image" src={hrdImage} alt=""/>
                                 </div>
                             </div>
                             <div className="col-md-6 column-right">
