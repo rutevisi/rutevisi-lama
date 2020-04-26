@@ -21,8 +21,10 @@ app.get('/', (req, res) => {
 })
 
 const usersRouter = require('./routes/users');
+const ujianRouter = require('./routes/ujian');
 
 app.use('/users', usersRouter);
+app.use('/ujian', ujianRouter);
 
 //PORT SERVER
 const PORT = process.env.PORT || 5000;
