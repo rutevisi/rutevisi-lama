@@ -32,4 +32,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server mengudara... ketinggian: ${PORT}`))
 
 //KOMENTAR TIDAK PENTING
-//hahahaha
+//KOMENTAR TIDAK PENTING TAMBAHAN
