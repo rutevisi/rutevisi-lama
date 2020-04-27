@@ -8,7 +8,7 @@ const mbtiQuestionSchema = new Schema({
     required: true
   },
   indicator: {
-    type: Number,
+    type: String,
     required: true
   }
 },
