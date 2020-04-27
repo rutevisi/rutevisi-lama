@@ -19,7 +19,8 @@ const HeaderTes = () =>{
                     align-items: center;
                     flex-direction:column;
                     
-                    background: linear-gradient(180deg, rgba(236, 236, 236, 0) 49.79%, #DCDCDC 100%);
+                    background: #fff;
+                    margin-bottom:30px;
                 }
                 .header-tes-body{
                     display: flex;
