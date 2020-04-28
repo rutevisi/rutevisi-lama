@@ -12,8 +12,8 @@ app.use(express.json());
 //DB CONNECTION
 const mongoURI = process.env.ATLAS_URI;
 mongoose.connect(mongoURI, {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
-        .then(()=> console.log('Database terhubung, gan'))
-        .catch((err)=> console.log(`DB Connection Error: ${err.message}`));
+        .then(() => console.log('Database terhubung, gan'))
+        .catch((err) => console.log(`DB Connection Error: ${err.message}`));
 
 //ROUTING address
 app.get('/', (req, res) => {
