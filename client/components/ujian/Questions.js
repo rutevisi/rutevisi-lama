@@ -1,7 +1,10 @@
+// aku muncul tu gan
+//ga muncul gan, gimana bukanya
+
 const Questions = (props)=> {
     return(
         <div className="container">
-                    <p className="questions">{props.soal}</p>
+                    <p className="questions">Soal1</p>
                     <div className="questions-wrapper">
                     </div>
                     <div className="options-wrapper">
@@ -10,7 +13,6 @@ const Questions = (props)=> {
                     value="1"
                     id="option1"
                     name="option"
-                    onChange={props.onChange}
                     />
                     <label htmlFor="option1">Gak</label>
                     
@@ -19,7 +21,6 @@ const Questions = (props)=> {
                     value="2"
                     id="option2"
                     name="option"
-                    onChange={props.onChange}
                     />
                     <label htmlFor="option2">Mungkin Tidak</label>
                     
@@ -28,7 +29,6 @@ const Questions = (props)=> {
                     value="3"
                     id="option3"
                     name="option"
-                    onChange={props.onChange}
                     />
                     <label htmlFor="option3">Hmmm...</label>
                     
@@ -37,7 +37,6 @@ const Questions = (props)=> {
                     value="4"
                     id="option4"
                     name="option"
-                    onChange={props.onChange}
                     />
                     <label htmlFor="option4">Bisa Jadi</label>
                     
@@ -46,7 +45,6 @@ const Questions = (props)=> {
                     value="5"
                     id="option5"
                     name="option"
-                    onChange={props.onChange}
                     />
                     <label htmlFor="option5">Ya!</label>
                     </div>

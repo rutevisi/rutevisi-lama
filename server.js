@@ -5,6 +5,11 @@ const mongoose = require('mongoose');
 require('dotenv').config(); 
 
 const app = express();
+// server dah nyala blom gan? udah gan kok blom bisa diakses ya:v olhaaaa wkwkwkwk
+//orang belum npm run dev nah error
+// nah sekarang udah kepake apaan coba
+//port 3000 is already in use
+//udah bisa gan
 
 app.use(cors());
 app.use(express.json());

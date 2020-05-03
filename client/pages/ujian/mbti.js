@@ -10,11 +10,8 @@ class MBTI extends Component{
         this.onChangeQuestions = this.onChangeQuestions.bind(this);
 
         this.state = {
-            jawaban: '',
-            soal: [
-                'Berdebat selalu menjadi pilihanku dalam menghadapi perbedaan pendapat',
-                'Pasrah adalah jalan ninjaku'
-            ]
+            iSLoaded: true,
+            soal: []
         }
     }
 
@@ -24,25 +21,47 @@ class MBTI extends Component{
         })
     }
 
-    render(){
-        const { jawaban, soal } = this.state;
-        console.log(jawaban)
+    componentDidMount(){
+        fetch('http://localhost:5000/api/ujian/mbti') // muncul ok fecthing from localhost:5000
+        .then(res => res.json())
+        .then(data => {
+            this.setState({
+                soal: data,
+                isLoaded: false
+            })
+        })
+    }
+//gimana
 
-        return (
+    //radio input nya blm nongol gan
+    // bentar coba tak ccek
+    render(){
+        const { soal, isLoaded } = this.state;
+
+        if(!isLoaded){
             <Layout>
-                <HeaderTes/>
-            <div className="content-wrapper">
-                <Questions onChange={this.onChangeQuestions} soal={soal[0]}/>
-            </div>
-            <style>{`
-            
-            .content-wrapper{
-                padding:50px 0;
-            }
-            
-            `}</style>
+                Loading...
             </Layout>
-        )
+        }
+        else{
+            console.log(soal);
+            return (
+                <Layout>
+                    <HeaderTes/>
+                    <div className="content-wrapper">
+                        <Questions/>
+                    </div>
+
+                    <style>{`
+                    
+                    .content-wrapper{
+                        padding:50px 0;
+                    }
+                    
+                    `}</style>
+                </Layout>
+            )
+        }
     }
 }
 
