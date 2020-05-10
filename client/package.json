@@ -14,12 +14,15 @@
   "dependencies": {
     "@zeit/next-sass": "^1.0.1",
     "caniuse-lite": "^1.0.30001048",
+    "formik": "^2.1.4",
+    "mongoose": "^5.9.13",
     "next": "^9.3.6",
     "next-images": "^1.4.0",
-    "node-sass": "^4.14.0",
+    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "5.1.2",
-    "sass": "^1.26.5"
+    "sass": "^1.26.5",
+    "yup": "^0.28.5"
   }
 }

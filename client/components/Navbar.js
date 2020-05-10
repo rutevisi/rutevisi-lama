@@ -81,6 +81,9 @@ const Navbar = ()=>{
                     .nav-buttons{
                         font-family: 'Montserrat', sans-serif;
                     }
+                    .container-nav{
+                        padding: 0 !important;
+                    }
                     `}
                 </style>
         </div>
