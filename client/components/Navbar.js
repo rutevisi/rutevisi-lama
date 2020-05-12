@@ -6,10 +6,16 @@ const Navbar = ()=>{
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container container-nav">
                     <div className="brand-container">
-                        <a className="navbar-brand" href="/"><img src={require('../img/logo.svg')} alt="logo"/><span className="nav-title">Rutevisi</span></a>
+                        <a className="navbar-brand" href="/"><img className="icon-nav" src={require('../img/logo.svg')} alt="logo"/><span className="nav-title">Rutevisi</span></a>
                     </div>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
+                        <span>
+                            <div className="hamburger">
+                                <div className="burger"></div>
+                                <div className="burger"></div>
+                                <div className="burger"></div>
+                            </div>
+                        </span>
                     </button>
                     {/* Gambarnya aplot dimana enaknya gan ? img/ */}
                     <div className="collapse navbar-collapse navbar-tengah" id="navbarNavAltMarkup">
@@ -28,10 +34,32 @@ const Navbar = ()=>{
             </nav>
                 <style jsx global>
                     {`
+                    .navbar-toggler{
+                        border: none !important;
+                        margin: 0;
+                        padding: 0 !important   ;
+                    }
+                    .hamburger{
+                        display: flex;
+                        flex-direction: column !important;
+                        justify-content: center !important;
+                        height: 30px;
+                        width: 26px;
+                        margin-right: 1px;
+                    }
+                    .burger{
+                        position: relative;
+                        width: 26px;
+                        height: 4px;
+                        border: none;
+                        background: #636363;
+                        border-radius: 12px;       
+                        margin: 2px 0px;
+                    }
                     .nav-title{
                         font-size: 2.1rem;
                         font-weight: 700;
-                        margin-left: 7px;
+                        margin-left: 8px;
                         font-family: 'Exo', sans-serif;
                     }
                     .navbar-brand img{
@@ -43,9 +71,6 @@ const Navbar = ()=>{
                         justify-content: center;
                         box-shadow: 0 0 10px 0 #8080803d;
                         height: 56px;
-                    }
-                    .brand-container{
-                        width:20%;
                     }
                     navbar-button{
                         width:20%;
@@ -81,9 +106,30 @@ const Navbar = ()=>{
                     .nav-buttons{
                         font-family: 'Montserrat', sans-serif;
                     }
+                    
+                @media (max-width: 991px){
                     .container-nav{
-                        padding: 0 !important;
+                        padding-top: 0 !important;
+                        padding-bottom: 0 !important;
+                        
                     }
+                    .nav-title{
+                       font-size: 18pt;
+                    }
+                    .icon-nav{
+                        width: 16px;
+                        margin-top: 6px;
+                    }
+                    .navbar{
+                        height: 52px !important;
+                        padding-top: 4px !important;
+                    }
+                    .jumbotron{
+                        padding-top: 16px !important;
+                    }
+                }
+
+
                     `}
                 </style>
         </div>

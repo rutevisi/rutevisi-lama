@@ -38,7 +38,7 @@ class Index extends Component {
             <style>{`
             body{
                 background-color:#F7F7F7;
-            }gan body di ujian.js mau aku ganti f7f7f7 k
+            }
             .section-title{
                 color:#AFAFAF;
                 font-size:25px;
