@@ -4,6 +4,8 @@ import Jumbotron from '../components/home/Jumbotron'
 import React, { Component } from 'react'
 import hrdImage from '../img/hrd-image.svg'
 
+//initial commit
+
 class Index extends Component {
     render(){
         return(
