@@ -1,5 +1,5 @@
-import '../assets/css/master.css'
 import { ThemeProvider } from 'emotion-theming'
+import GlobalStyles from '../components/styles/GlobalStyles'
 
 // mendefinisikan tema dengan nama defaultTheme
 const defaultTheme = {
@@ -14,6 +14,7 @@ const defaultTheme = {
 function App({Component, pageProps}){
   return (
     <>
+      <GlobalStyles/>
       <ThemeProvider theme={defaultTheme} >
         <Component {...pageProps} />
       </ThemeProvider>
