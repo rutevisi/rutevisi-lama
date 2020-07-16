@@ -1,5 +1,4 @@
-import Navbar from './Navbar';
-import Footer from './Footer'
+import Navbar from './Navbar'
 
 const Layout = (props)=> (
     <div>
@@ -7,7 +6,6 @@ const Layout = (props)=> (
 
         <Navbar/>
         {props.children}
-        <Footer/>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

@@ -1,44 +1,13 @@
 import Layout from '../components/Layout'
-import Card from '../components/home/Card'
-import Jumbotron from '../components/home/Jumbotron'
 import React, { Component } from 'react'
-import hrdImage from '../img/hrd-image.svg'
 
 class Index extends Component {
     render(){
         return(
             <div>
                 <Layout>
-                    <Jumbotron/>
-                    <div className="card-wrapper">
-                        <div className="container">
-                            <Card cardColor="orange" title="Psikotest" subtitle="Seberapa cerdas kah kamu?"/>
-                            <Card cardColor="light-blue" title="Avatar" subtitle="Seberapa cerdas kah kamu?"/>
-                            <Card cardColor="purple" title="MBIT" subtitle="Mayers-Briggs Type Indicator"/>
-                            <Card cardColor="pink" title="MBIT" subtitle="Mayers-Briggs Type Indicator"/>
-                        </div>
-                    </div>
-                    <div className="hrd-section">
-                        <div className="row">
-                            <div className="col-md-6 column-left">
-                                <div className="container column-container">
-                                    <img className="section-image" src={hrdImage} alt=""/>
-                                </div>
-                            </div>
-                            <div className="col-md-6 column-right">
-                            <div className="container column-container container-right">
-                                    <h3 className="section-title">Rutevisi untuk</h3>
-                                    <h2 className="section-headline">Bisnis &#38; HRD</h2>
-                                    <p className="section-subheadline">Jadikan platform kami bagian dalam seleksi kandidatmu</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </Layout>
             <style>{`
-            body{
-                background-color:#F7F7F7;
-            }
             .section-title{
                 color:#AFAFAF;
                 font-size:25px;

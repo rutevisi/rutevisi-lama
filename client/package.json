@@ -12,8 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@zeit/next-sass": "^1.0.1",
     "caniuse-lite": "^1.0.30001100",
+    "emotion-theming": "^10.0.27",
     "formik": "^2.1.5",
     "mongoose": "^5.9.24",
     "next": "^9.4.4",
