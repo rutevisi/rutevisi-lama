@@ -15,7 +15,7 @@ const StyledKodeKelasBox = Styled.div`
 .kodekelasbox{
     width: 294px;
     height: 110px;
-    border: solid 0.5px gray;
+    border: solid 0.5px white;
 }
 `
 

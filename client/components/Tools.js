@@ -1,11 +1,27 @@
 import React from 'react'
 import Styled from '@emotion/styled'  
 
+import SimpleSearch from '../components/SimpleSearch'
+
 const Tools = () => {
     return (
         <StyledTools>
             <div className="tools">
-                
+                <div className="utility">
+                    <button className="btn-kategori btn-tools">
+                        <img src={require('../assets/img/tools/kategori.svg')} alt="" className="img-kategori"/>
+                        <p>Kategori</p>
+                    </button>
+                    <button className="btn-filter btn-tools">
+                        <img src={require('../assets/img/tools/filter.svg')} alt="" className="img-filter"/>
+                        <p>Filter</p>
+                    </button>
+                    <button className="btn-sort btn-tools">
+                        <img src={require('../assets/img/tools/sort.svg')} alt="" className="img-sort"/>
+                        <p>Sortir</p>
+                    </button>
+                </div>
+                <SimpleSearch />
             </div>
         </StyledTools>
     );
@@ -15,6 +31,34 @@ const StyledTools = Styled.div`
 .tools{
     width: 522px;
     height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.utility{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+.btn-tools{
+    font-family:'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #969696;
+    
+    height: 40px;
+    border: none;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+}
+.btn-tools img{
+    margin-right: 10px;
 }
 `
 

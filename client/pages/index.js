@@ -36,7 +36,7 @@ class Index extends Component {
 
 const StyledIndex = Styled.div` 
 .index-maincontent{
-    padding: 0 48px;
+    padding: 12px 48px 0 48px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -48,7 +48,7 @@ const StyledIndex = Styled.div`
 .btn-bantuan{
     width: 92px;
     height: 40px;
-    border: solid 0.5px gray;
+    border: solid 0.5px white;
 }
 `
 

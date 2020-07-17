@@ -20,8 +20,8 @@ const Jumbotron = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <img src={require('../assets/img/dimline.svg')} alt="" srcset=""/>
+            </div> 
+            <img src={require('../assets/img/dimline.svg')} alt="" srcSet=""/>
         </StyledJumbotron>
     );
 }

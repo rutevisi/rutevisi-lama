@@ -32,12 +32,16 @@ const Navbar = ()=>{
 
 const NavbarStyled = Styled.div`
 .navbar{
+    position: fixed;
+    top:0;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #F7F7F7;
     box-shadow: 0px 4px 22px rgba(0, 0, 0, 0.13);
-    padding: 10px 40px;
+    padding: 10px 0;
+    width: 100%;
+    z-index:100;
 }
 .nav-wrap{
     display: flex;
