@@ -14,6 +14,8 @@
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "@zeit/next-sass": "^1.0.1",
     "caniuse-lite": "^1.0.30001100",
     "emotion-theming": "^10.0.27",

@@ -5,7 +5,9 @@ const Layout = (props)=> (
         {/* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link> */}
 
         <Navbar/>
-        {props.children}
+        <div className="clearance">
+            {props.children}
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -17,6 +19,10 @@ const Layout = (props)=> (
 
         .bg-light{
             background-color:F7F7F7 !important;
+        }
+        .clearance{
+            max-width:1000px;
+            margin: 0 auto; 
         }
 
         `}</style>
