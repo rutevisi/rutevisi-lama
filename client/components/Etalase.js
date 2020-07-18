@@ -1,22 +1,159 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Styled from '@emotion/styled' 
+import Link from 'next/link'
+
 import Card from './Card'
-import { css } from '@emotion/core' 
 
 const Etalase = () => {
+    const [load, setLoad] = useState(6);
+
+    const sample = {
+        "data" : [
+            {
+                "link" : "mbtiplus",
+                "title" : "MBTI+",
+                "subtitle" : "Myers-Briggs Type Indicator",
+                "emojicon" : "💁",
+                "color" : "purple"
+            },
+            {
+                "link" : "jurusan-kuliah",
+                "title" : "JURUSAN KULIAH",
+                "subtitle" : "Bingung Mau Kuliah Kemana?",
+                "emojicon" : "👨‍🎓",
+                "color" : "blue"
+            },
+            {
+                "link" : "tes-iq",
+                "title" : "TES IQ",
+                "subtitle" : "Cek Kepintaran Dulu Sini",
+                "emojicon" : "🧠",
+                "color" : "orange"
+            },
+            {
+                "link" : "negara-mana",
+                "title" : "NEGARA MANA",
+                "subtitle" : "Yang Cocok Buatmu?",
+                "emojicon" : "🌏",
+                "color" : "blue"
+            },
+            {
+                "link" : "",
+                "title" : "FAKSI DIVERGENT",
+                "subtitle" : "Yang Mana Kamu Akan Cocok",
+                "emojicon" : "🌇",
+                "color" : "orange"
+            },
+            {
+                "link" : "",
+                "title" : "UMUR MENTAL",
+                "subtitle" : "Pantasnya Kamu Itu Seumuran...",
+                "emojicon" : "👴",
+                "color" : "purple"
+            },
+            {
+                "link" : "mbtiplus",
+                "title" : "MBTI+",
+                "subtitle" : "Myers-Briggs Type Indicator",
+                "emojicon" : "💁",
+                "color" : "purple"
+            },
+            {
+                "link" : "jurusan-kuliah",
+                "title" : "JURUSAN KULIAH",
+                "subtitle" : "Bingung Mau Kuliah Kemana?",
+                "emojicon" : "👨‍🎓",
+                "color" : "blue"
+            },
+            {
+                "link" : "tes-iq",
+                "title" : "TES IQ",
+                "subtitle" : "Cek Kepintaran Dulu Sini",
+                "emojicon" : "🧠",
+                "color" : "orange"
+            },
+            {
+                "link" : "negara-mana",
+                "title" : "NEGARA MANA",
+                "subtitle" : "Yang Cocok Buatmu?",
+                "emojicon" : "🌏",
+                "color" : "blue"
+            },
+            {
+                "link" : "",
+                "title" : "UMUR MENTAL",
+                "subtitle" : "Pantasnya Kamu Itu Seumuran...",
+                "emojicon" : "👴",
+                "color" : "purple"
+            },
+            {
+                "link" : "",
+                "title" : "FAKSI DIVERGENT",
+                "subtitle" : "Yang Mana Kamu Akan Cocok",
+                "emojicon" : "🌇",
+                "color" : "orange"
+            },
+            {
+                "link" : "tes-iq",
+                "title" : "TES IQ",
+                "subtitle" : "Cek Kepintaran Dulu Sini",
+                "emojicon" : "🧠",
+                "color" : "orange"
+            },
+            {
+                "link" : "negara-mana",
+                "title" : "NEGARA MANA",
+                "subtitle" : "Yang Cocok Buatmu?",
+                "emojicon" : "🌏",
+                "color" : "blue"
+            },
+            {
+                "link" : "",
+                "title" : "UMUR MENTAL",
+                "subtitle" : "Pantasnya Kamu Itu Seumuran...",
+                "emojicon" : "👴",
+                "color" : "purple"
+            },
+            {
+                "link" : "jurusan-kuliah",
+                "title" : "JURUSAN KULIAH",
+                "subtitle" : "Bingung Mau Kuliah Kemana?",
+                "emojicon" : "👨‍🎓",
+                "color" : "blue"
+            },
+            {
+                "link" : "tes-iq",
+                "title" : "TES IQ",
+                "subtitle" : "Cek Kepintaran Dulu Sini",
+                "emojicon" : "🧠",
+                "color" : "orange"
+            },
+            {
+                "link" : "negara-mana",
+                "title" : "NEGARA MANA",
+                "subtitle" : "Yang Cocok Buatmu?",
+                "emojicon" : "🌏",
+                "color" : "blue"
+            }
+                    
+        ]
+    }
+
+    const tes = sample.data;
+
     return (
         <StyledEtalase>
             <div className="etalase">
                 <div className="etalase-items">
-                    <Card emojicon="💁" title="MBTI+" subtitle="Myers-Briggs Type Indicator" cardColor="purple" />
-                    <Card emojicon="👨‍🎓" title="JURUSAN KULIAH" subtitle="Bingung Mau Kuliah Kemana?" cardColor="blue" />
-                    <Card emojicon="🧠" title="TES IQ" subtitle="Cek Kepintaran Dulu Sini" cardColor="orange" />
-                
-                    <Card emojicon="🌏" title="NEGARA MANA" subtitle="Yang Cocok Buatmu" cardColor="blue" />
-                    <Card emojicon="🌇" title="FAKSI DIVERGENT" subtitle="Yang Mana Kamu Akan Cocok" cardColor="orange" />
-                    <Card emojicon="👴" title="UMUR MENTAL" subtitle="Pantasnya Kamu Itu Seumuran..." cardColor="purple" />
+                    {tes.slice(0,load).map((tes) =>
+                    <Link href={`../tes/${tes.link}`}>
+                        <a>
+                            <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} cardColor={tes.color} />
+                        </a>
+                    </Link>
+                    )}
                 </div>
-                <button className="muatlebih">
+                <button className="muatlebih" onClick={()=>setLoad(load+6)}>
                     <p className="p-muatlebih">Muat lebih banyak <span className="lildown">&#9662;</span></p>
                 </button>
             </div>
