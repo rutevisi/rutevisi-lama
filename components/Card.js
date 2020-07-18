@@ -18,6 +18,7 @@ const Card = (props) => {
     function moveTop() {
         return title.length < 8 ? "movebanyak" : "movedikit";
     }
+
     return (
         <div>
             <div className={`card-body`}>
@@ -89,6 +90,7 @@ const Card = (props) => {
                 width: 122px;
                 border-radius: 8px;
                 color: ${color};
+                background-color: #fff;
 
                 font-family: Montserrat;
                 font-style: normal;

@@ -116,6 +116,12 @@ const StyledJumbotron = Styled.div`
     flex-direction: column;
     margin-bottom: 8px;
 }
+textarea:focus, input:focus, button:focus{
+    border: solid 1px green;
+    outline: solid 1px green;
+    border-width:0px;
+border:none;
+}
 .animatedtes{
     overflow: hidden;
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
@@ -124,8 +130,9 @@ const StyledJumbotron = Styled.div`
     justify-content: center;
     align-items: flex-end;
     flex-direction: column;
+    padding-right: 42px;
     height: 44px;
-    width: 356px;
+    width: 314px;
 }
 .p-tesmove{
     position: absolute;
