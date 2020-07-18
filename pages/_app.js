@@ -1,5 +1,7 @@
 import { ThemeProvider } from 'emotion-theming'
+import React from 'react';
 import GlobalStyles from '../components/styles/GlobalStyles'
+import { wrapper } from '../redux/store';
 
 // mendefinisikan tema dengan nama defaultTheme
 const defaultTheme = {
@@ -12,14 +14,14 @@ const defaultTheme = {
 
 // menerapkan tema ke komponen App
 function App({Component, pageProps}){
-  return (
-    <>
-      <GlobalStyles/>
-      <ThemeProvider theme={defaultTheme} >
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </>
-  )
+    return (
+      <>
+        <GlobalStyles/>
+        <ThemeProvider theme={defaultTheme} >
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </>
+    )
 }
 
-export default App;
+export default wrapper.withRedux(App);

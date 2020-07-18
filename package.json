@@ -26,12 +26,19 @@
     "mongoose": "^5.9.24",
     "next": "^9.4.4",
     "next-images": "^1.4.0",
+    "next-redux-wrapper": "^6.0.2",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
     "react-router-dom": "5.1.2",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "sass": "^1.26.10",
     "shuffle-array": "^1.0.1",
     "yup": "^0.28.5"
+  },
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.8"
   }
 }
