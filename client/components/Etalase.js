@@ -1,146 +1,14 @@
 import React, {useState} from 'react'
 import Styled from '@emotion/styled' 
 import Link from 'next/link'
+import SampleAPI from '../sampleapi.json'
 
 import Card from './Card'
 
 const Etalase = () => {
-    const [load, setLoad] = useState(6);
+    const [load, setLoad] = useState(6);        
 
-    const sample = {
-        "data" : [
-            {
-                "link" : "mbtiplus",
-                "title" : "MBTI+",
-                "subtitle" : "Myers-Briggs Type Indicator",
-                "emojicon" : "💁",
-                "color" : "purple"
-            },
-            {
-                "link" : "jurusan-kuliah",
-                "title" : "JURUSAN KULIAH",
-                "subtitle" : "Bingung Mau Kuliah Kemana?",
-                "emojicon" : "👨‍🎓",
-                "color" : "blue"
-            },
-            {
-                "link" : "tes-iq",
-                "title" : "TES IQ",
-                "subtitle" : "Cek Kepintaran Dulu Sini",
-                "emojicon" : "🧠",
-                "color" : "orange"
-            },
-            {
-                "link" : "negara-mana",
-                "title" : "NEGARA MANA",
-                "subtitle" : "Yang Cocok Buatmu?",
-                "emojicon" : "🌏",
-                "color" : "blue"
-            },
-            {
-                "link" : "",
-                "title" : "FAKSI DIVERGENT",
-                "subtitle" : "Yang Mana Kamu Akan Cocok",
-                "emojicon" : "🌇",
-                "color" : "orange"
-            },
-            {
-                "link" : "",
-                "title" : "UMUR MENTAL",
-                "subtitle" : "Pantasnya Kamu Itu Seumuran...",
-                "emojicon" : "👴",
-                "color" : "purple"
-            },
-            {
-                "link" : "mbtiplus",
-                "title" : "MBTI+",
-                "subtitle" : "Myers-Briggs Type Indicator",
-                "emojicon" : "💁",
-                "color" : "purple"
-            },
-            {
-                "link" : "jurusan-kuliah",
-                "title" : "JURUSAN KULIAH",
-                "subtitle" : "Bingung Mau Kuliah Kemana?",
-                "emojicon" : "👨‍🎓",
-                "color" : "blue"
-            },
-            {
-                "link" : "tes-iq",
-                "title" : "TES IQ",
-                "subtitle" : "Cek Kepintaran Dulu Sini",
-                "emojicon" : "🧠",
-                "color" : "orange"
-            },
-            {
-                "link" : "negara-mana",
-                "title" : "NEGARA MANA",
-                "subtitle" : "Yang Cocok Buatmu?",
-                "emojicon" : "🌏",
-                "color" : "blue"
-            },
-            {
-                "link" : "",
-                "title" : "UMUR MENTAL",
-                "subtitle" : "Pantasnya Kamu Itu Seumuran...",
-                "emojicon" : "👴",
-                "color" : "purple"
-            },
-            {
-                "link" : "",
-                "title" : "FAKSI DIVERGENT",
-                "subtitle" : "Yang Mana Kamu Akan Cocok",
-                "emojicon" : "🌇",
-                "color" : "orange"
-            },
-            {
-                "link" : "tes-iq",
-                "title" : "TES IQ",
-                "subtitle" : "Cek Kepintaran Dulu Sini",
-                "emojicon" : "🧠",
-                "color" : "orange"
-            },
-            {
-                "link" : "negara-mana",
-                "title" : "NEGARA MANA",
-                "subtitle" : "Yang Cocok Buatmu?",
-                "emojicon" : "🌏",
-                "color" : "blue"
-            },
-            {
-                "link" : "",
-                "title" : "UMUR MENTAL",
-                "subtitle" : "Pantasnya Kamu Itu Seumuran...",
-                "emojicon" : "👴",
-                "color" : "purple"
-            },
-            {
-                "link" : "jurusan-kuliah",
-                "title" : "JURUSAN KULIAH",
-                "subtitle" : "Bingung Mau Kuliah Kemana?",
-                "emojicon" : "👨‍🎓",
-                "color" : "blue"
-            },
-            {
-                "link" : "tes-iq",
-                "title" : "TES IQ",
-                "subtitle" : "Cek Kepintaran Dulu Sini",
-                "emojicon" : "🧠",
-                "color" : "orange"
-            },
-            {
-                "link" : "negara-mana",
-                "title" : "NEGARA MANA",
-                "subtitle" : "Yang Cocok Buatmu?",
-                "emojicon" : "🌏",
-                "color" : "blue"
-            }
-                    
-        ]
-    }
-
-    const tes = sample.data;
-    // initial commit branch  errbint
+    const tes = SampleAPI.data;
 
     return (
         <StyledEtalase>
