@@ -14,8 +14,8 @@ const Etalase = () => {
         <StyledEtalase>
             <div className="etalase">
                 <div className="etalase-items">
-                    {tes.slice(0,load).map((tes) =>
-                    <Link href={`../tes/${tes.link}`}>
+                    {tes.slice(0,load).map((tes, index) =>
+                    <Link href={`../tes/${tes.link}`} key={index}>
                         <a>
                             <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} cardColor={tes.color} />
                         </a>

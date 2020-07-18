@@ -21,7 +21,7 @@ const Layout = (props)=> (
             background-color:F7F7F7 !important;
         }
         .clearance{
-            max-width:1000px;
+            max-width: 1000px;
             margin: 0 auto;
             padding-top: 65px;
         }

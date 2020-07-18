@@ -1,6 +1,6 @@
 {"data" : [
     {
-        "link" : "mbtiplus",
+        "link" : "mbti",
         "title" : "MBTI+",
         "subtitle" : "Myers-Briggs Type Indicator",
         "emojicon" : "💁",
@@ -42,7 +42,7 @@
         "color" : "purple"
     },
     {
-        "link" : "mbtiplus",
+        "link" : "mbti",
         "title" : "MBTI+",
         "subtitle" : "Myers-Briggs Type Indicator",
         "emojicon" : "💁",

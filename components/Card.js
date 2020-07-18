@@ -115,6 +115,9 @@ const Card = (props) => {
             .card-body:hover .div-btnterpilih{
                 filter: opacity(1);
             }
+            .card-body:hover .div-emojiback{
+                filter: saturate(0.5) opacity(0.7) brightness(0.6);
+            }
             .card-body:hover .movedikit{
                 transform: translateY(-74px);
             }
@@ -175,6 +178,8 @@ const Card = (props) => {
                 position: absolute;
                 bottom: 28px;
                 filter: saturate(0) opacity(0.08) brightness(0);
+                transition: 1s;
+                transition-delay: 0.2s;
             }
             .emojiback{
                 font-size: 218px;
