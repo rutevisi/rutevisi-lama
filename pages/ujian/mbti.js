@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Layout from '../../components/Layout'
+import {Provider, connect} from 'react-redux';
+import {wrapper} from '../../redux/store';
 import axios from 'axios'
 
-function MBTI({soal}){
+export const getServerSideProps = wrapper.getServerSideProps(
+    async ({store, req, res, ...etc}) => {
+        const response = await axios.get('http://localhost:3000/api/tests/mbti');
+        const soalMBTI = await response.data;
 
-    console.log(soal);
+        store.dispatch({type: 'FETCH_MBTI', payload: soalMBTI});
+    }
+);
+
+function MBTI(){
     return (
         <Layout>
             <div className="content-wrapper">
@@ -22,11 +31,4 @@ function MBTI({soal}){
     )
 }
 
-export async function getStaticProps() {
-    const res = await axios.get(`http://localhost:3000/api/tests/mbti`)
-    const soal = await res.data
-
-    return { props: { soal } }
-}
-
-export default MBTI;
+export default connect(state => state)(MBTI);
