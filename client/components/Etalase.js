@@ -140,6 +140,7 @@ const Etalase = () => {
     }
 
     const tes = sample.data;
+    // initial commit branch  errbint
 
     return (
         <StyledEtalase>
