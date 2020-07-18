@@ -1,31 +1,37 @@
 {
-  "name": "rutevisi",
+  "name": "client",
   "version": "1.0.0",
-  "description": "Mulai bikin projek yeee",
-  "main": "server.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "installClient": "npm install --prefix client",
-    "start": "node index.js",
-    "server": "nodemon index.js",
-    "client": "npm run dev --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" "
+    "start": "next start",
+    "dev": "next",
+    "build": "next build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "circular-json": "^0.5.9",
-    "concurrently": "^5.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "flatted": "^2.0.2",
-    "mongoose": "^5.9.10",
-    "next": "^9.3.5",
-    "shuffle-array": "^1.0.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.3"
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.19.2",
+    "bcrypt": "^5.0.0",
+    "caniuse-lite": "^1.0.30001100",
+    "emotion-theming": "^10.0.27",
+    "formik": "^2.1.5",
+    "mongodb": "^3.5.9",
+    "mongoose": "^5.9.24",
+    "next": "^9.4.4",
+    "next-images": "^1.4.0",
+    "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "5.1.2",
+    "sass": "^1.26.10",
+    "shuffle-array": "^1.0.1",
+    "yup": "^0.28.5"
   }
 }

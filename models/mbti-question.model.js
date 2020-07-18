@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
-const mbtiQuestionSchema = new Schema({
+const mbtiQuestionSchema = new mongoose.Schema({
   question: {
     type: String,
     required: true
@@ -16,6 +14,16 @@ const mbtiQuestionSchema = new Schema({
   timestamps: true,
 });
 
-const MBTIQuestion = mongoose.model('MBTIQuestion', mbtiQuestionSchema);
+function modelAreadyDeclared() {
+  try {
+      module.exports = mongoose.model('MBTIQuestion')
+      return true
+  } catch (e) {
+      return false
+  }
+}
 
-module.exports = MBTIQuestion;
+if (!modelAreadyDeclared()) {
+  const MBTIQuestion = mongoose.model('MBTIQuestion', mbtiQuestionSchema);
+  module.exports = MBTIQuestion;
+}
