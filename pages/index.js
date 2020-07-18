@@ -20,7 +20,10 @@ function Index(){
                             <Etalase />
                         </div>
                         <div className="maincontent-side">
-                            <div className="btn-bantuan"></div>
+                            <button className="btn-filter btn-tools">
+                                <p>Bantuan</p>
+                                <img src={require('../assets/img/tools/bantuan.svg')} alt="" className="img-filter"/>
+                            </button>
                             <KodeKelasBox />
                             <ForHRD />
                         </div>
@@ -46,6 +49,25 @@ const StyledIndex = Styled.div`
     width: 92px;
     height: 40px;
     border: solid 0.5px white;
+}
+.btn-tools{
+    font-family:'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #969696;
+    
+    height: 40px;
+    border: none;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 12px;
+}
+.btn-tools img{
+    margin-left: 10px;
 }
 `
 

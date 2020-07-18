@@ -1,5 +1,14 @@
 import { Global, css } from '@emotion/core'
 
+//BREAKPOINT
+
+//LAYAR LEBAR                 980px - unlimited
+//LAYAR MEDIUM                414px - 980px
+//LAYAR HP (potrait-oriented) 350px - 414px
+
+//Screen dibawah 350px unsupported ik
+//apa coba diakali pake .body{transform:scale(wkwk)} ya klo iphone 5 320px?
+
 const GlobalStyles = ()=> {
   return(
     <>

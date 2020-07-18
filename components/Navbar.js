@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Styled from '@emotion/styled'    
 
-const Navbar = ()=>{
+const Navbar = () => {
     return(
         <NavbarStyled>
             <div className="navbar">
@@ -49,6 +49,7 @@ const NavbarStyled = Styled.div`
     align-items: center;
     max-width: 1000px;
     width:100%;
+    margin: 0 48px;
 }
 .nav-toggler{
     display: none;
