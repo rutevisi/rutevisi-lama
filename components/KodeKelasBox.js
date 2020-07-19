@@ -82,6 +82,14 @@ const StyledKodeKelasBox = Styled.div`
     border: none;
     box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.25);
     text-transform: uppercase;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 12px;
+    
+    color: #4A4A4A;
 }
 .input-kode::placeholder{
     font-family: Montserrat;

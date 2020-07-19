@@ -18,7 +18,6 @@ const Card = (props) => {
     function moveTop() {
         return title.length < 8 ? "movebanyak" : "movedikit";
     }
-
     return (
         <div>
             <div className={`card-body`}>
@@ -63,7 +62,6 @@ const Card = (props) => {
                 overflow:hidden;
                 -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
                 max-height: 32px;
-
                 margin:0;
                 font-family: Montserrat;
                 font-style: normal;
@@ -77,7 +75,6 @@ const Card = (props) => {
             .div-btnterpilih{
                 width: 153px;
                 height: 68px;
-
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -90,8 +87,7 @@ const Card = (props) => {
                 width: 122px;
                 border-radius: 8px;
                 color: ${color};
-                background-color: #fff;
-
+                background-color: white;
                 font-family: Montserrat;
                 font-style: normal;
                 font-weight: 700;
@@ -124,7 +120,6 @@ const Card = (props) => {
             .card-body:hover .movebanyak{
                 transform: translateY(-102px);
             }
-
             .overflow-hidden{
                 -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
                 overflow: hidden;
@@ -171,7 +166,6 @@ const Card = (props) => {
             .div-emojiback{
                 width: 153px;
                 height: 80px;
-
                 display: flex;
                 justif-content: flex-start;
                 align-items: center;
