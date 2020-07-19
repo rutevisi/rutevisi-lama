@@ -9,7 +9,7 @@ import { Global, css } from '@emotion/core'
 //Screen dibawah 350px unsupported ik
 //apa coba diakali pake .body{transform:scale(wkwk)} ya klo iphone 5 320px?
 
-const GlobalStyles = ()=> {
+const GlobalStyles = () => {
   return(
     <>
         <Global styles={css`
