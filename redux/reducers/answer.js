@@ -19,7 +19,8 @@ export const answer = (state = initialState, action) => {
                       [action.payload.index]: {
                         questionId: {$set: action.payload.questionId},
                         index: {$set: action.payload.index},
-                        jawab: {$set: action.payload.jawab}
+                        jawab: {$set: action.payload.jawab},
+                        flip: {$set: action.payload.flip},
                       }
                     }
                 });
@@ -33,6 +34,7 @@ export const answer = (state = initialState, action) => {
                             questionId: action.payload.questionId,
                         index: action.payload.index,
                         jawab: action.payload.jawab,
+                        flip: action.payload.flip
                         }
                     ]
                 }

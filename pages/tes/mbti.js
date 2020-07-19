@@ -21,7 +21,7 @@ function MBTI({mbti, answer, test}){
             {
                 list ? list.map((soal, index) => {
                     return(
-                        <Question key={soal._id} id={soal._id} soal={soal.question} index={index} arr={answer}/>
+                        <Question key={soal._id} id={soal._id} soal={soal.question} index={index} arr={answer} isFliped={soal.flip}/>
                     )
                 }) : ''
             }

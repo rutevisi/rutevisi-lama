@@ -8,6 +8,9 @@ const mbtiQuestionSchema = new mongoose.Schema({
   indicator: {
     type: String,
     required: true
+  },
+  flip: {
+    type: Boolean,
   }
 },
 {

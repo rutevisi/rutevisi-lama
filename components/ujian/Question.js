@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { addQuestion } from '../../redux/actions/answerAction'
 
-const Question = ({soal, id, addQuestion, index, arr})=> {
+const Question = ({soal, id, addQuestion, index, arr, isFliped})=> {
 
     function addSelected(pilihan){
         if(arr.answers[index]){
@@ -16,20 +16,22 @@ const Question = ({soal, id, addQuestion, index, arr})=> {
         }
     }
 
+    const flipped = (isFliped === "true") ? -1 : 1;
+
     return(
         <QuestionStyled>
             <div className="container">
                 <p className="questions">{soal}</p>
                 <div className="pilihan-ganda">
-                    Setuju
-                    <div className="options">
-                        <div className={`option option-one ${addSelected(1)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 1})}></div>
-                        <div className={`option option-two ${addSelected(2)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 2})}></div>
-                        <div className={`option option-three ${addSelected(3)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 3})}></div>
-                        <div className={`option option-four ${addSelected(4)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 4})}></div>
-                        <div className={`option option-five ${addSelected(5)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 5})}></div>
-                    </div>
                     Tidak Setuju
+                    <div className="options">
+                        <div className={`option option-one ${addSelected(-2 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: -2 * flipped, flip: flipped})}></div>
+                        <div className={`option option-two ${addSelected(-1 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: -1 * flipped, flip: flipped})}></div>
+                        <div className={`option option-three ${addSelected(0 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 0 * flipped, flip: flipped})}></div>
+                        <div className={`option option-four ${addSelected(1 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 1 * flipped, flip: flipped})}></div>
+                        <div className={`option option-five ${addSelected(2 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 2 * flipped, flip: flipped})}></div>
+                    </div>
+                    Setuju
                 </div>
             </div>
         </QuestionStyled>

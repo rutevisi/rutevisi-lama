@@ -11,6 +11,10 @@ async function dbConnect(){
         .catch(err => { console.log(err.message)});
 
     connection.isConnected = db.connections[0].readyState;
+
+    process.on('unhandledRejection', (reason, p) => {
+        console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+    });
 }
 
 export default dbConnect;
