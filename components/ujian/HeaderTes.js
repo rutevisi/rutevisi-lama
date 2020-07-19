@@ -1,23 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Styled from '@emotion/styled'
 import Countdown from "react-countdown";
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { testStart, testEnd } from '../../redux/actions/testAction'
 
 const renderer = ({ hours, minutes, seconds, completed }) => {
     if (completed) {
-      return <div>Time's Up!</div>;
+      return <div>Time is up!</div>;
     } else {
       return (
         <span>
-          <span className="timer">{hours}</span> : <span  className="timer">{minutes}</span> : <span className="timer">{seconds}</span>
+          { hours ? <span className="timer">{hours}</span> : '' } {hours ? ':' : ''} <span  className="timer">{minutes}</span> : <span className="timer">{seconds}</span>
         </span>
       );
     }
 };
 
-const HeaderTes = ({answered, questionTotal}) =>{
+const HeaderTes = ({answered, questionTotal, testEnd, testStart}) =>{
 
-    const time = 1000 * 60 * 60 * 2;
+    const time = 1000 * 60 * 15;
     const [ date, setDate ] = useState(Date.now() + time)
+
+    useEffect(() => {
+      testStart()
+    },)
 
     return(
         <HeaderStyled>
@@ -25,7 +32,7 @@ const HeaderTes = ({answered, questionTotal}) =>{
                 MBTI
             </div>
             <div className="counter">
-            <Countdown date={date} renderer={renderer} />
+            <Countdown date={date} renderer={renderer} onComplete={() => testEnd()}/>
             </div>
             <div className="answered">
               {answered} of {questionTotal} answered
@@ -77,4 +84,11 @@ const HeaderStyled = Styled.div`
     }
 `
 
-export default HeaderTes;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    testStart: bindActionCreators(testStart, dispatch),
+    testEnd: bindActionCreators(testEnd, dispatch),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(HeaderTes)

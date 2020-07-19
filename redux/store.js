@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import { mbti } from './reducers/mbti'
 import { answer } from './reducers/answer'
+import { test } from './reducers/test'
 import thunkMiddleware from 'redux-thunk'
 
 const bindMiddleware = (middleware) => {
@@ -14,7 +15,8 @@ const bindMiddleware = (middleware) => {
 
 const combinedReducer = combineReducers({
     mbti,
-    answer
+    answer,
+    test
 })
 
 const reducer = (state, action) => {

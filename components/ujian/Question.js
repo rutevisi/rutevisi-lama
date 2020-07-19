@@ -19,7 +19,7 @@ const Question = ({soal, id, addQuestion, index, arr})=> {
     return(
         <QuestionStyled>
             <div className="container">
-                <p className="questions">{index}. {soal}</p>
+                <p className="questions">{soal}</p>
                 <div className="pilihan-ganda">
                     Setuju
                     <div className="options">
@@ -89,6 +89,7 @@ const QuestionStyled = Styled.div`
         color:#828282;
         font-size: 1.1rem;
         font-weight:bold;
+        line-height: 1.7rem;
     }
 `
 
@@ -96,6 +97,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
       addQuestion: bindActionCreators(addQuestion, dispatch),
     }
-  }
+}
 
 export default connect(null, mapDispatchToProps)(Question)
