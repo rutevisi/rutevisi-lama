@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Styled from '@emotion/styled'
 import Countdown from "react-countdown";
 
@@ -15,7 +16,8 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 
 const HeaderTes = ({answered, questionTotal}) =>{
 
-    const time = 1000 * 60 * 60 * 2
+    const time = 1000 * 60 * 60 * 2;
+    const [ date, setDate ] = useState(Date.now() + time)
 
     return(
         <HeaderStyled>
@@ -23,7 +25,7 @@ const HeaderTes = ({answered, questionTotal}) =>{
                 MBTI
             </div>
             <div className="counter">
-            <Countdown date={Date.now() + time} renderer={renderer} />
+            <Countdown date={date} renderer={renderer} />
             </div>
             <div className="answered">
               {answered} of {questionTotal} answered
