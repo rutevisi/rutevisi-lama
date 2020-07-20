@@ -10,8 +10,9 @@ export default async (req, res) => {
         try {
             const question = req.body.question;
             const indicator = req.body.indicator;
+            const flip = req.body.flip;
         
-            const newMBTIQuestion = new MBTIQuestion({question, indicator});
+            const newMBTIQuestion = new MBTIQuestion({question, indicator, flip});
             newMBTIQuestion
                 .save()
                 .then(users => res.json('Question ADDED'))

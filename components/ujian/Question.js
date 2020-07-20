@@ -20,7 +20,7 @@ const Question = ({soal, id, addQuestion, addAnswered, index, arr, isFliped, ind
         }
     }
 
-    const flipped = (isFliped === "true") ? -1 : 1;
+    const flipped = (isFliped === "true" || isFliped === true) ? -1 : 1;
 
     useEffect(() => {
         if(!load){
