@@ -12,11 +12,11 @@ export default async (req, res) => {
         return temp;
     }
     
-    const tempA = shuffleAndSlice(await MBTIQuestion.find({ indicator : "A" }), 0, 3);
-    const tempB = shuffleAndSlice(await MBTIQuestion.find({ indicator : "B" }), 0, 3);
-    const tempC = shuffleAndSlice(await MBTIQuestion.find({ indicator : "C" }), 0, 3);
-    const tempD = shuffleAndSlice(await MBTIQuestion.find({ indicator : "D" }), 0, 3);
-    const tempE = shuffleAndSlice(await MBTIQuestion.find({ indicator : "E" }), 0, 3);
+    const tempA = shuffleAndSlice(await MBTIQuestion.find({ indicator : "A" }), 0, 11);
+    const tempB = shuffleAndSlice(await MBTIQuestion.find({ indicator : "B" }), 0, 11);
+    const tempC = shuffleAndSlice(await MBTIQuestion.find({ indicator : "C" }), 0, 11);
+    const tempD = shuffleAndSlice(await MBTIQuestion.find({ indicator : "D" }), 0, 11);
+    const tempE = shuffleAndSlice(await MBTIQuestion.find({ indicator : "E" }), 0, 11);
     
     const soalready = shuffle([...tempA,...tempB,...tempC,...tempD,...tempE]);
 

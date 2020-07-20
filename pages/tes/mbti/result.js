@@ -1,6 +1,7 @@
 import Styled from '@emotion/styled'
 import { connect } from 'react-redux'
 import Layout from '../../../components/Layout'
+import personalityType from '../../../data/personalityType.json'
 
 function ResultPage({result}){
 
@@ -210,9 +211,16 @@ function ResultPage({result}){
         personality = 'ESFP'
     }
 
+    // Finding Personality Data
+    let typeData = personalityType.find((data) => data.personality_type === personality)
+
     return(
         <Layout>
         <ResultPageStyled>
+            <div className="page-header">
+                <h1>{typeData.personality_name}</h1>
+                <p>{typeData.personality_desc}</p>
+            </div>
             <div className="chart">
                 <div className="chart-head">
                     <span>Ekstrovert</span>
@@ -290,6 +298,18 @@ const InnerChart = Styled.div`
 const ResultPageStyled = Styled.div`
     padding-top:2.5rem;
     font-family:'Montserrat', sans-serif;
+    padding-bottom:3rem;
+
+    .page-header{
+        padding: 0 48px;
+        text-align: justify;
+        line-height: 26px;
+        margin-bottom: 3rem;
+
+        h1{
+            text-align:center;
+        }
+    }
 
     .percentage{
         background: #fff;

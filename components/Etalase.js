@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Styled from '@emotion/styled' 
 import Link from 'next/link'
-import SampleAPI from '../sampleapi.json'
+import SampleAPI from '../data/sampleapi.json'
 
 import Card from './Card'
 

@@ -1,0 +1,82 @@
+[
+    {
+        "personality_type": "INTJ",
+        "personality_name": "INTJ: The Architect",
+        "personality_desc": "INTJ (introverted, intuitive, thinking, and judging) is one of the 16 personality types identified by a personality assessment called the Myers-Briggs Type Indicator (MBTI). Sometimes referred to as the 'Architect,' or the 'Strategist,' people with INTJ personalities are highly analytical, creative and logical. According to psychologist David Keirsey, developer of the Keirsey Temperament Sorter, approximately one to four percent of the population has an INTJ personality type."
+    },
+    {
+        "personality_type": "INTP",
+        "personality_name": "INTP: The Thinker",
+        "personality_desc": "NTP (introverted, intuitive, thinking, perceiving) is one of the 16 personality types described by the Myers-Briggs Type Indicator (MBTI). People who score as INTP are often described as quiet and analytical. They enjoy spending time alone, thinking about how things work and coming up with solutions to problems. INTPs have a rich inner world and would rather focus their attention on their internal thoughts rather than the external world. They typically do not have a wide social circle, but they do tend to be close to a select group of people."
+    },
+    {
+        "personality_type": "ENTJ",
+        "personality_name": "ENTJ: The Commander",
+        "personality_desc": "The acronym ENTJ represents one of the 16 personality types that are identified by the Myers-Briggs Type Indicator. This popular personality assessment was developed by Isabel Myers and her mother Katherine Briggs. The assessment tool is based on Carl Jung's theory of personality types. Other people often describe people with this type of personality as assertive, confident, and outspoken."
+    },
+    {
+        "personality_type": "ENTP",
+        "personality_name": "ENTP: The Debater",
+        "personality_desc": "ENTP is one of the 16 different personality types identified by the Myers-Briggs Type Indicator. People with this personality type are often described as innovative, clever, and expressive. ENTPs are also known for being idea-oriented, which is why this personality type has been described as 'the innovator,' 'the visionary,' and 'the debater.'"
+    },
+    {
+        "personality_type": "INFJ",
+        "personality_name": "INFJ: The Advocate",
+        "personality_desc": "INFJ (introverted, intuitive, feeling, and judging) is one of the 16 personality types identified by the Myers-Briggs Type Indicator (MBTI). Sometimes referred to as the 'Advocate' or the 'Idealist,' people with INFJ personalities are creative, gentle, and caring. INFJs are usually reserved but highly sensitive to how others feel. They are typically idealistic, with high moral standards and a strong focus on the future. INFJs enjoy thinking about deep topics and contemplating the meaning of life. The INFJ type is said to be one of the rarest with just one to three percent of the population exhibiting this personality type."
+    },
+    {
+        "personality_type": "INFP",
+        "personality_name": "INFP: The Mediator",
+        "personality_desc": "INFP (introversion, intuition, feeling, perception) is a four-letter abbreviation for one of the 16 personality types identified by the Myers-Briggs Type Indicator. The INFP personality type is often described as an 'idealist' or 'mediator' personality. People with this kind of personality tend to be introverted, idealistic, creative and driven by high values."
+    },
+    {
+        "personality_type": "ENFJ",
+        "personality_name": "ENFJ: The Giver",
+        "personality_desc": "ENFJ is one of the 16 different personality types identified by the Myers-Briggs Type Indicator.1﻿ Some other types are known by the acronyms ESFJ, ENFP, INFP, ISFJ, and INTP. People with ENFJ personality type are often described as warm, outgoing, loyal, and sensitive."
+    },
+    {
+        "personality_type": "ENFP",
+        "personality_name": "ENFP: The Champion",
+        "personality_desc": "The ENFP personality type is one of the 16 different types identified by the Myers-Briggs Type Indicator (MBTI). People with this type of personality are often described as enthusiastic, charismatic, and creative. People with this personality type are very charming, energetic, and independent. They are creative and do best in situations where they have the freedom to be creative and innovative. An estimated 5 to 7 percent of people are ENFPs."
+    },
+    {
+        "personality_type": "ISTJ",
+        "personality_name": "ISTJ: The Inspector",
+        "personality_desc": "ISTJ (introversion, sensing, thinking, judgment) is a four-letter code representing one of the 16 personality types found on the Myers-Briggs Personality Indicator (MBTI). People with an ISTJ personality type tend to be reserved, practical and quiet. They enjoy order and organization in all areas of their lives including their home, work, family, and projects. ISTJs value loyalty in themselves and others, and place an emphasis on traditions."
+    },
+    {
+        "personality_type": "ISFJ",
+        "personality_name": "ISFJ: The Protector",
+        "personality_desc": "ISFJ (introverted, sensing, feeling, judging) is one of the 16 personality types identified on the Myers-Briggs Type Indicator (MBTI). The MBTI was developed by Isabel Myers and her mother Katherine Briggs based on the theories of psychoanalyst Carl Jung. People who have ISFJ personalities tend to be reserved, warm-hearted, and responsible. Among the other personality types are ISTJ (introversion, sensing, thinking, judgment) and ENFP (extraverted, intuitive, feeling, perceiving). The ENTP (extraverted, intuitive, thinking, perceiving) personality type is the opposite of ISFJ."
+    },
+    {
+        "personality_type": "ESTJ",
+        "personality_name": "ESTJ: The Director",
+        "personality_desc": "ESTJ is one of the 16 personality types identified by the Myers-Briggs Type Indicator (MBTI). ESTJs are often described as logical, take-charge kind of people. They are assertive and are very concerned with making sure that things run smoothly and according to the rules. They are committed to tradition, standards, and laws. They have strong beliefs and possess sensible judgement, and expect that other people uphold these same principles as well."
+    },
+    {
+        "personality_type": "ESFJ",
+        "personality_name": "ESFJ: The Caregiver",
+        "personality_desc": "ESFJ is one of the 16 personality types identified by the Myers-Briggs Type Indicator. People with an ESFJ personality type tend to be outgoing, loyal, organized and tender-hearted. ESFJs gain energy from interacting with other people. They are typically described as outgoing and gregarious. They have a way of encouraging other people to be their best and often have a hard time believing anything bad about the people to whom they are close."
+    },
+    {
+        "personality_type": "ISTP",
+        "personality_name": "ISTP: The Crafter",
+        "personality_desc": "ISTP (introverted, sensing, thinking, perceiving) is one of the 16 personality types identified by the Myers-Briggs Type Indicator (MBTI). People with ISTP personalities enjoy having time to think alone and are fiercely independent. ISTPs also love action, new experiences, hands-on activities, and the freedom to work at their own pace."
+    },
+    {
+        "personality_type": "ISFP",
+        "personality_name": "ISFP: The Artist",
+        "personality_desc": "ISFP is a four-letter code representing one of the 16 personality types identified by the Myers-Briggs Type Indicator. People with an ISFP personality are frequently described as quiet, easy-going and peaceful. According to David Keirsey, the creator of the Keirsey Temperament Sorter, approximately 5 to 10 percent of people have an ISFP personality type. ISFP is the opposite of ENTJ."
+    },
+    {
+        "personality_type": "ESTP",
+        "personality_name": "ESTP: The Persuader",
+        "personality_desc": "ESTP is one of the 16 personality types identified by the Myers-Briggs Type Indicator (MBTI). People with this personality type are frequently described as outgoing, action-oriented and dramatic. ESTPs are outgoing and enjoy spending time with a wide circle of friends and acquaintances. They are interested in the here-and-now and are more likely to focus on details than taking a broader view of things."
+    },
+    {
+        "personality_type": "ESFP",
+        "personality_name": "ESFP: The Performer",
+        "personality_desc": "ESFP (extraverted, sensing, feeling, perceiving) is one of the 16 personality types identified by the Myers-Briggs Type Indicator. People with ESFP personality types are often described as spontaneous, resourceful, and outgoing. They love being the center of attention and are often described as entertainers or “class clowns.” ESFP is the opposite of the INTJ personality type."
+    }
+]
