@@ -1,6 +1,83 @@
 import Styled from '@emotion/styled'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { testEnd } from '../../redux/actions/testAction'
+import Link from 'next/link'
 
-function FinishScreen(){
+function FinishScreen({hasil, testEnd}){
+
+    const terjawab = hasil.answered
+    console.log(terjawab)
+
+    let A = 0;
+    let B = 0;
+    let C = 0;
+    let D = 0;
+    let E = 0;
+
+    let resultObj;
+
+    for(let i = 0; i < 15; i++){
+        let indicator = terjawab[i].indikator;
+
+        switch (indicator) {
+            case 'A':
+                A += terjawab[i].jawab;
+                break;
+            case 'B':
+                B += terjawab[i].jawab;
+                break;
+            case 'C':
+                C += terjawab[i].jawab;
+                break;
+            case 'D':
+                D += terjawab[i].jawab;
+                break;
+            case 'E':
+                E += terjawab[i].jawab;
+                break;
+            default:
+                break;
+        }
+
+        console.log(A, B, C, D, E)
+
+        function toPersen(indikatorVal){
+            const indicatorTotalValue = 6 * 2;
+            let indicatorValue;
+            let cap;
+            let persen;
+
+            if(indikatorVal > 0){
+                // Introvert Check
+                indicatorValue = indikatorVal + 6;
+                persen = (indicatorValue/indicatorTotalValue)*100;
+            }else{
+                //Extrovert check
+                indicatorValue = Math.abs(indikatorVal - 6);
+                persen = -(indicatorValue/indicatorTotalValue)*100;
+            }
+
+            
+            return persen;
+        }
+
+        console.log(`A: ${toPersen(A)}`)
+        console.log(`B: ${toPersen(B)}`)
+        console.log(`C: ${toPersen(C)}`)
+        console.log(`D: ${toPersen(D)}`)
+        console.log(`E: ${toPersen(E)}`)
+
+        resultObj = {
+            indicatorA: toPersen(A),
+            indicatorB: toPersen(B),
+            indicatorC: toPersen(C),
+            indicatorD: toPersen(D),
+            indicatorE: toPersen(E),
+        }
+    
+    }
+
     return(
         <FinishScreenStyled>
             <div className="modal-box">
@@ -8,7 +85,9 @@ function FinishScreen(){
                 <div className="message">
                     <p>Selamat anda telah berhasil menyelesaikan Myers–Briggs Type Indicator Test! Kilk "See Result" untuk melihat hasilnya.</p>
                 </div>
-                <button className="btn">See Result</button>
+                <Link href="/tes/mbti/result">
+                <button className="btn" onClick={() => testEnd({result: resultObj})}>See Result</button>
+                </Link>
             </div>
         </FinishScreenStyled>
     )
@@ -18,13 +97,14 @@ const FinishScreenStyled = Styled.div`
     width:100%;
     height:100vh;
     background:#F7F7F7;
-    position:absolute;
-    top:0;
-    left:0;
     display:flex;
     justify-content:center;
     align-items:center;
     font-family: 'Montserrat',sans-serif;
+    width: 904px;
+    margin-left: auto;
+    margin-right: auto;
+    
 
     .modal-box{
         width: 420px;
@@ -69,4 +149,10 @@ const FinishScreenStyled = Styled.div`
     }
 `
 
-export default FinishScreen;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        testEnd: bindActionCreators(testEnd, dispatch),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(FinishScreen)

@@ -4,10 +4,11 @@ const Layout = (props)=> (
     <div>
         {/* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link> */}
 
-        <Navbar/>
+        <Navbar />
         <div className="clearance">
             {props.children}
         </div>
+        {/* <img src={require('../assets/img/protofooter.svg')} alt="" className="footer-svg"/> */}
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -25,9 +26,14 @@ const Layout = (props)=> (
             margin: 0 auto;
             padding-top: 65px;
         }
-
         `}</style>
     </div>
 )
-
+// .footer-svg{
+//     width: 100%;
+//     height: 100%;
+//     margin-top: 60px;
+//     position: relative;
+//     top: 4px;
+// }
 export default Layout;

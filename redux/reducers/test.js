@@ -1,7 +1,8 @@
-import { TEST_END, TEST_START } from '../actions/types'
+import { TEST_END, TEST_START, SEND_RESULT } from '../actions/types'
 
 const initialState = {
-    testDone: null
+    testDone: null,
+    result: {},
 }
 
 export const test = (state = initialState, action) => {
@@ -9,12 +10,14 @@ export const test = (state = initialState, action) => {
         case TEST_START:
             return {
                 ...state,
-                testDone: false
+                testDone: false,
+                result: {}
             }
         case TEST_END:
             return {
                 ...state,
-                testDone: true
+                testDone: true,
+                result: action.payload.result
             }
         default:
             return state

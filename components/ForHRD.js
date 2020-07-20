@@ -13,6 +13,9 @@ const ForHRD = () => {
                     </div>
                     <div className="hrdatas-kanan">
                         <img src={require('../assets/img/forhrd.svg')} alt="" className="img-forhrd"/>
+                        <button className="btn-lebihlanjut">
+                            <p className="p-lebihlanjut">LEBIH LANJUT</p>
+                        </button>
                     </div>
                 </div>
                 <div className="hrdbawah">
@@ -99,12 +102,13 @@ const StyledForHRD = Styled.div`
 .hrdatas-kanan{
     height: 120px;
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 .img-forhrd{
-    width: 147px;
-    height: 109px;
+    width: 121px;
+    height: 90px;
 }
 .hrdbawah{
     width: 294px;
@@ -138,6 +142,37 @@ const StyledForHRD = Styled.div`
     color: #4D4D4D;
     margin: 0;
     margin-top: 12px;
+}
+.btn-lebihlanjut{
+    width: 104px;
+    height: 40px;
+
+    border: 1px solid #4C4C4C;
+    box-sizing: border-box;
+    border-radius: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    margin-left: 8px;
+    background-color: #F7F7F7;
+}
+.p-lebihlanjut{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 6px;
+
+    color: #4C4C4C;
+}
+.panahlanjut{
+    width: 12px;
+    height: 10px;
+    margin-left: 6px;
 }
 `
 

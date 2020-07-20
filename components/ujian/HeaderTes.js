@@ -19,7 +19,7 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 
 const HeaderTes = ({answered, questionTotal, testEnd, testStart}) =>{
 
-    const time = 1000 * 60 * 15;
+    const time = 1000 * 30;
     const [ date, setDate ] = useState(Date.now() + time)
 
     useEffect(() => {
@@ -32,7 +32,7 @@ const HeaderTes = ({answered, questionTotal, testEnd, testStart}) =>{
                 MBTI
             </div>
             <div className="counter">
-            <Countdown date={date} renderer={renderer} onComplete={() => testEnd()}/>
+            <Countdown date={date} renderer={renderer} onComplete={() => testEnd({result: null})}/>
             </div>
             <div className="answered">
               {answered} of {questionTotal} answered
