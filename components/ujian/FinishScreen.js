@@ -43,7 +43,8 @@ function FinishScreen({hasil, testEnd}){
         console.log(A, B, C, D, E)
 
         function toPersen(indikatorVal){
-            const indicatorTotalValue = 6 * 2;
+            const jumlahSoal = 11
+            const indicatorTotalValue = jumlahSoal * 2;
             let indicatorValue;
             let cap;
             let persen;
