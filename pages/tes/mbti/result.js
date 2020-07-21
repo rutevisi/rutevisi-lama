@@ -1,6 +1,6 @@
 import Styled from '@emotion/styled'
 import { connect } from 'react-redux'
-import Layout from '../../../components/layout/Layout'
+import Layout from '../../../components/layouts/Layout'
 import personalityType from '../../../data/personalityType.json'
 
 function ResultPage({result}){

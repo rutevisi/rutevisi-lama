@@ -34,7 +34,7 @@ const Etalase = () => {
                         <p className="p-muatlebih">Muat lebih banyak <span className="lildown">&#9662;</span></p>
                     </button>
                     <div className="masihada">
-                        <p className="p-masihada">Temukan {sisates} tes lainnya</p>
+                        <p className="p-masihada">Temukan <span style={{color:"black", fontWeight: 800}}>{sisates}</span> tes lainnya</p>
                     </div>
                 </div>
             </div>

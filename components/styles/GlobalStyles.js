@@ -19,7 +19,10 @@ const GlobalStyles = () => {
             }
             body{
                 background-color:#F7F7F7;
-            }            
+            }    
+            a:hover{
+              color: #FFCB11 !important;
+            }        
             .btn {
               display: inline-block;
               font-weight: 400;
