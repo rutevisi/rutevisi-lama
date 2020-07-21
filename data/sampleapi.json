@@ -14,33 +14,38 @@
         "color" : "blue"
     },
     {
-        "link" : "tes-iq",
-        "title" : "TES IQ",
-        "subtitle" : "Cek Kepintaran Dulu Sini",
-        "emojicon" : "🧠",
-        "color" : "orange"
-    },
-    {
         "link" : "negara-mana",
         "title" : "NEGARA MANA",
         "subtitle" : "Yang Cocok Buatmu?",
         "emojicon" : "🌏",
-        "color" : "blue"
-    },
-    {
-        "link" : "",
-        "title" : "FAKSI DIVERGENT",
-        "subtitle" : "Yang Mana Kamu Akan Cocok",
-        "emojicon" : "🌇",
         "color" : "orange"
     },
     {
         "link" : "",
-        "title" : "UMUR MENTAL",
-        "subtitle" : "Pantasnya Kamu Itu Seumuran...",
-        "emojicon" : "👴",
+        "title" : "PROFESI CHECK",
+        "subtitle" : "Pekerjaan apa ya  yg aku banget",
+        "emojicon" : "👷",
+        "color" : "blue"
+    },
+    {
+        "link" : "fakboi-check",
+        "title" : "FAKBOI CHECK",
+        "subtitle" : "Apakah aku seorang fakboi...",
+        "emojicon" : "🐶",
+        "color" : "orange"
+    },
+    {
+        "link" : "tes-iq",
+        "title" : "TES IQ",
+        "subtitle" : "Cek Kepintaran Dulu Sini",
+        "emojicon" : "🧠",
         "color" : "purple"
     },
+
+
+
+
+
     {
         "link" : "mbti",
         "title" : "MBTI+",

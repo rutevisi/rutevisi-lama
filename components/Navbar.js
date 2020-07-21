@@ -6,7 +6,7 @@ const Navbar = () => {
         <NavbarStyled>
             <div className="navbar">
                 <div className="nav-wrap">
-                    <Link  href="/"><a className="navbar-brand"><img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
+                    <Link href="/"><a className="navbar-brand"><img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
                         <span className="nav-title">Rutevisi</span>
                     </a></Link>             
                         <div className="sublink">

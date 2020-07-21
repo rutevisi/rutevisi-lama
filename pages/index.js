@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import Styled from '@emotion/styled'
-import Layout from '../components/Layout'
+import LayoutFull from '../components/layout/LayoutFull'
 import Tools from '../components/Tools'
 import Etalase from '../components/Etalase'
 import KodeKelasBox from '../components/KodeKelasBox'
 import ForHRD from '../components/ForHRD'
 import Jumbotron from '../components/Jumbotron'
-import Footer from '../components/Footer'
 
 function Index(){
 
     return(
         <StyledIndex>
             <div>
-                <Layout>
+                <LayoutFull>
                     <Jumbotron />
                     <div className="index-maincontent">
                         <div className="etalase-tool">
@@ -29,8 +28,7 @@ function Index(){
                             <ForHRD />
                         </div>
                     </div>
-                </Layout>      
-                <Footer />
+                </LayoutFull>   
             </div>
         </StyledIndex>
     )

@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
-
+import React, {useState} from 'react'
+import WormSpinner from './WormSpinner'
 
 const Card = (props) => {
     const [title, setTitle] = useState(props.title);
     const [subtitle, setSubtitle] = useState(props.subtitle);
     const [emojicon, setEmojicon] = useState(props.emojicon);
+    const [spindis, setSpinDis] = useState("none");
+    const [spinsid, setSpinSid] = useState("flex");
     const [color, setColor] = useState(()=>{
         switch (props.cardColor) {
             case "orange": return "#FFCB11";
@@ -18,10 +20,19 @@ const Card = (props) => {
     function moveTop() {
         return title.length < 8 ? "movebanyak" : "movedikit";
     }
+
+    function spinnerOn() {
+        setSpinDis('unset');
+        setSpinSid('none');
+    }
+
     return (
         <div>
-            <div className={`card-body`}>
+            <div className={`card-body`} onClick={()=>spinnerOn()}>
                 <div className="overflow-hidden">
+                    <div className="div-spinner">
+                        <WormSpinner />
+                    </div>
                     <div className="div-emojicon">
                         <p className="emojicon">{emojicon}</p>
                     </div>
@@ -82,6 +93,10 @@ const Card = (props) => {
                 bottom: 0;
                 filter: opacity(0);
                 transition: 1s;
+                display: ${spinsid};
+            }
+            .balancer-card{
+                display: ${spinsid};
             }
             .btn-terpilih{
                 width: 122px;
@@ -146,6 +161,17 @@ const Card = (props) => {
                 width: 120px;
                 z-index:2;
                 transition:0.5s;
+                display: ${spinsid};
+            }
+            .div-spinner{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                position: absolute;
+                display: ${spindis};
+                z-index:1;
             }
             .div-emojicon{
                 width: 153px;
@@ -156,6 +182,7 @@ const Card = (props) => {
                 align-items: center;
                 position: absolute;
                 transition: 0.5s;
+                display: ${spinsid};
             }
             .emojicon{
                 font-size: 60px;
