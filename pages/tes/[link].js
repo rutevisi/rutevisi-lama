@@ -1,15 +1,14 @@
 import React from 'react'
-import Layout from '../../../components/layouts/Layout'
+import Layout from '../../components/layouts/Layout'
 import { connect} from 'react-redux';
-import {wrapper} from '../../../redux/store';
+import {wrapper} from '../../redux/store';
 import axios from 'axios'
-import HeaderTes from '../../../components/ujian/HeaderTes';
-import Question from '../../../components/ujian/Question';
-import FinishScreen from '../../../components/ujian/FinishScreen';
-import TestFooter from '../../../components/ujian/TestFooter'
+import HeaderTes from '../../components/ujian/HeaderTes';
+import Question from '../../components/ujian/Question';
+import FinishScreen from '../../components/ujian/FinishScreen';
+import TestFooter from '../../components/ujian/TestFooter'
 
-function MBTI({mbti, answer, test}){
-
+function Test({mbti, answer, test}){
     const list = mbti.soal
     const answered = answer.answered.length
     const questionTotal = mbti.soal.length
@@ -40,19 +39,20 @@ function MBTI({mbti, answer, test}){
 
     const endScreen = <Layout><FinishScreen hasil={answer}/></Layout>
 
-    console.log(testIsDone)
     return (
         testIsDone ? endScreen : testPage
     )
 }
 
 export const getServerSideProps = wrapper.getServerSideProps(
-    async ({store, req, res, ...etc}) => {
-        const response = await axios.get(`${process.env.DEV_URL}/api/tes/mbti`);
+    async ({store, req, res, params}) => {
+        const { link } = params;
+        
+        const response = await axios.get(`${process.env.DEV_URL}/api/tes/${link}`);
         const soalMBTI = await response.data;
 
         store.dispatch({type: 'FETCH_MBTI', payload: soalMBTI});
     }
 );
 
-export default connect(state => state)(MBTI);
+export default connect(state => state)(Test);

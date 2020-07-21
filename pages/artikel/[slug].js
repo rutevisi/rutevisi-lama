@@ -17,27 +17,6 @@ function Article({data, content}){
                 </div>
                 <div className="content-container">
                     <ReactMarkdown escapeHtml={true} source={content}/>
-                    <div className="figure">
-                        <h2>Advokat yang Mungkin Anda Kenal</h2>
-                        <ul>
-                            <li>
-                                <img src="https://si.wsj.net/public/resources/images/B3-CX137_EDAY27_360RV_20190115172828.jpg" alt=""/>
-                                <span>Martin Luther King</span>
-                            </li>
-                            <li>
-                                <img src="https://africandevelopmentsuccesses.files.wordpress.com/2015/11/nelson-mandela.jpg?w=640" alt=""/>
-                                <span>Nelson Mandela</span>
-                            </li>
-                            <li>
-                                <img src="https://www.bread.org/sites/default/files/field/image/mother-teresa-smile.jpg" alt=""/>
-                                <span>Mother Teresa</span>
-                            </li>
-                            <li>
-                                <img src="https://media3.s-nbcnews.com/i/newscms/2019_22/1442275/nicole-kidman-kids-today-main-190530_0fb968f0b0102680890c9ebe662c4638.jpg" alt=""/>
-                                <span>Nicole Kidman</span>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </ArticleStyled>
         </LayoutPlain>
@@ -80,38 +59,22 @@ const ArticleStyled = Styled.div`
             font-size: 2rem;
             font-weight: 800;
         }
-
-        .figure{
-            ul{
-                display:flex;
-                justify-content: space-between;
-                padding-left: 0;
-
-                li{
-                    border-radius:50%;
-                    height:160px;
-                    list-style:none;
-                    width:160px;
-                    display:flex;
-                    flex-direction:column;
-
-                    img{
-                        width:100%;
-                        border-radius:50%;
-                        height:100%;
-                        object-fit:cover;
-                    }
-
-                    span{
-                        text-align:center;
-                        margin-top:1rem;
-                        font-style:italic;
-                    }
-                }
-            }
-        }
     }
 
+    blockquote{
+        font-style: italic;
+        background: #f1f1f1;
+        padding: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 2rem;
+        color:#666;
+
+        p{
+            text-align:center;
+            margin: .5rem 0;
+        }
+    }
     p{
         text-align: justify;
         line-height: 26px;
