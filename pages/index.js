@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Styled from '@emotion/styled'
-import LayoutFull from '../components/layout/LayoutFull'
+import LayoutFull from '../components/layouts/LayoutFull'
 import Tools from '../components/Tools'
 import Etalase from '../components/Etalase'
 import KodeKelasBox from '../components/KodeKelasBox'

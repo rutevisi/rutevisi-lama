@@ -35,8 +35,9 @@ const Footer = () => {
                 <div className="barefoot">
                     <div className="barecontent">
                         <p className="made">Made in Indonesia&nbsp;<img src={require('../assets/img/idflag.svg')} alt="" className="idflag"/>&ensp; <span style={{fontWeight: "500"}}>2020 © Rutevisi.com</span></p>
-                        <Link href="/tentang-kami"><a className="navbar-brand"><img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
-                            <span className="nav-title">Rutevisi</span>
+                        <Link href="/tentang-kami"><a className="navbar-brand">
+                            <img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
+                            <h1 className="nav-title">Rutevisi</h1>
                         </a></Link>  
                     </div>
                 </div>
@@ -127,7 +128,7 @@ margin-top: 80px;
 }
 .tiktok{
     filter: 
-    grayscale(1)
+        grayscale(1)
     ;
 }
 .whatsapp{
@@ -150,6 +151,9 @@ margin-top: 80px;
 }
 .icon:hover{
     filter: unset;
+}
+.linker{
+    margin-left:0px;
 }
 
 .divbagikan{
@@ -200,6 +204,7 @@ margin-top: 80px;
 .nav-title{
     font-size: 2.1rem;
     font-weight: 700;
+    margin: 0;
     margin-left: 8px;
     font-family: 'Exo', sans-serif;
     color: white;
@@ -208,6 +213,9 @@ margin-top: 80px;
 .navbar-brand{
     text-decoration: none;
     margin-right: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 `
 

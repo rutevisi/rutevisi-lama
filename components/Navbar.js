@@ -6,8 +6,9 @@ const Navbar = () => {
         <NavbarStyled>
             <div className="navbar">
                 <div className="nav-wrap">
-                    <Link href="/"><a className="navbar-brand"><img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
-                        <span className="nav-title">Rutevisi</span>
+                    <Link href="/"><a className="navbar-brand">
+                        <img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
+                        <h1 className="nav-title">Rutevisi</h1>
                     </a></Link>             
                         <div className="sublink">
                             <Link href="/tes"><a className="btn navbar-item">Tes Sekarang</a></Link>
@@ -62,6 +63,7 @@ const NavbarStyled = Styled.div`
 .nav-title{
     font-size: 2.1rem;
     font-weight: 700;
+    margin: 0;
     margin-left: 8px;
     font-family: 'Exo', sans-serif;
     color: black;
@@ -69,6 +71,9 @@ const NavbarStyled = Styled.div`
 }
 .navbar-brand{
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .navbar-links{
     display: flex;

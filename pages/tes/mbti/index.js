@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Layout from '../../../components/Layout'
+import Layout from '../../../components/layouts/Layout'
 import { connect} from 'react-redux';
 import {wrapper} from '../../../redux/store';
 import axios from 'axios'

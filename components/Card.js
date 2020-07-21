@@ -4,6 +4,7 @@ import WormSpinner from './WormSpinner'
 const Card = (props) => {
     const [title, setTitle] = useState(props.title);
     const [subtitle, setSubtitle] = useState(props.subtitle);
+    const [seotitle, setSeotitle] = useState(props.seotitle);
     const [emojicon, setEmojicon] = useState(props.emojicon);
     const [spindis, setSpinDis] = useState("none");
     const [spinsid, setSpinSid] = useState("flex");
@@ -30,6 +31,7 @@ const Card = (props) => {
         <div>
             <div className={`card-body`} onClick={()=>spinnerOn()}>
                 <div className="overflow-hidden">
+                    <h1 className="supertitle">{seotitle}</h1>
                     <div className="div-spinner">
                         <WormSpinner />
                     </div>
@@ -53,6 +55,10 @@ const Card = (props) => {
 
             <style jsx>
             {`
+            h1{
+                position: absolute;
+                color: rgba(0,0,0,0.001)
+            }
             .card-title{
                 overflow:hidden;
                 -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
