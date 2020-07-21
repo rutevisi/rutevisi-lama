@@ -19,7 +19,7 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 
 const HeaderTes = ({answered, questionTotal, testEnd, testStart}) =>{
 
-    const time = 1000 * 60 * 15;
+    const time = 1000 * 60 * 60;
     const [ date, setDate ] = useState(Date.now() + time)
 
     useEffect(() => {
