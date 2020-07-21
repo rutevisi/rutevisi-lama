@@ -6,17 +6,11 @@ import personalityType from '../../../data/personalityType.json'
 
 function ResultPage({result}){
 
-    // let testa = Math.round(result.indicatorA);
-    // let testb = Math.round(result.indicatorB);
-    // let testc = Math.round(result.indicatorC);
-    // let testd = Math.round(result.indicatorD);
-    // let teste = Math.round(result.indicatorE);
-
-    let testa = 80;
-    let testb = 76;
-    let testc = 69;
-    let testd = 77;
-    let teste = 81;
+    let testa = Math.round(result.indicatorA);
+    let testb = Math.round(result.indicatorB);
+    let testc = Math.round(result.indicatorC);
+    let testd = Math.round(result.indicatorD);
+    let teste = Math.round(result.indicatorE);
 
     let radRight = '0rem 2rem 2rem 0rem';
     let radLeft = '2rem 0rem 0rem 2rem'
