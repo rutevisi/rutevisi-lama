@@ -43,7 +43,7 @@ function FinishScreen({hasil, testEnd}){
         console.log(A, B, C, D, E)
 
         function toPersen(indikatorVal){
-            const jumlahSoal = 11
+            const jumlahSoal = 22
             const indicatorTotalValue = jumlahSoal * 2;
             let indicatorValue;
             let cap;
@@ -51,11 +51,11 @@ function FinishScreen({hasil, testEnd}){
 
             if(indikatorVal > 0){
                 // Introvert Check
-                indicatorValue = indikatorVal + 6;
+                indicatorValue = indikatorVal + jumlahSoal;
                 persen = (indicatorValue/indicatorTotalValue)*100;
             }else{
                 //Extrovert check
-                indicatorValue = Math.abs(indikatorVal - 6);
+                indicatorValue = Math.abs(indikatorVal - jumlahSoal);
                 persen = -(indicatorValue/indicatorTotalValue)*100;
             }
 
