@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import { connect } from 'react-redux'
 import Layout from '../../../components/layouts/Layout'
@@ -22,6 +23,7 @@ function ResultPage({result}){
     let rada, radb, radc, radd, rade;
     let persA, persB, persC, persD, persE;
     let a, b, c, d, e;
+    let [ zero, setZero ] = useState(true)
 
     
 
@@ -232,25 +234,11 @@ function ResultPage({result}){
         }
     }
 
-    const [cenA, setcenA] = useState(0);
-    const [cenB, setcenB] = useState(0);
-    const [cenC, setcenC] = useState(0);
-    const [cenD, setcenD] = useState(0);
-    const [cenE, setcenE] = useState(0);
-
-    function startAnimate(){
-        setcenA(a);
-        setcenB(b);
-        setcenC(c);
-        setcenD(d);
-        setcenE(e);
-        console.log(cenA);
-        console.log(cenB);
-        console.log(cenC);
-        console.log(cenD);
-        console.log(cenE);
-    }
-
+    useEffect(() => {
+        setTimeout(() => {
+            setZero(false)
+        }, 200);
+    })
 
     // Finding Personality Data
     let typeData = personalityType.find((data) => data.personality_type === personality)
@@ -270,7 +258,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{extrovert}%</div>
-                    <div className="div1" bgColor={'#ffcb11'} percent={a} setRadius={rada} pos={posa}></div>
+                    <InnerChart bgColor={'#ffcb11'} percent={a} setRadius={rada} pos={posa} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
                     <div className="percentage perc-right">{introvert}%</div>
                 </div>
             </div>
@@ -282,7 +270,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{sensing}%</div>
-                    <div className="div2" bgColor={'#ffcb11'} percent={b} setRadius={radb} pos={posb}></div>
+                    <InnerChart bgColor={'#ffcb11'} percent={b} setRadius={radb} pos={posb} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
                     <div className="percentage perc-right">{intutition}%</div>
                 </div>
             </div>
@@ -294,7 +282,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{thinking}%</div>
-                    <div className="div3" bgColor={'#ffcb11'} percent={c} setRadius={radc} pos={posc}></div>
+                    <InnerChart bgColor={'#ffcb11'} percent={c} setRadius={radc} pos={posc} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
                     <div className="percentage perc-right">{feeling}%</div>
                 </div>
             </div>
@@ -306,7 +294,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{judging}%</div>
-                    <div className="div4" bgColor={'#ffcb11'} percent={d} setRadius={radd} pos={posd}></div>
+                    <InnerChart bgColor={'#ffcb11'} percent={d} setRadius={radd} pos={posd} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
                     <div className="percentage perc-right">{perceiving}%</div>
                 </div>
             </div>
@@ -318,7 +306,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{turbulent}%</div>
-                    <div className="div5" bgColor={'#ffcb11'} percent={e} setRadius={rade} pos={pose}></div>
+                    <InnerChart bgColor={'#ffcb11'} percent={e} setRadius={rade} pos={pose} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
                     <div className="percentage perc-right">{assertive}%</div>
                 </div>
             </div>
@@ -383,17 +371,29 @@ function ResultPage({result}){
 const InnerChart = Styled.div`
     height:100%;
     ${(props) => props.pos}
+<<<<<<< HEAD
+=======
+    width:0%;
+    width:${(props) => props.percent}%;
+>>>>>>> b8ccf27267dc190e8f7809930e6280246f119e80
     border-radius: ${(props) => props.setRadius};
     background-color:${(props) => props.bgColor};
     display:flex;
     align-items:center;
+<<<<<<< HEAD
     transition: 1s;
+=======
+    transition: all 1s ease-in-out;
+>>>>>>> b8ccf27267dc190e8f7809930e6280246f119e80
 `
 const ResultPageStyled = Styled.div`
     padding-top:2.5rem;
     font-family:'Montserrat', sans-serif;
     padding-bottom:3rem;
 
+    .zero-width{
+        width:0% !important;
+    }
     .page-header{
         padding: 0 48px;
         text-align: justify;
