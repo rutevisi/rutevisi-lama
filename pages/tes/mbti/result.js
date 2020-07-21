@@ -2,6 +2,7 @@ import Styled from '@emotion/styled'
 import { connect } from 'react-redux'
 import Layout from '../../../components/layouts/Layout'
 import personalityType from '../../../data/personalityType.json'
+import { useState } from 'react'
 
 function ResultPage({result}){
 
@@ -21,6 +22,8 @@ function ResultPage({result}){
     let rada, radb, radc, radd, rade;
     let persA, persB, persC, persD, persE;
     let a, b, c, d, e;
+
+    
 
     let personality, fifthIndikator;
 
@@ -70,7 +73,10 @@ function ResultPage({result}){
 
     // Extrovert vs Introvert Check
     if(testa > 0){
-        a = testa;
+        // setTimeout((testa) => {
+        //     setcentA(testa)
+        // }, 10);
+            a = testa;
         introvert = a;
         extrovert = 100 - a;
         persA = 'introvert'
@@ -82,7 +88,10 @@ function ResultPage({result}){
         }
     }
     else if(testa < 0){
-        a = 100 - (testa + 100)
+        // setTimeout((testa) => {
+        //     setcentA(100 - (testa + 100))
+        // }, 10);
+            a = 100 - (testa + 100)
         introvert = 100 - a;
         extrovert = a;
         persA = 'extrovert'
@@ -96,7 +105,10 @@ function ResultPage({result}){
 
     // Sensing vs Intutition Check
     if(testb > 0){
-        b = testb;
+        // setTimeout((testb) => {
+        //     setcentB(testb)
+        // }, 10);
+            b = testb;
         intutition = b;
         sensing = 100 - b;
         persB = 'intutition'
@@ -109,7 +121,10 @@ function ResultPage({result}){
 
     }
     else if(testb < 0){
-        b = 100 - (testb + 100);
+        // setTimeout((testb) => {
+        //     setcentB(100 - (testb + 100))
+        // }, 10);
+            b = 100 - (testb + 100);
         intutition = 100 - b;
         sensing = b;
         persB = 'sensing'
@@ -123,7 +138,10 @@ function ResultPage({result}){
 
     // Thinking vs Feeling Check
     if(testc > 0){
-        c = testc;
+        // setTimeout((testc) => {
+        //     setcentC(testc)
+        // }, 10);
+            c = testc;
         feeling = c;
         thinking = 100 - c;
         persC = 'feeling'
@@ -135,7 +153,10 @@ function ResultPage({result}){
         }
     }
     else if(testc < 0){
-        c = 100 - (testc + 100);
+        // setTimeout((testc) => {
+        //     setcentC(100 - (testc + 100))
+        // }, 10);
+            c = 100 - (testc + 100);
         feeling = 100 - c;
         thinking = c;
         persC = 'thinking'
@@ -149,7 +170,10 @@ function ResultPage({result}){
 
     // Judging vs Perveiving Check
     if(testd > 0){
-        d = testd;
+        // setTimeout((testd) => {
+        //     setcentD(testd)
+        // }, 10);
+            d = testd;
         perceiving = d;
         judging = 100 - d;
         persD = 'perceiving'
@@ -161,7 +185,10 @@ function ResultPage({result}){
         }
     }
     else if(testd < 0){
-        d = 100 - (testd + 100);
+        // setTimeout((testd) => {
+        //     setcentD(100 - (testd + 100))
+        // }, 10);
+            d = 100 - (testd + 100);
         perceiving = 100 - d;
         judging = d;
         persD = 'judging'
@@ -175,7 +202,10 @@ function ResultPage({result}){
 
     // Turbulent vs Assertive Check
     if(teste > 0){
-        e = teste;
+        // setTimeout((teste) => {
+        //     setcentE(teste)
+        // }, 10);
+            e = teste;
         assertive = e;
         turbulent = 100 - e;
         persE = 'assertive'
@@ -187,7 +217,10 @@ function ResultPage({result}){
         }
     }
     else if(teste < 0){
-        e = 100 - (teste + 100);
+        // setTimeout((teste) => {
+        //     setcentE(100 - (teste + 100))
+        // }, 10);
+            e = 100 - (teste + 100);
         assertive = 100 - e;
         turbulent = e;
         persE = 'turbulent'
@@ -199,6 +232,25 @@ function ResultPage({result}){
         }
     }
 
+    const [cenA, setcenA] = useState(0);
+    const [cenB, setcenB] = useState(0);
+    const [cenC, setcenC] = useState(0);
+    const [cenD, setcenD] = useState(0);
+    const [cenE, setcenE] = useState(0);
+
+    function startAnimate(){
+        setcenA(a);
+        setcenB(b);
+        setcenC(c);
+        setcenD(d);
+        setcenE(e);
+        console.log(cenA);
+        console.log(cenB);
+        console.log(cenC);
+        console.log(cenD);
+        console.log(cenE);
+    }
+
 
     // Finding Personality Data
     let typeData = personalityType.find((data) => data.personality_type === personality)
@@ -206,7 +258,7 @@ function ResultPage({result}){
     return(
         <Layout>
         <ResultPageStyled>
-            <div className="page-header">
+            <div className="page-header" onClick={()=>startAnimate()}>
                 <h1>{typeData.personality_name.split(":")[0] + "-" + fifthIndikator + " :" + typeData.personality_name.split(":")[1]}</h1>
                 <p>{typeData.personality_desc}</p>
             </div>
@@ -218,7 +270,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{extrovert}%</div>
-                    <InnerChart bgColor={'#ffcb11'} percent={a} setRadius={rada} pos={posa}></InnerChart>
+                    <div className="div1" bgColor={'#ffcb11'} percent={a} setRadius={rada} pos={posa}></div>
                     <div className="percentage perc-right">{introvert}%</div>
                 </div>
             </div>
@@ -230,7 +282,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{sensing}%</div>
-                    <InnerChart bgColor={'#ffcb11'} percent={b} setRadius={radb} pos={posb}></InnerChart>
+                    <div className="div2" bgColor={'#ffcb11'} percent={b} setRadius={radb} pos={posb}></div>
                     <div className="percentage perc-right">{intutition}%</div>
                 </div>
             </div>
@@ -242,7 +294,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{thinking}%</div>
-                    <InnerChart bgColor={'#ffcb11'} percent={c} setRadius={radc} pos={posc}></InnerChart>
+                    <div className="div3" bgColor={'#ffcb11'} percent={c} setRadius={radc} pos={posc}></div>
                     <div className="percentage perc-right">{feeling}%</div>
                 </div>
             </div>
@@ -254,7 +306,7 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{judging}%</div>
-                    <InnerChart bgColor={'#ffcb11'} percent={d} setRadius={radd} pos={posd}></InnerChart>
+                    <div className="div4" bgColor={'#ffcb11'} percent={d} setRadius={radd} pos={posd}></div>
                     <div className="percentage perc-right">{perceiving}%</div>
                 </div>
             </div>
@@ -266,10 +318,63 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{turbulent}%</div>
-                    <InnerChart bgColor={'#ffcb11'} percent={e} setRadius={rade} pos={pose}></InnerChart>
+                    <div className="div5" bgColor={'#ffcb11'} percent={e} setRadius={rade} pos={pose}></div>
                     <div className="percentage perc-right">{assertive}%</div>
                 </div>
             </div>
+            <style jsx>{`
+                .div1{
+                    width: ${cenA}%;
+                    height:100%;
+                    ${posa}
+                    border-radius: ${rada};
+                    background-color: #FFCB11;
+                    display:flex;
+                    align-items:center;
+                    transition: 1s;
+                }
+                .div2{
+                    width: ${cenB}%;
+                    height:100%;
+                    ${posb}
+                    border-radius: ${radb};
+                    background-color: #FFCB11;
+                    display:flex;
+                    align-items:center;
+                    transition: 1s;
+                }
+                .div3{
+                    width: ${cenC}%;
+                    height:100%;
+                    ${posc}
+                    border-radius: ${radc};
+                    background-color: #FFCB11;
+                    display:flex;
+                    align-items:center;
+                    transition: 1s;
+                }
+                .div4{
+                    width: ${cenD}%;
+                    height:100%;
+                    ${posd}
+                    border-radius: ${radd};
+                    background-color: #FFCB11;
+                    display:flex;
+                    align-items:center;
+                    transition: 1s;
+                }
+                .div5{
+                    width: ${cenE}%;
+                    height:100%;
+                    ${pose}
+                    border-radius: ${rade};
+                    background-color: #FFCB11;
+                    display:flex;
+                    align-items:center;
+                    transition: 1s;
+                }
+            `}
+            </style>
         </ResultPageStyled>
         </Layout>
     )
@@ -278,11 +383,11 @@ function ResultPage({result}){
 const InnerChart = Styled.div`
     height:100%;
     ${(props) => props.pos}
-    width:${(props) => props.percent}%;
     border-radius: ${(props) => props.setRadius};
     background-color:${(props) => props.bgColor};
     display:flex;
     align-items:center;
+    transition: 1s;
 `
 const ResultPageStyled = Styled.div`
     padding-top:2.5rem;
