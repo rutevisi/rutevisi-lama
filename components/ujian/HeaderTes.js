@@ -54,6 +54,9 @@ const HeaderStyled = Styled.div`
     position: sticky;
     top: 5rem;
     justify-content: space-between;
+    width: 904px;
+    margin-left: auto;
+    margin-right: auto;
 
     .timer{
       font-weight: bold;

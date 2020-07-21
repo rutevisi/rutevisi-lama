@@ -53,11 +53,12 @@ const StyledTools = Styled.div`
     border: none;
     background-color: inherit;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-right: 12px;
 }
 .btn-tools img{
+    margin: 0;
     margin-right: 10px;
 }
 `

@@ -16,6 +16,7 @@ const ForHRD = () => {
                     </div>
                 </div>
                 <div className="hrdbawah">
+                    <div className="padderhrd">
                         <div className="itemhrds div-akurat">
                             <img src={require('../assets/img/akurat.svg')} alt="" className="img-akurat img-itemhrd"/>
                             <p className="p-imgitem p-akurat">Akurat</p>
@@ -30,6 +31,7 @@ const ForHRD = () => {
                             <img src={require('../assets/img/murah.svg')} alt="" className="img-itemhrd"/>
                             <p className="p-imgitem">Murah</p>
                         </div>
+                    </div>
                 </div>
             </div>
         </StyledForHRD>
@@ -109,11 +111,18 @@ const StyledForHRD = Styled.div`
 .hrdbawah{
     width: 294px;
     height: 108px;
-
+    
     background: #F7F7F7;
     box-shadow: 4px 4px 14px rgba(174, 174, 192, 0.54), -8px -8px 10px rgba(255, 255, 255, 0.71), inset 2px 2px 1px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
-
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.padderhrd{
+    width: 284px;
+    height: 108px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
