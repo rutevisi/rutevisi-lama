@@ -3,6 +3,7 @@
         "link" : "mbti",
         "title" : "MBTI+",
         "subtitle" : "Myers-Briggs Type Indicator",
+        "seotitle" : "tes mbti tes kepribadian bahasa indonesia",
         "emojicon" : "💁",
         "color" : "purple"
     },
@@ -10,6 +11,7 @@
         "link" : "jurusan-kuliah",
         "title" : "JURUSAN KULIAH",
         "subtitle" : "Bingung Mau Kuliah Kemana?",
+        "seotitle" : "tes minat jurusan prodi kuliah fakultas",
         "emojicon" : "👨‍🎓",
         "color" : "blue"
     },
@@ -17,13 +19,15 @@
         "link" : "negara-mana",
         "title" : "NEGARA MANA",
         "subtitle" : "Yang Cocok Buatmu?",
+        "seotitle" : "tes negara mana yang cocok untuk aku tinggali",
         "emojicon" : "🌏",
         "color" : "orange"
     },
     {
-        "link" : "",
-        "title" : "PROFESI CHECK",
-        "subtitle" : "Pekerjaan apa ya  yg aku banget",
+        "link" : "jenis-pekerjaan",
+        "title" : "JENIS PROFESI",
+        "subtitle" : "Pekerjaan apa ya yang aku banget",
+        "seotitle" : "tes pekerjaan profesi yang cocok tes minat",
         "emojicon" : "👷",
         "color" : "blue"
     },
@@ -31,6 +35,7 @@
         "link" : "fakboi-check",
         "title" : "FAKBOI CHECK",
         "subtitle" : "Apakah aku seorang fakboi...",
+        "seotitle" : "tes fakboi check apakah aku seorang fakboi",
         "emojicon" : "🐶",
         "color" : "orange"
     },
@@ -38,6 +43,7 @@
         "link" : "tes-iq",
         "title" : "TES IQ",
         "subtitle" : "Cek Kepintaran Dulu Sini",
+        "seotitle" : "tes iq berbahasa bahasa indonesia online",
         "emojicon" : "🧠",
         "color" : "purple"
     },
@@ -50,6 +56,7 @@
         "link" : "mbti",
         "title" : "MBTI+",
         "subtitle" : "Myers-Briggs Type Indicator",
+        "seotitle" : "",
         "emojicon" : "💁",
         "color" : "purple"
     },
@@ -57,6 +64,7 @@
         "link" : "jurusan-kuliah",
         "title" : "JURUSAN KULIAH",
         "subtitle" : "Bingung Mau Kuliah Kemana?",
+        "seotitle" : "",
         "emojicon" : "👨‍🎓",
         "color" : "blue"
     },
@@ -64,6 +72,7 @@
         "link" : "tes-iq",
         "title" : "TES IQ",
         "subtitle" : "Cek Kepintaran Dulu Sini",
+        "seotitle" : "",
         "emojicon" : "🧠",
         "color" : "orange"
     },
@@ -71,6 +80,7 @@
         "link" : "negara-mana",
         "title" : "NEGARA MANA",
         "subtitle" : "Yang Cocok Buatmu?",
+        "seotitle" : "",
         "emojicon" : "🌏",
         "color" : "blue"
     },
@@ -78,6 +88,7 @@
         "link" : "",
         "title" : "UMUR MENTAL",
         "subtitle" : "Pantasnya Kamu Itu Seumuran...",
+        "seotitle" : "tes psikologi umur mental seumuran",
         "emojicon" : "👴",
         "color" : "purple"
     },
@@ -85,6 +96,7 @@
         "link" : "",
         "title" : "FAKSI DIVERGENT",
         "subtitle" : "Yang Mana Kamu Akan Cocok",
+        "seotitle" : "",
         "emojicon" : "🌇",
         "color" : "orange"
     },
@@ -92,6 +104,7 @@
         "link" : "tes-iq",
         "title" : "TES IQ",
         "subtitle" : "Cek Kepintaran Dulu Sini",
+        "seotitle" : "",
         "emojicon" : "🧠",
         "color" : "orange"
     },
@@ -99,6 +112,7 @@
         "link" : "negara-mana",
         "title" : "NEGARA MANA",
         "subtitle" : "Yang Cocok Buatmu?",
+        "seotitle" : "",
         "emojicon" : "🌏",
         "color" : "blue"
     },
@@ -106,6 +120,7 @@
         "link" : "",
         "title" : "UMUR MENTAL",
         "subtitle" : "Pantasnya Kamu Itu Seumuran...",
+        "seotitle" : "",
         "emojicon" : "👴",
         "color" : "purple"
     },
@@ -113,6 +128,7 @@
         "link" : "jurusan-kuliah",
         "title" : "JURUSAN KULIAH",
         "subtitle" : "Bingung Mau Kuliah Kemana?",
+        "seotitle" : "",
         "emojicon" : "👨‍🎓",
         "color" : "blue"
     },
@@ -120,6 +136,7 @@
         "link" : "tes-iq",
         "title" : "TES IQ",
         "subtitle" : "Cek Kepintaran Dulu Sini",
+        "seotitle" : "",
         "emojicon" : "🧠",
         "color" : "orange"
     },
@@ -127,6 +144,7 @@
         "link" : "negara-mana",
         "title" : "NEGARA MANA",
         "subtitle" : "Yang Cocok Buatmu?",
+        "seotitle" : "",
         "emojicon" : "🌏",
         "color" : "blue"
     }

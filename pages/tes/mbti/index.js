@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '../../../components/layout/Layout'
+import Layout from '../../../components/layouts/Layout'
 import { connect} from 'react-redux';
 import {wrapper} from '../../../redux/store';
 import axios from 'axios'

@@ -51,7 +51,7 @@ const StyledForHRD = Styled.div`
 }
 .hrdatas{
     width: 268px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
 
     display: flex;
     justify-content: space-between;
@@ -136,8 +136,8 @@ const StyledForHRD = Styled.div`
     height: 48px;
 
     background: #FFFFFF;
-    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 1px rgba(0, 0, 0, 0.25);
     border-radius: 1px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25), inset 0px 0px 1px rgba(0, 0, 0, 0.25);
     margin-bottom: 8px;
 }
 .p-imgitem{
@@ -147,7 +147,7 @@ const StyledForHRD = Styled.div`
     font-size: 11px;
     line-height: 13px;
     text-align: center;
-
+    
     color: #4D4D4D;
     margin: 0;
     margin-top: 12px;
@@ -155,7 +155,7 @@ const StyledForHRD = Styled.div`
 .btn-lebihlanjut{
     width: 104px;
     height: 40px;
-
+    
     border: 1px solid #4C4C4C;
     box-sizing: border-box;
     border-radius: 34px;
@@ -165,6 +165,7 @@ const StyledForHRD = Styled.div`
     margin-top: 8px;
     margin-left: 8px;
     background-color: #F7F7F7;
+    transition: 0.25s;
 }
 .p-lebihlanjut{
     font-family: Montserrat;
@@ -182,6 +183,17 @@ const StyledForHRD = Styled.div`
     width: 12px;
     height: 10px;
     margin-left: 6px;
+}
+
+
+
+.btn-lebihlanjut:hover{
+    background-color: #FFCB11;
+    border: 1px solid #FFCB11;
+    transform: scale(1.05);
+}
+.btn-lebihlanjut:hover .p-lebihlanjut{
+    color: white;
 }
 `
 

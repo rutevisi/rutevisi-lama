@@ -8,20 +8,22 @@ const Jumbotron = () => {
             <div className="jumbo">
                 <h2 className="herotext">Jelajahi Karakteristikmu Lebih Dalam</h2>
                 <Link href="/tur-memilih">
-                    <div className="mulai-bigbtn">
-                        <div className="svgmove">
-                            <img className="img-wavy" src={require('../assets/img/mulaibigbtn/wavy.svg')} alt=""/>
-                            <img className="img-cartoon" src={require('../assets/img/mulaibigbtn/cartoon.svg')} alt=""/>
-                            <img className="img-leaves" src={require('../assets/img/mulaibigbtn/leaves.svg')} alt=""/>
-                        </div>
-                        <div className="overflowhider">
-                            <p className="p-mulaites p-mulai">MULAI</p>
-                            <div className="animatedtes">
-                                <p className="p-mulaites p-tesmove" id="p-tesmove">TES</p>
-                                <p className="p-mulaites p-skrgmove" id="p-skrgmove">SEKARANG</p>
+                    <a>
+                        <div className="mulai-bigbtn">
+                            <div className="svgmove">
+                                <img className="img-wavy" src={require('../assets/img/mulaibigbtn/wavy.svg')} alt=""/>
+                                <img className="img-cartoon" src={require('../assets/img/mulaibigbtn/cartoon.svg')} alt=""/>
+                                <img className="img-leaves" src={require('../assets/img/mulaibigbtn/leaves.svg')} alt=""/>
+                            </div>
+                            <div className="overflowhider">
+                                <p className="p-mulaites p-mulai">MULAI</p>
+                                <div className="animatedtes">
+                                    <p className="p-mulaites p-tesmove" id="p-tesmove">TES</p>
+                                    <p className="p-mulaites p-skrgmove" id="p-skrgmove">SEKARANG</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </Link>
             </div> 
             <img src={require('../assets/img/dimline.svg')} alt="" srcSet=""/>
@@ -36,6 +38,9 @@ const StyledJumbotron = Styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+}
+a{
+    text-decoration: none;
 }
 .herotext{
     font-family: Montserrat;

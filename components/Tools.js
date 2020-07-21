@@ -60,6 +60,14 @@ const StyledTools = Styled.div`
 .btn-tools img{
     margin: 0;
     margin-right: 10px;
+    filter: grayscale(1) brightness(0.8);
+}
+
+.btn-tools:hover{
+    color: #FFCB11;
+}
+.btn-tools:hover img{
+    filter: grayscale(0) brightness(1);
 }
 `
 

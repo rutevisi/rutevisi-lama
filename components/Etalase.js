@@ -24,7 +24,7 @@ const Etalase = () => {
                     {tes.slice(0,load).map((tes, index) =>
                     <Link href={`../tes/${tes.link}`} key={index}>
                         <a>
-                            <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} cardColor={tes.color} />
+                            <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} />
                         </a>
                     </Link>
                     )}
