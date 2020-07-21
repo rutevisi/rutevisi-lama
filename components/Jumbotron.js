@@ -15,10 +15,10 @@ const Jumbotron = () => {
                             <img className="img-leaves" src={require('../assets/img/mulaibigbtn/leaves.svg')} alt=""/>
                         </div>
                         <div className="overflowhider">
-                            <p className="p-mulaites">MULAI</p>
+                            <p className="p-mulaites p-mulai">MULAI</p>
                             <div className="animatedtes">
-                            <p className="p-mulaites p-tesmove" id="p-tesmove">TES</p>
-                            <p className="p-mulaites p-skrgmove" id="p-skrgmove">SEKARANG</p>
+                                <p className="p-mulaites p-tesmove" id="p-tesmove">TES</p>
+                                <p className="p-mulaites p-skrgmove" id="p-skrgmove">SEKARANG</p>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,6 @@ const Jumbotron = () => {
 const StyledJumbotron = Styled.div`
 .jumbo{
     height: 228px;
-    // width: 100%;
     padding: 0 48px;
     display: flex;
     justify-content: space-between;
@@ -50,6 +49,9 @@ const StyledJumbotron = Styled.div`
     width: 450px;
 
     color: #333333;
+}
+.p-mulai{
+    padding-right: 48px;
 }
 .mulai-bigbtn{
     width: 356px;
@@ -99,8 +101,7 @@ const StyledJumbotron = Styled.div`
     font-size: 43px;
     line-height: 52px;
     text-align: right;
-    margin: 0 42px 0 0;
-
+    margin: 0;
     width: 172px;
 
     color: #FFFFFF;
@@ -130,9 +131,9 @@ border:none;
     justify-content: center;
     align-items: flex-end;
     flex-direction: column;
-    padding-right: 42px;
     height: 44px;
     width: 314px;
+    padding-right: 48px;
 }
 .p-tesmove{
     position: absolute;

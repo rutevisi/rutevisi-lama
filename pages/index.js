@@ -6,6 +6,7 @@ import Etalase from '../components/Etalase'
 import KodeKelasBox from '../components/KodeKelasBox'
 import ForHRD from '../components/ForHRD'
 import Jumbotron from '../components/Jumbotron'
+import Footer from '../components/Footer'
 
 function Index(){
 
@@ -28,7 +29,8 @@ function Index(){
                             <ForHRD />
                         </div>
                     </div>
-                </Layout>
+                </Layout>      
+                <Footer />
             </div>
         </StyledIndex>
     )

@@ -32,7 +32,7 @@ const HeaderTes = ({answered, questionTotal, testEnd, testStart}) =>{
                 MBTI
             </div>
             <div className="counter">
-            <Countdown date={date} renderer={renderer} onComplete={() => testEnd()}/>
+            <Countdown date={date} renderer={renderer} onComplete={() => testEnd({result: null})}/>
             </div>
             <div className="answered">
               {answered} of {questionTotal} answered

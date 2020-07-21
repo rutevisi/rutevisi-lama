@@ -1,27 +1,26 @@
 import React, { useState } from 'react'
-import Layout from '../../components/Layout'
+import Layout from '../../../components/Layout'
 import { connect} from 'react-redux';
-import {wrapper} from '../../redux/store';
+import {wrapper} from '../../../redux/store';
 import axios from 'axios'
-import HeaderTes from '../../components/ujian/HeaderTes';
-import Question from '../../components/ujian/Question';
-import FinishScreen from '../../components/ujian/FinishScreen';
+import HeaderTes from '../../../components/ujian/HeaderTes';
+import Question from '../../../components/ujian/Question';
+import FinishScreen from '../../../components/ujian/FinishScreen';
 
 function MBTI({mbti, answer, test}){
 
     const list = mbti.soal
-
-    const answerLength = answer.answers.length
+    const answered = answer.answered.length
     const questionTotal = mbti.soal.length
     const testIsDone = test.testDone
 
     const testPage = <Layout>
         <div className="content-wrapper">
-            <HeaderTes answered={answerLength} questionTotal={questionTotal}/>
+            <HeaderTes answered={answered} questionTotal={questionTotal}/>
             {
                 list ? list.map((soal, index) => {
                     return(
-                        <Question key={soal._id} id={soal._id} soal={soal.question} index={index} arr={answer} isFliped={soal.flip}/>
+                        <Question key={soal._id} id={soal._id} soal={soal.question} index={index} arr={answer} isFliped={soal.flip} indikator={soal.indicator}/>
                     )
                 }) : ''
             }
@@ -37,7 +36,7 @@ function MBTI({mbti, answer, test}){
         `}</style>
     </Layout>
 
-    const endScreen = <Layout><FinishScreen/></Layout>
+    const endScreen = <Layout><FinishScreen hasil={answer}/></Layout>
 
     console.log(testIsDone)
     return (

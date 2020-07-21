@@ -1,13 +1,17 @@
 import Styled from '@emotion/styled'
+import { useEffect, useState } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { addQuestion } from '../../redux/actions/answerAction'
+import { addAnswered } from '../../redux/actions/answerAction'
 
-const Question = ({soal, id, addQuestion, index, arr, isFliped})=> {
+const Question = ({soal, id, addQuestion, addAnswered, index, arr, isFliped, indikator})=> {
+
+    const [ load, setLoad ] = useState(false)
 
     function addSelected(pilihan){
         if(arr.answers[index]){
-            if(arr.answers[index].jawab === pilihan){
+            if(arr.answers[index].jawab === pilihan && arr.answers[index].answered === true){
                 return 'selected'
             }
             else{
@@ -16,7 +20,14 @@ const Question = ({soal, id, addQuestion, index, arr, isFliped})=> {
         }
     }
 
-    const flipped = (isFliped === "true") ? -1 : 1;
+    const flipped = (isFliped === "true" || isFliped === true) ? -1 : 1;
+
+    useEffect(() => {
+        if(!load){
+            addQuestion({questionId: id, index: index, jawab: 5 * flipped, flip: flipped, answered: false})
+            setLoad(true)
+        }
+    })
 
     return(
         <QuestionStyled>
@@ -25,11 +36,11 @@ const Question = ({soal, id, addQuestion, index, arr, isFliped})=> {
                 <div className="pilihan-ganda">
                     Tidak Setuju
                     <div className="options">
-                        <div className={`option option-one ${addSelected(-2 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: -2 * flipped, flip: flipped})}></div>
-                        <div className={`option option-two ${addSelected(-1 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: -1 * flipped, flip: flipped})}></div>
-                        <div className={`option option-three ${addSelected(0 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 0 * flipped, flip: flipped})}></div>
-                        <div className={`option option-four ${addSelected(1 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 1 * flipped, flip: flipped})}></div>
-                        <div className={`option option-five ${addSelected(2 * flipped)}`} onClick={(e) => addQuestion({questionId: id, index: index, jawab: 2 * flipped, flip: flipped})}></div>
+                        <div className={`option option-one ${addSelected(-2 * flipped)}`} onClick={(e) => {addQuestion({questionId: id, index: index, jawab: -2 * flipped, flip: flipped, answered: true}); addAnswered({questionId: id, index: index, jawab: -2 * flipped, indikator})}}></div>
+                        <div className={`option option-two ${addSelected(-1 * flipped)}`} onClick={(e) => {addQuestion({questionId: id, index: index, jawab: -1 * flipped, flip: flipped, answered: true}); addAnswered({questionId: id, index: index, jawab: -1 * flipped, indikator})}}></div>
+                        <div className={`option option-three ${addSelected(0 * flipped)}`} onClick={(e) => {addQuestion({questionId: id, index: index, jawab: 0 * flipped, flip: flipped, answered: true}); addAnswered({questionId: id, index: index, jawab: 0 * flipped, indikator})}}></div>
+                        <div className={`option option-four ${addSelected(1 * flipped)}`} onClick={(e) => {addQuestion({questionId: id, index: index, jawab: 1 * flipped, flip: flipped, answered: true}); addAnswered({questionId: id, index: index, jawab: 1 * flipped, indikator})}}></div>
+                        <div className={`option option-five ${addSelected(2 * flipped)}`} onClick={(e) => {addQuestion({questionId: id, index: index, jawab: 2 * flipped, flip: flipped, answered: true}); addAnswered({questionId: id, index: index, jawab: 2 * flipped, indikator})}}></div>
                     </div>
                     Setuju
                 </div>
@@ -98,6 +109,7 @@ const QuestionStyled = Styled.div`
 const mapDispatchToProps = (dispatch) => {
     return {
       addQuestion: bindActionCreators(addQuestion, dispatch),
+      addAnswered: bindActionCreators(addAnswered, dispatch)
     }
 }
 
