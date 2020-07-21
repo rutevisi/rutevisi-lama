@@ -44,7 +44,7 @@ function FinishScreen({hasil, testEnd}){
 
         function toPersen(indikatorVal){
             const jumlahSoal = 11
-            const indicatorTotalValue = jumlahSoal*2;
+            const indicatorTotalValue = jumlahSoal * 2;
             let indicatorValue;
             let cap;
             let persen;
