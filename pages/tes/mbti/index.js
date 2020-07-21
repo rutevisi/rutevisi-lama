@@ -48,7 +48,7 @@ function MBTI({mbti, answer, test}){
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async ({store, req, res, ...etc}) => {
-        const response = await axios.get(`${process.env.DEV_URL}/api/tests/mbti`);
+        const response = await axios.get(`${process.env.DEV_URL}/api/tes/mbti`);
         const soalMBTI = await response.data;
 
         store.dispatch({type: 'FETCH_MBTI', payload: soalMBTI});
