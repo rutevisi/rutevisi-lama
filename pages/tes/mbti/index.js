@@ -6,6 +6,7 @@ import axios from 'axios'
 import HeaderTes from '../../../components/ujian/HeaderTes';
 import Question from '../../../components/ujian/Question';
 import FinishScreen from '../../../components/ujian/FinishScreen';
+import TestFooter from '../../../components/ujian/TestFooter'
 
 function MBTI({mbti, answer, test}){
 
@@ -24,6 +25,7 @@ function MBTI({mbti, answer, test}){
                     )
                 }) : ''
             }
+            <TestFooter/>
         </div>
 
         <style jsx>{`
