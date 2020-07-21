@@ -22,7 +22,51 @@ function ResultPage({result}){
     let persA, persB, persC, persD, persE;
     let a, b, c, d, e;
 
-    let personality;
+    let personality, fifthIndikator;
+
+    //coba2 erbin
+    personality = 
+    getHuruf("A", testa) +
+    getHuruf("B", testb) +
+    getHuruf("C", testc) +
+    getHuruf("D", testd);
+
+    fifthIndikator = getHuruf("E", teste);
+
+    function getHuruf( indikator, result){
+        if(result>0){
+            switch (indikator) {
+                case "A":
+                    return "I";
+                case "B":
+                    return "N";
+                case "C":
+                    return "F";
+                case "D":
+                    return "P";
+                case "E":
+                    return "A";
+                default:
+                    break;
+            }
+        }else{
+            switch (indikator) {
+                case "A":
+                    return "E";
+                case "B":
+                    return "S";
+                case "C":
+                    return "T";
+                case "D":
+                    return "J";
+                case "E":
+                    return "T";
+                default:
+                    break;
+            }
+        }
+    }
+    
 
     // Extrovert vs Introvert Check
     if(testa > 0){
@@ -155,61 +199,6 @@ function ResultPage({result}){
         }
     }
 
-    // Intuitive - Thinking
-    if(persA === 'introvert' && persB === 'intutition' && persC === 'thinking' && persD === 'judging'){
-        personality = 'INTJ'
-    }
-    else if(persA === 'introvert' && persB === 'intutition' && persC === 'thinking' && persD === 'perceiving'){
-        personality = 'INTP'
-    }
-    else if(persA === 'extrovert' && persB === 'intutition' && persC === 'thinking' && persD === 'judging'){
-        personality = 'ENTJ'
-    }
-    else if(persA === 'extrovert' && persB === 'intutition' && persC === 'thinking' && persD === 'perceiving'){
-        personality = 'ENTP'
-    }
-
-    // Intuitive - Feeling
-    if(persA === 'introvert' && persB === 'intutition' && persC === 'feeling' && persD === 'judging'){
-        personality = 'INFJ'
-    }
-    else if(persA === 'introvert' && persB === 'intutition' && persC === 'feeling' && persD === 'perceiving'){
-        personality = 'INFP'
-    }
-    else if(persA === 'extrovert' && persB === 'intutition' && persC === 'feeling' && persD === 'judging'){
-        personality = 'ENFJ'
-    }
-    else if(persA === 'extrovert' && persB === 'intutition' && persC === 'feeling' && persD === 'perceiving'){
-        personality = 'ENFP'
-    }
-
-    // Sensing - Judging
-    if(persA === 'introvert' && persB === 'sensing' && persC === 'thinking' && persD === 'judging'){
-        personality = 'ISTJ'
-    }
-    else if(persA === 'introvert' && persB === 'sensing' && persC === 'feeling' && persD === 'judging'){
-        personality = 'ISFJ'
-    }
-    else if(persA === 'extrovert' && persB === 'sensing' && persC === 'thinking' && persD === 'judging'){
-        personality = 'ESTJ'
-    }
-    else if(persA === 'extrovert' && persB === 'sensing' && persC === 'feeling' && persD === 'judging'){
-        personality = 'ESFJ'
-    }
-
-    // Sensing - Perceiving
-    if(persA === 'introvert' && persB === 'sensing' && persC === 'thinking' && persD === 'perceiving'){
-        personality = 'ISTP'
-    }
-    else if(persA === 'introvert' && persB === 'sensing' && persC === 'feeling' && persD === 'perceiving'){
-        personality = 'ISFP'
-    }
-    else if(persA === 'extrovert' && persB === 'sensing' && persC === 'thinking' && persD === 'perceiving'){
-        personality = 'ESTP'
-    }
-    else if(persA === 'extrovert' && persB === 'sensing' && persC === 'feeling' && persD === 'perceiving'){
-        personality = 'ESFP'
-    }
 
     // Finding Personality Data
     let typeData = personalityType.find((data) => data.personality_type === personality)
@@ -218,7 +207,7 @@ function ResultPage({result}){
         <Layout>
         <ResultPageStyled>
             <div className="page-header">
-                <h1>{typeData.personality_name}</h1>
+                <h1>{typeData.personality_name.split(":")[0] + "-" + fifthIndikator + " :" + typeData.personality_name.split(":")[1]}</h1>
                 <p>{typeData.personality_desc}</p>
             </div>
             <div className="chart">
