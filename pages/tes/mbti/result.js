@@ -3,7 +3,6 @@ import Styled from '@emotion/styled'
 import { connect } from 'react-redux'
 import Layout from '../../../components/layouts/Layout'
 import personalityType from '../../../data/personalityType.json'
-import { useState } from 'react'
 
 function ResultPage({result}){
 
@@ -21,11 +20,8 @@ function ResultPage({result}){
     let introvert, extrovert, sensing, intutition, thinking, feeling, judging, perceiving, turbulent, assertive;
     let posa, posb, posc, posd, pose;
     let rada, radb, radc, radd, rade;
-    let persA, persB, persC, persD, persE;
     let a, b, c, d, e;
     let [ zero, setZero ] = useState(true)
-
-    
 
     let personality, fifthIndikator;
 
@@ -75,163 +71,132 @@ function ResultPage({result}){
 
     // Extrovert vs Introvert Check
     if(testa > 0){
-        // setTimeout((testa) => {
-        //     setcentA(testa)
-        // }, 10);
-            a = testa;
+        a = testa;
         introvert = a;
         extrovert = 100 - a;
-        persA = 'introvert'
         posa = posRight;
         if(introvert === 100 || extrovert === 100){
             rada = '2rem';
         }else{
             rada = radRight;
         }
+        var left1 = "toblack";
     }
     else if(testa < 0){
-        // setTimeout((testa) => {
-        //     setcentA(100 - (testa + 100))
-        // }, 10);
-            a = 100 - (testa + 100)
+        a = 100 - (testa + 100)
         introvert = 100 - a;
         extrovert = a;
-        persA = 'extrovert'
         posa = posLeft;
         if(introvert === 100 || extrovert === 100){
             rada = '2rem';
         }else{
             rada = radLeft;
         }
+        var right1 = "toblack";
     }
 
     // Sensing vs Intutition Check
     if(testb > 0){
-        // setTimeout((testb) => {
-        //     setcentB(testb)
-        // }, 10);
-            b = testb;
+        b = testb;
         intutition = b;
         sensing = 100 - b;
-        persB = 'intutition'
         posb = posRight;
         if(intutition === 100 || sensing === 100){
             radb = '2rem';
         }else{
             radb = radRight;
         }
-
+        var left2 = "toblack";   
     }
     else if(testb < 0){
-        // setTimeout((testb) => {
-        //     setcentB(100 - (testb + 100))
-        // }, 10);
-            b = 100 - (testb + 100);
+        b = 100 - (testb + 100);
         intutition = 100 - b;
         sensing = b;
-        persB = 'sensing'
         posb = posLeft;
         if(intutition === 100 || sensing === 100){
             radb = '2rem';
         }else{
             radb = radLeft;
         }
+        var right2 = "toblack";
     }
 
     // Thinking vs Feeling Check
     if(testc > 0){
-        // setTimeout((testc) => {
-        //     setcentC(testc)
-        // }, 10);
-            c = testc;
+        c = testc;
         feeling = c;
         thinking = 100 - c;
-        persC = 'feeling'
         posc = posRight;
         if(feeling === 100 || thinking === 100){
             radc = '2rem';
         }else{
             radc = radRight;
         }
+        var left3 = "toblack";
     }
     else if(testc < 0){
-        // setTimeout((testc) => {
-        //     setcentC(100 - (testc + 100))
-        // }, 10);
-            c = 100 - (testc + 100);
+        c = 100 - (testc + 100);
         feeling = 100 - c;
         thinking = c;
-        persC = 'thinking'
         posc = posLeft;
         if(feeling === 100 || thinking === 100){
             radc = '2rem';
         }else{
             radc = radLeft;
         }
+        var right3 = "toblack";
     }
 
-    // Judging vs Perveiving Check
+    // Judging vs Perceiving Check
     if(testd > 0){
-        // setTimeout((testd) => {
-        //     setcentD(testd)
-        // }, 10);
-            d = testd;
+        d = testd;
         perceiving = d;
         judging = 100 - d;
-        persD = 'perceiving'
         posd = posRight;
         if(perceiving === 100 || judging === 100){
             radd = '2rem';
         }else{
             radd = radRight;
         }
+        var left4 = "toblack";
     }
     else if(testd < 0){
-        // setTimeout((testd) => {
-        //     setcentD(100 - (testd + 100))
-        // }, 10);
-            d = 100 - (testd + 100);
+        d = 100 - (testd + 100);
         perceiving = 100 - d;
         judging = d;
-        persD = 'judging'
         posd = posLeft;
         if(perceiving === 100 || judging === 100){
             radd = '2rem';
         }else{
             radd = radLeft;
         }
+        var right4 = "toblack";
     }
 
     // Turbulent vs Assertive Check
     if(teste > 0){
-        // setTimeout((teste) => {
-        //     setcentE(teste)
-        // }, 10);
-            e = teste;
+        e = teste;
         assertive = e;
         turbulent = 100 - e;
-        persE = 'assertive'
         pose = posRight;
         if(assertive === 100 || turbulent === 100){
             rade = '2rem';
         }else{
             rade = radRight;
         }
+        var left5 = "toblack";
     }
     else if(teste < 0){
-        // setTimeout((teste) => {
-        //     setcentE(100 - (teste + 100))
-        // }, 10);
-            e = 100 - (teste + 100);
+        e = 100 - (teste + 100);
         assertive = 100 - e;
         turbulent = e;
-        persE = 'turbulent'
         pose = posLeft;
         if(assertive === 100 || turbulent === 100){
             rade = '2rem';
         }else{
             rade = radLeft;
         }
+        var right5 = "toblack";
     }
 
     useEffect(() => {
@@ -246,7 +211,7 @@ function ResultPage({result}){
     return(
         <Layout>
         <ResultPageStyled>
-            <div className="page-header" onClick={()=>startAnimate()}>
+            <div className="page-header">
                 <h1>{typeData.personality_name.split(":")[0] + "-" + fifthIndikator + " :" + typeData.personality_name.split(":")[1]}</h1>
                 <p>{typeData.personality_desc}</p>
             </div>
@@ -258,7 +223,9 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{extrovert}%</div>
+                    <p className={`p-englished ${left1}`}>EXTROVERT</p>
                     <InnerChart bgColor={'#ffcb11'} percent={a} setRadius={rada} pos={posa} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
+                    <p className={`p-englished2 ${right1}`}>INTROVERT</p>
                     <div className="percentage perc-right">{introvert}%</div>
                 </div>
             </div>
@@ -270,7 +237,9 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{sensing}%</div>
+                    <p className={`p-englished ${left2}`}>SENSING</p>
                     <InnerChart bgColor={'#ffcb11'} percent={b} setRadius={radb} pos={posb} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
+                    <p className={`p-englished2 ${right2}`}>INTUITIVE</p>
                     <div className="percentage perc-right">{intutition}%</div>
                 </div>
             </div>
@@ -282,7 +251,9 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{thinking}%</div>
+                    <p className={`p-englished ${left3}`}>THINKING</p>
                     <InnerChart bgColor={'#ffcb11'} percent={c} setRadius={radc} pos={posc} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
+                    <p className={`p-englished2 ${right3}`}>FEELING</p>
                     <div className="percentage perc-right">{feeling}%</div>
                 </div>
             </div>
@@ -293,8 +264,10 @@ function ResultPage({result}){
                     <span>Mempresepsikan</span>
                 </div>
                 <div className="percentage-body">
-                    <div className="percentage perc-left">{judging}%</div>
+                    <div className="percentage perc-left">{judging}%</div>                    
+                    <p className={`p-englished ${left4}`}>JUDGING</p>
                     <InnerChart bgColor={'#ffcb11'} percent={d} setRadius={radd} pos={posd} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
+                    <p className={`p-englished2 ${right4}`}>PERCEIVING</p>
                     <div className="percentage perc-right">{perceiving}%</div>
                 </div>
             </div>
@@ -306,63 +279,12 @@ function ResultPage({result}){
                 </div>
                 <div className="percentage-body">
                     <div className="percentage perc-left">{turbulent}%</div>
+                    <p className={`p-englished ${left5}`}>TURBULENT</p>
                     <InnerChart bgColor={'#ffcb11'} percent={e} setRadius={rade} pos={pose} className={`${zero ? 'zero-width' : ''}`}></InnerChart>
+                    <p className={`p-englished2 ${right5}`}>ASSERTIVE</p>
                     <div className="percentage perc-right">{assertive}%</div>
                 </div>
             </div>
-            <style jsx>{`
-                .div1{
-                    width: ${cenA}%;
-                    height:100%;
-                    ${posa}
-                    border-radius: ${rada};
-                    background-color: #FFCB11;
-                    display:flex;
-                    align-items:center;
-                    transition: 1s;
-                }
-                .div2{
-                    width: ${cenB}%;
-                    height:100%;
-                    ${posb}
-                    border-radius: ${radb};
-                    background-color: #FFCB11;
-                    display:flex;
-                    align-items:center;
-                    transition: 1s;
-                }
-                .div3{
-                    width: ${cenC}%;
-                    height:100%;
-                    ${posc}
-                    border-radius: ${radc};
-                    background-color: #FFCB11;
-                    display:flex;
-                    align-items:center;
-                    transition: 1s;
-                }
-                .div4{
-                    width: ${cenD}%;
-                    height:100%;
-                    ${posd}
-                    border-radius: ${radd};
-                    background-color: #FFCB11;
-                    display:flex;
-                    align-items:center;
-                    transition: 1s;
-                }
-                .div5{
-                    width: ${cenE}%;
-                    height:100%;
-                    ${pose}
-                    border-radius: ${rade};
-                    background-color: #FFCB11;
-                    display:flex;
-                    align-items:center;
-                    transition: 1s;
-                }
-            `}
-            </style>
         </ResultPageStyled>
         </Layout>
     )
@@ -371,26 +293,42 @@ function ResultPage({result}){
 const InnerChart = Styled.div`
     height:100%;
     ${(props) => props.pos}
-<<<<<<< HEAD
-=======
     width:0%;
     width:${(props) => props.percent}%;
->>>>>>> b8ccf27267dc190e8f7809930e6280246f119e80
     border-radius: ${(props) => props.setRadius};
     background-color:${(props) => props.bgColor};
     display:flex;
     align-items:center;
-<<<<<<< HEAD
     transition: 1s;
-=======
-    transition: all 1s ease-in-out;
->>>>>>> b8ccf27267dc190e8f7809930e6280246f119e80
 `
 const ResultPageStyled = Styled.div`
     padding-top:2.5rem;
     font-family:'Montserrat', sans-serif;
     padding-bottom:3rem;
 
+    .toblack{
+        color: gray !important;
+    }
+    .p-englished{
+        position: absolute;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 800;
+        font-family: 'Montserrat', sans-serif;
+        color : white;
+        left: 50px;
+        top: 0;
+    }
+    .p-englished2{
+        position: absolute;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 800;
+        font-family: 'Montserrat', sans-serif;
+        color : white;
+        right: 50px;
+        top: 0;
+    }
     .zero-width{
         width:0% !important;
     }

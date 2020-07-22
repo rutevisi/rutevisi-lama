@@ -84,7 +84,6 @@ const NavbarStyled = Styled.div`
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     color: gray;
-    height: 28px;
     padding: 8px 32px 0 0;
     height: 32px;
 }
