@@ -1,19 +1,18 @@
 import React, {useState} from 'react'
 import Styled from '@emotion/styled' 
 import Link from 'next/link'
-import SampleAPI from '../data/sampleapi.json'
 
 import Card from './Card'
 
 const Etalase = ({testlist}) => {
     const [load, setLoad] = useState(6);        
     const tes = testlist;
-    const [sisates, setSisates] = useState(tes.length-6);        
+    const [sisates, setSisates] = useState(tes.length - 6);        
 
     function loadmore() {
-        if(sisates>=6){
-            setLoad(load+6);
-            setSisates(sisates-6);
+        if(load >= 6){
+            setLoad(load + 6);
+            setSisates(sisates - sisates);
         }
     }
 
@@ -22,7 +21,7 @@ const Etalase = ({testlist}) => {
             <div className="etalase">
                 <div className="etalase-items">
                     {tes.slice(0,load).map((tes, index) =>
-                    <Link href={`../tes/${tes.link}`} key={index}>
+                    <Link href={`../tes/${tes.slug}`} key={index}>
                         <a>
                             <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} />
                         </a>

@@ -10,7 +10,7 @@ export default async (req, res) => {
     return new Promise(resolve => {
         switch (method) {
             case 'GET':
-                Ujian.find({slug})
+                Ujian.find()
                 .then(tes => res.status(200).json(tes))
                 .catch(err => res.status(400).json(`Error: ${err}`));
         }
