@@ -48,7 +48,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
     async ({store, req, res, params}) => {
         const { link } = params;
         
-        const response = await axios.get(`${process.env.DEV_URL}/api/tes/${link}`);
+        const response = await axios.get(`${process.env.DEV_URL}/api/soal/${link}`);
         const soalMBTI = await response.data;
 
         store.dispatch({type: 'FETCH_MBTI', payload: soalMBTI});

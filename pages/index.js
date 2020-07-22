@@ -6,8 +6,9 @@ import Etalase from '../components/Etalase'
 import KodeKelasBox from '../components/KodeKelasBox'
 import ForHRD from '../components/ForHRD'
 import Jumbotron from '../components/Jumbotron'
+import axios from 'axios'
 
-function Index(){
+function Index({tests}){
 
     return(
         <StyledIndex>
@@ -17,7 +18,7 @@ function Index(){
                     <div className="index-maincontent">
                         <div className="etalase-tool">
                             <Tools />
-                            <Etalase />
+                            <Etalase testlist={tests}/>
                         </div>
                         <div className="maincontent-side">
                             <button className="btn-filter btn-tools">
@@ -71,6 +72,11 @@ const StyledIndex = Styled.div`
 }
 `
 
+export async function getStaticProps(context) {
+    const res = await axios.get(`${process.env.DEV_URL}/api/tes`)
+    const tests = await res.data
 
+    return { props: { tests } }
+}
 
 export default Index;
