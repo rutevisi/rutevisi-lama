@@ -5,9 +5,9 @@ import SampleAPI from '../data/sampleapi.json'
 
 import Card from './Card'
 
-const Etalase = () => {
+const Etalase = ({testlist}) => {
     const [load, setLoad] = useState(6);        
-    const tes = SampleAPI.data;
+    const tes = testlist;
     const [sisates, setSisates] = useState(tes.length-6);        
 
     function loadmore() {

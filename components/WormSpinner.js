@@ -4,12 +4,12 @@ import Styled from '@emotion/styled'
 const WormSpinner = () => {
     return (
         <StyledWormSpinner>
-            <div class="spinner">
-                <div class="right-side">
-                    <div class="bar"></div>
+            <div className="spinner">
+                <div className="right-side">
+                    <div className="bar"></div>
                 </div>
-                <div class="left-side">
-                    <div class="bar"></div>
+                <div className="left-side">
+                    <div className="bar"></div>
                 </div>
             </div>
         </StyledWormSpinner>
