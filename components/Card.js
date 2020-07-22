@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import WormSpinner from './WormSpinner'
+import Styled from '@emotion/styled'
 
 const Card = (props) => {
     const [title, setTitle] = useState(props.title);
@@ -23,13 +24,16 @@ const Card = (props) => {
     }
 
     function spinnerOn() {
-        setSpinDis('unset');
-        setSpinSid('none');
+        if(props.available){
+            setSpinDis('unset');
+            setSpinSid('none');
+        }
     }
 
     return (
-        <div>
+        <CardStyled>
             <div className={`card-body`} onClick={()=>spinnerOn()}>
+                {props.available ? '' : <div className="ribbon ribbon-top-right"><span>Segera</span></div>}
                 <div className="overflow-hidden">
                     <h1 className="supertitle">{seotitle}</h1>
                     <div className="div-spinner">
@@ -55,6 +59,7 @@ const Card = (props) => {
 
             <style jsx>
             {`
+  
             h1{
                 position: absolute;
                 color: rgba(0,0,0,0.001)
@@ -125,22 +130,23 @@ const Card = (props) => {
                 box-shadow: 8px 8px 10px rgba(174, 174, 192, 0.38), -8px -8px 6px #FFFFFF, inset 1px 1px 2px rgba(0, 0, 0, 0.25);
                 border-radius: 16px;
             }
-            
+
             .card-body:hover .div-emojicon{
-                filter: opacity(0);
+                filter: ${props.available ? 'opacity(0)' : ''};
             }
             .card-body:hover .div-btnterpilih{
-                filter: opacity(1);
+                filter: ${props.available ? 'opacity(1)' : ''};
             }
             .card-body:hover .div-emojiback{
-                filter: saturate(0.5) opacity(0.7) brightness(0.6);
+                filter: ${props.available ? 'saturate(0.5) opacity(0.7) brightness(0.6)' : ''};
             }
             .card-body:hover .movedikit{
-                transform: translateY(-74px);
+                transform: ${props.available ? 'translateY(-74px)' : ''};
             }
             .card-body:hover .movebanyak{
-                transform: translateY(-102px);
+                transform: ${props.available ? 'translateY(-102px)' : ''};
             }
+
             .overflow-hidden{
                 -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
                 overflow: hidden;
@@ -217,8 +223,61 @@ const Card = (props) => {
             `}
             </style>
 
-        </div>
+        </CardStyled>
     );
 }
+
+const CardStyled = Styled.div`
+    .ribbon {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+        position: absolute;
+    }
+    .ribbon::before,
+    .ribbon::after {
+        position: absolute;
+        z-index: 0;
+        content: '';
+        display: block;
+        border: 5px solid #171717;
+    }
+    .ribbon span {
+        position: absolute;
+        display: block;
+        width: 142px;
+        padding: 8px 0;
+        z-index: 10;
+        background-color: #464646;
+        box-shadow: 0 5px 10px rgba(0,0,0,.1);
+        color: #fff;
+        font: 700 12px/1 'Lato',sans-serif;
+        text-shadow: 0 1px 1px rgba(0,0,0,.2);
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .ribbon-top-right {
+        top: -10px;
+        right: -10px;
+    }
+    .ribbon-top-right::before,
+    .ribbon-top-right::after {
+        border-top-color: transparent;
+        border-right-color: transparent;
+    }
+    .ribbon-top-right::before {
+        top: 0;
+        left: 48px;
+    }
+    .ribbon-top-right::after {
+        bottom: 48px;
+        right: 0;
+    }
+    .ribbon-top-right span {
+        left: 38px;
+        top: 27px;
+        transform: rotate(45deg);
+    }
+`
 
 export default Card

@@ -21,11 +21,21 @@ const Etalase = ({testlist}) => {
             <div className="etalase">
                 <div className="etalase-items">
                     {tes.slice(0,load).map((tes, index) =>
-                    <Link href={`../tes/${tes.slug}`} key={index}>
-                        <a>
-                            <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} />
-                        </a>
-                    </Link>
+                    {
+                        if(tes.available){
+                            return (
+                                <Link href={`../tes/${tes.slug}`} key={index}>
+                                    <a>
+                                        <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
+                                    </a>
+                                </Link>
+                            )
+                        }else{
+                            return (
+                                <Card key={index} emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
+                            )
+                        }
+                    }
                     )}
                 </div>
                 <div className="btnloader">
