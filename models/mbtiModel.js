@@ -19,7 +19,7 @@ const mbtiQuestionSchema = new mongoose.Schema({
 
 function modelAreadyDeclared() {
   try {
-      module.exports = mongoose.model('MBTIQuestion')
+      module.exports = mongoose.model('mbtiQuestionSchema')
       return true
   } catch (e) {
       return false
@@ -27,6 +27,5 @@ function modelAreadyDeclared() {
 }
 
 if (!modelAreadyDeclared()) {
-  const MBTIQuestion = mongoose.model('MBTIQuestion', mbtiQuestionSchema);
-  module.exports = MBTIQuestion;
+  module.exports = mbtiQuestionSchema;
 }
