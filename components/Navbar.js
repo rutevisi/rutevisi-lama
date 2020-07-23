@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Styled from '@emotion/styled'    
+import { css } from '@emotion/core'
 
 const Navbar = () => {
     return(
-        <NavbarStyled>
+        <NavbarStyled css={mobile}>
             <div className="navbar">
                 <div className="nav-wrap">
                     <Link href="/"><a className="navbar-brand">
@@ -26,10 +27,23 @@ const Navbar = () => {
                         </span>
                     </button>
                 </div>              
+                <style jsx>
+                    {`
+                        @media only screen (min-width: 980px) {
+                            .navbar-wrap{
+                                background-color: red !important;
+                            }
+                        }
+                        `}
+                </style>
             </div>
         </NavbarStyled>
     )
 }
+
+const mobile = css`
+
+`
 
 const NavbarStyled = Styled.div`
 .navbar{
