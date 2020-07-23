@@ -54,10 +54,10 @@ const Etalase = ({testlist}) => {
 const StyledEtalase = Styled.div`
 .etalase-items{
     margin-top: 22px;
-    width: 522px;
+    width: 553.5px;
 
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
 }

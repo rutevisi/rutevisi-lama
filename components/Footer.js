@@ -38,7 +38,7 @@ const Footer = () => {
                         <Link href="/tentang-kami"><a className="navbar-brand">
                             <img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
                             <h1 className="nav-title">Rutevisi</h1>
-                        </a></Link>  
+                        </a></Link>
                     </div>
                 </div>
             </div>
@@ -212,7 +212,6 @@ margin-top: 80px;
 }
 .navbar-brand{
     text-decoration: none;
-    margin-right: 22px;
     display: flex;
     justify-content: center;
     align-items: center;

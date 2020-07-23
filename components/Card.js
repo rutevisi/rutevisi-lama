@@ -62,7 +62,7 @@ const Card = (props) => {
   
             h1{
                 position: absolute;
-                color: rgba(0,0,0,0.001)
+                color: rgba(0,0,0,0.001);
             }
             .card-title{
                 overflow:hidden;
@@ -228,6 +228,8 @@ const Card = (props) => {
 }
 
 const CardStyled = Styled.div`
+
+margin-right: 31.5px;
     .ribbon {
         width: 150px;
         height: 150px;
@@ -251,7 +253,7 @@ const CardStyled = Styled.div`
         background-color: #464646;
         box-shadow: 0 5px 10px rgba(0,0,0,.1);
         color: #fff;
-        font: 700 12px/1 'Lato',sans-serif;
+        font: 700 12px/1 'Montserrat',sans-serif;
         text-shadow: 0 1px 1px rgba(0,0,0,.2);
         text-transform: uppercase;
         text-align: center;
