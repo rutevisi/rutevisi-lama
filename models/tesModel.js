@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ujianSchema = new mongoose.Schema({
+const UjianSchema = new mongoose.Schema({
   slug: {
     type: String,
     required: true
@@ -36,7 +36,7 @@ const ujianSchema = new mongoose.Schema({
 
 function modelAreadyDeclared() {
   try {
-      module.exports = mongoose.model('Ujian')
+      module.exports = mongoose.model('UjianSchema')
       return true
   } catch (e) {
       return false
@@ -44,6 +44,5 @@ function modelAreadyDeclared() {
 }
 
 if (!modelAreadyDeclared()) {
-  const Ujian = mongoose.model('Ujian', ujianSchema);
-  module.exports = Ujian;
+  module.exports = UjianSchema;
 }
