@@ -1,5 +1,5 @@
 import dbConnect from '../../../../services/dbConnect'
-import MBTIQuestion from '../../../../models/mbti-question.model'
+import MBTIQuestion from '../../../../models/mbtiQuestion.model'
 import shuffle from 'shuffle-array'
 
 dbConnect();
