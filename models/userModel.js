@@ -22,4 +22,15 @@ const UserSchema = new Schema({
   timestamps: true,
 });
 
-module.exports = UserSchema;
+function modelAreadyDeclared() {
+  try {
+      module.exports = mongoose.model('UserSchema')
+      return true
+  } catch (e) {
+      return false
+  }
+}
+
+if (!modelAreadyDeclared()) {
+  module.exports = UserSchema;
+}

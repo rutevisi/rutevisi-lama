@@ -1,6 +1,9 @@
 import { Formik} from "formik"
 import * as Yup from 'yup'
 import Link from 'next/link'
+import axios from 'axios'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 
 import Input from '../components/form/Input'
 import Field from '../components/form/Field'
@@ -15,16 +18,21 @@ const SignupSchema = () =>
 });
 
 export default () => {
-
-    const handleSubmit = async (values, context) => {
-        console.log(context)
-    }
+    const [errorMsg, setErrorMsg] = useState();
+    const router = useRouter();
 
     return(
         <>
             <div className="form-page">
                 <div className="form-container">
                     <h1>Signup</h1>
+                    {
+                        errorMsg ? (
+                            <div className="form-message">
+                                {errorMsg}
+                            </div>
+                        ) : ''
+                    }
                     <Formik
                     initialValues={{
                         fullname: "",
@@ -32,17 +40,26 @@ export default () => {
                         password: "",
                     }}
                     validationSchema={SignupSchema()}
-                    onSubmit={handleSubmit}
+                    onSubmit={(values, { setSubmitting }) => { 
+                        axios.post(`/api/user/add`, values)
+                            .then(res => {
+                                router.push('/')
+                            })
+                            .catch(err => setErrorMsg(err.response.data.msg))
+
+                        setSubmitting(false)
+                    }}
                     >
                     {({
                         errors,
                         touched,
                         values,
                         isSubmitting,
+                        handleSubmit,
                         isValid,
                         getFieldProps,
                     }) => (
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <Field>
                                 <Label htmlFor="fullname" error={touched.fullname && errors.fullname} ></Label>
                                 <Input
@@ -79,7 +96,7 @@ export default () => {
                             >
                                 Signup
                             </Button>
-                            <p>Sudah punya akun? <Link href="/login"><a>Log In</a></Link></p>
+                            <p>Sudah punya akun? <Link href="/masuk"><a>Log In</a></Link></p>
                         </form>
                     )}
                     </Formik>
@@ -116,6 +133,16 @@ export default () => {
                     border-radius:8px;
                     box-shadow:8px 8px 16px #ededed, 
                     -8px -8px 16px #ffffff;
+                }
+                .form-message{
+                    background: #ffe2e6;
+                    padding: .3rem .5rem;
+                    border: 1px solid #ffa0a0;
+                    font-size: .8rem;
+                    text-align: center;
+                    color: red;
+                    border-radius: .3rem;
+                    margin-top: 1rem;
                 }
                 form{
                     display: flex;
