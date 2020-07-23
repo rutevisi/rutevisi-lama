@@ -19,6 +19,7 @@ const GlobalStyles = () => {
             }
             body{
                 background-color:#F7F7F7;
+                font-family:'Montserrat', sans-serif;
             }    
             a:hover{
               color: #FFCB11 !important;
