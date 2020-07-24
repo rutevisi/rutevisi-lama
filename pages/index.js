@@ -10,7 +10,6 @@ import axios from 'axios'
 
 function Index({tests}){
     const [ keyword, setKeyword ] = useState();
-    console.log(keyword)
 
     return(
         <StyledIndex>

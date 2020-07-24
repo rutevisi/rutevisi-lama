@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import WormSpinner from './WormSpinner'
 import Styled from '@emotion/styled'
 
-const Card = ({title, subtitle, seotitle, emojicon, cardColor, available}) => {
+const Card = ({title, subtitle, seotitle, emojicon, cardColor, available, colorType}) => {
     const [spindis, setSpinDis] = useState("none");
     const [spinsid, setSpinSid] = useState("flex");
     const [color, setColor] = useState(()=>{
@@ -28,7 +28,7 @@ const Card = ({title, subtitle, seotitle, emojicon, cardColor, available}) => {
 
     return (
         <CardStyled>
-            <div className={`card-body`} onClick={()=>spinnerOn()}>
+            <div className={`card-body ${colorType}`} onClick={()=>spinnerOn()}>
                 {available ? '' : <div className="ribbon ribbon-top-right"><span>Segera</span></div>}
                 <div className="overflow-hidden">
                     <h1 className="supertitle">{seotitle}</h1>
@@ -56,6 +56,15 @@ const Card = ({title, subtitle, seotitle, emojicon, cardColor, available}) => {
             <style jsx>
             {`
   
+            .orange{
+                background:#FFCB11 !important;
+            }
+            .purple{
+                background:#9B51E0 !important;
+            }
+            .blue{
+                background:#2F80ED !important;
+            }
             h1{
                 position: absolute;
                 color: rgba(0,0,0,0.001);

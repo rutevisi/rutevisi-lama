@@ -81,6 +81,20 @@ const Etalase = ({testlist, sort, keyword, filter}) => {
         }
     }
 
+    // item = filter
+    function pilihWarna(item){
+        switch (item) {
+            case 'PSIKOLOGI':
+                return 'purple'
+            case 'FUN':
+                return 'orange'
+            case 'KARIR_EDUKASI':
+                return 'blue'
+            case 'NO_FILTER':
+                return ''
+        }
+    }
+
     return (
         <StyledEtalase>
             <div className="etalase">
@@ -91,13 +105,13 @@ const Etalase = ({testlist, sort, keyword, filter}) => {
                             return (
                                 <Link href={`../tes/${tes.slug}`} key={tes._id}>
                                     <a>
-                                        <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
+                                        <Card colorType={pilihWarna(filter)} className={pilihWarna(filter)} emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
                                     </a>
                                 </Link>
                             )
                         }else{
                             return (
-                                <Card key={tes._id} emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
+                                <Card colorType={pilihWarna(filter)} className={pilihWarna(filter)} key={tes._id} emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
                             )
                         }
                     }
