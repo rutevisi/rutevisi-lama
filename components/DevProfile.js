@@ -13,8 +13,8 @@ const DevProfile = (props) => {
 }
     
 const StyledDevProfile = Styled.div`
-    width: 182px;
-    height: 192px;
+    width: 142px;
+    height: 172px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -22,17 +22,17 @@ const StyledDevProfile = Styled.div`
     margin-top: 20px;
 
     img{
-        height: 118px;
-        width: 118px;
+        height: 90px;
+        width: 90px;
     }
     .nickname{
         font-family: Montserrat;
         font-style: normal;
         font-weight: 800;
-        font-size: 24px;
+        font-size: 20px;
         line-height: 34px;
         margin: 0;
-        margin-top: 20px;
+        margin-top: 12px;
 
         color: #333333;
     }
@@ -40,8 +40,8 @@ const StyledDevProfile = Styled.div`
         font-family: Montserrat;
         font-style: normal;
         font-weight: bold;
-        font-size: 17px;
-        line-height: 26px;
+        font-size: 14px;
+        line-height: 20px;
         margin: 0;
         
         text-align: center;
@@ -49,7 +49,7 @@ const StyledDevProfile = Styled.div`
         color: #C1C1C1;
     }
     .mart{
-        margin-top: 6px;
+        margin-top: 8px;
         width: 142px;
     }
 `

@@ -28,7 +28,7 @@ const Tentang = () => {
                             </div>
                         </div>
                         <div className="katakata">
-                            <p className="paraf"> <strong style={{fontWeight:800}}>Rutevisi</strong> berkomitmen untuk menjadi situs pengembang dan penyedia berbagai tes seru buatmu, yang meliputi tes kepribadian, karir, edukasi serta berbagai tes lucu yang Indonesia banget dan pasti kamu suka.</p>
+                            <p className="paraf"> <strong style={{fontWeight:800}}>Rutevisi</strong> berkomitmen untuk menjadi situs terbaik penyedia berbagai tes online seru berbahasa Indonesia, yang meliputi tes kepribadian, karir, edukasi serta berbagai tes lucu yang Indonesia banget dan pasti kamu suka.</p>
                             <p className="paraf"> <strong style={{fontWeight:800}}>Rutevisi</strong> dengan bangga menjunjung tinggi penggunaan Bahasa Indonesia pada situsnya. Yang mana dengan demikian kami yakin dapat membantu meningkatkan pemahaman pengguna, yaitu netizen indonesia, dalam mengerjakan tes-tes psikologi yang selama ini hampir seluruhnya tersedia dalam bahasa asing. Dengan pemahaman yang lebih baik, hasil pun dengan pastinya akan jauh lebih akurat.</p>
                         </div>
                         <div className="div-pengembang">
@@ -47,7 +47,7 @@ const Tentang = () => {
                                 <p className="p-bawah">bantuan@rutevisi.com</p>
                             </div>
                             <div className="telepon">
-                                <p className="p-atas">TELEPON</p>
+                                <p className="p-atas">TELEPON/WA</p>
                                 <p className="p-bawah">(+62) 8988355006</p>
                             </div>
                         </div>
@@ -77,6 +77,7 @@ const StyledTentang = Styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 58px;
 }
 .eachsosmed{
     display: flex;
@@ -101,7 +102,7 @@ const StyledTentang = Styled.div`
     font-family: Montserrat;
     font-style: normal;
     font-weight: 800;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 26px;
     margin: 0;
     
@@ -111,21 +112,21 @@ const StyledTentang = Styled.div`
     font-family: Montserrat;
     font-style: normal;
     font-weight: 600;
-    font-size: 21px;
+    font-size: 18px;
     line-height: 28px;
     margin: 0;
 
     color: #5F5F5F;
 }
 .devlist{
-    width: 800px;
+    width: 692px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 .div-pengembang{
     height: 119px;
-    max-width: 850px;
+    max-width: 766px;
     width: 100%;
     margin: 0 44px;
     margin-top: 60px;
@@ -167,7 +168,7 @@ const StyledTentang = Styled.div`
 }
 .div-kontak{
     height: 192px;
-    max-width: 850px;
+    max-width: 766px;
     width: 100%;
     margin: 0 44px;
     margin-top: 120px;
@@ -188,8 +189,8 @@ const StyledTentang = Styled.div`
     font-family: Montserrat;
     font-style: normal;
     font-weight: 800;
-    font-size: 42px;
-    line-height: 51px;
+    font-size: 36px;
+    line-height: 44px;
 
     width: 200px;
     color: #333333;
@@ -207,7 +208,7 @@ const StyledTentang = Styled.div`
     padding: 0 40px;
 }
 .paraf{
-    max-width: 760px;
+    max-width: 640px;
     width: 90%;
     margin: 20px 0;
     text-align: justify;
@@ -215,7 +216,7 @@ const StyledTentang = Styled.div`
     font-family: Montserrat;
     font-style: normal;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 40px;
     
     text-align: justify;
@@ -250,7 +251,7 @@ const StyledTentang = Styled.div`
     text-decoration: none;
 }
 .main-info{
-    max-width: 850px;
+    max-width: 766px;
     width: 100%;
     height: 131px;
     margin: 0 44px;

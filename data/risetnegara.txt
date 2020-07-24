@@ -1,0 +1,24 @@
+indo        tr   is  ur  pres    i   g 
+nigeria     tr   is  r   pres    c   g
+cuba        tr   k   u   one     i   s
+brazil      tr   k   u   pres    c   g
+sgp         tr   b   u   parl    i   s
+india       tr   h   r   parl    c   ug
+
+turk        te   is  u   pres    c   m
+uzbek       te   is  r   pres    c   m
+usa         te   k   u   pres    c   g
+uk          te   k   u   mon     i   m
+german      te   k   u   parl    c   m
+south afr   te   k   u   pres    c   m
+china       te   b   ur  one     c   ug
+jepang      te   b   u   parl    i   m
+korea
+
+saudi       ard  is  u   mon     c   m
+mesir       ard  is  r   pres    c   m
+aussie      ard  k   u   parl    c   m
+spanyol     ard  k   
+
+norway      po   k   u   mon     c   s
+rusia       po   k   u   pres    c   m

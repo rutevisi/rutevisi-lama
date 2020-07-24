@@ -12,12 +12,32 @@ const Tools = ({sortByNew, sortByPopular, setKeyword, filterByFun, filterByKarir
     const [ sortOpen, setSortOpen ] = useState(false)
     const [ kategoriOpen, setKategoriOpen ] = useState(false)
 
+    function closeOther(now){
+        switch (now) {
+            case "kategori":
+                    if (sortOpen) setSortOpen(!sortOpen);
+                    if (filterOpen) setFilterOpen(!filterOpen);
+                break;
+            case "sort":
+                    if (kategoriOpen) setKategoriOpen(!kategoriOpen);
+                    if (filterOpen) setFilterOpen(!filterOpen);
+                break;
+            case "filter":
+                    if (sortOpen) setSortOpen(!sortOpen);
+                    if (kategoriOpen) setKategoriOpen(!kategoriOpen);
+                break;
+        
+            default:
+                break;
+        }
+    }
+
     return (
         <StyledTools>
             <div className="tools">
                 <div className="utility">
-                    <button className={`btn-kategori btn-tools ${kategoriOpen ? 'isopen' : ''}`} onClick={() => setKategoriOpen(!kategoriOpen)}>
-                        <img src={require('../assets/img/tools/kategori.svg')} alt="" className="img-kategori"/>
+                    <button className={`btn-kategori btn-tools ${kategoriOpen ? 'isopen' : ''}`} onClick={() =>{ setKategoriOpen(!kategoriOpen); closeOther("kategori")}}>
+                        <img src={require('../assets/img/tools/kategori.svg')} alt="" className="icontul img-kategori"/>
                         <p>Kategori</p>
                         {
                             kategoriOpen ? (
@@ -30,8 +50,8 @@ const Tools = ({sortByNew, sortByPopular, setKeyword, filterByFun, filterByKarir
                             ) : ''
                         }
                     </button>
-                    <button className={`btn-filter btn-tools ${filterOpen ? 'isopen' : ''}`} onClick={() => setFilterOpen(!filterOpen)}>
-                        <img src={require('../assets/img/tools/filter.svg')} alt="" className="img-filter"/>
+                    <button className={`btn-filter btn-tools ${filterOpen ? 'isopen' : ''}`} onClick={() => {setFilterOpen(!filterOpen); closeOther("filter")}}>
+                        <img src={require('../assets/img/tools/filter.svg')} alt="" className="icontul img-filter"/>
                         <p>Filter</p>
                         {
                             filterOpen ? (
@@ -44,8 +64,8 @@ const Tools = ({sortByNew, sortByPopular, setKeyword, filterByFun, filterByKarir
                             ) : ''
                         }
                     </button>
-                    <button className={`btn-sort btn-tools ${sortOpen ? 'isopen' : ''}`} onClick={() => setSortOpen(!sortOpen)}>
-                        <img src={require('../assets/img/tools/sort.svg')} alt="" className="img-sort"/>
+                    <button className={`btn-sort btn-tools ${sortOpen ? 'isopen' : ''}`} onClick={() => {setSortOpen(!sortOpen); closeOther('sort')}}>
+                        <img src={require('../assets/img/tools/sort.svg')} alt="" className="icontul img-sort"/>
                         <p>Sortir</p>
                         {
                             sortOpen ? (
@@ -92,6 +112,9 @@ li{
 `
 
 const StyledTools = Styled.div`
+.icontul{
+    margin-left:0;
+}
 .tools{
     width: 522px;
     height: 40px;

@@ -7,6 +7,7 @@ import KodeKelasBox from '../components/KodeKelasBox'
 import ForHRD from '../components/ForHRD'
 import Jumbotron from '../components/Jumbotron'
 import axios from 'axios'
+import Link from 'next/link'
 
 function Index({tests}){
     const [ keyword, setKeyword ] = useState();
@@ -22,10 +23,12 @@ function Index({tests}){
                             <Etalase testlist={tests} keyword={keyword}/>
                         </div>
                         <div className="maincontent-side">
-                            <button className="btn-filter btn-tools">
-                                <p>Bantuan</p>
-                                <img src={require('../assets/img/tools/bantuan.svg')} alt="" className="img-filter"/>
-                            </button>
+                            <Link href="/bantuan">
+                                <button className="btn-filter btn-tools">
+                                    <p>Bantuan</p>
+                                    <img src={require('../assets/img/tools/bantuan.svg')} alt="" className="img-filter"/>
+                                </button>
+                            </Link>
                             <KodeKelasBox />
                             <ForHRD />
                         </div>
@@ -42,6 +45,7 @@ const StyledIndex = Styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    min-height: 600px;
 }
 .maincontent-side{
     width: 294px;

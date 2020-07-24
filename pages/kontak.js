@@ -55,7 +55,8 @@ const Kontak = () => {
                     <div className="kritsar">
                         <p>Kritik &amp; Saran</p>
                         <form className="inputer">
-                            <input type="textarea" placeholder="Apapun keluhanmu..."/>
+                            <textarea name="pesan" rows="6" cols="47" placeholder="Apapun keluhanmu..."/>
+                            <input type="text" placeholder="Tinggalkan emailmu"/>
                             <button type="submit">KIRIMKAN</button>
                         </form>
                     </div>
@@ -66,11 +67,30 @@ const Kontak = () => {
 }
     
 const StyledKontak = Styled.div`
+.inputer input{
+    position: absolute;
+    bottom: 8px;
+    left: 32px;
+    width: 240px;
+    height: 34px;
+    border: 0;
+    border-bottom: solid 1px gray;
+    transition: 1s;
+    &::placeholder{
+        font-family: Montserrat;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 22px;
+
+        color: #969696;
+    }
+}
 .inputer button{
     position: absolute;
-    bottom: 10px;
+    bottom: 4px;
     right: 10px;
-    width: 125px;
+    width: 126px;
     height: 40px;
     border: none;
 
@@ -86,22 +106,29 @@ const StyledKontak = Styled.div`
 
     color: #FFFFFF;
 }
-.inputer input{
+.inputer textarea{
     position: relative;
     border:none;
     background-color: inherit;
-    width: 394px;
-    height: 122px;
     border-radius: 16px;
     padding: 20px;
+    border: none;
+
+    box-shadow: 6px 6px 10px rgba(174, 174, 192, 0.49), -8px -8px 8px rgba(255, 255, 255, 0.84), inset 2px 2px 1px rgba(0, 0, 0, 0.05), inset -2px -2px 3px rgba(186, 186, 186, 0.25);
+    border-radius: 16px;
+    background-color: #fff;
 
     font-family: Montserrat;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 22px;
     color: #333333;
+    &:focus{
+        outline:none;
+        border:none;
+      }
 }
-.inputer input::placeholder{
+.inputer textarea::placeholder{
     font-family: Montserrat;
     font-style: italic;
     font-weight: 600;
@@ -111,12 +138,14 @@ const StyledKontak = Styled.div`
     color: #969696;
 }
 .inputer{
+    max-height: 832px;
     position: relative;
     width: 434px;
     height: 162px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    background: #FFFFFF;
-    box-shadow: 6px 6px 10px rgba(174, 174, 192, 0.49), -8px -8px 8px rgba(255, 255, 255, 0.84), inset 2px 2px 1px rgba(0, 0, 0, 0.05), inset -2px -2px 3px rgba(186, 186, 186, 0.25);
     border-radius: 16px;
 }
 .kritsar{
