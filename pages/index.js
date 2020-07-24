@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Styled from '@emotion/styled'
 import LayoutFull from '../components/layouts/LayoutFull'
 import Tools from '../components/Tools'
@@ -9,6 +9,8 @@ import Jumbotron from '../components/Jumbotron'
 import axios from 'axios'
 
 function Index({tests}){
+    const [ keyword, setKeyword ] = useState();
+    console.log(keyword)
 
     return(
         <StyledIndex>
@@ -17,8 +19,8 @@ function Index({tests}){
                     <Jumbotron />
                     <div className="index-maincontent">
                         <div className="etalase-tool">
-                            <Tools />
-                            <Etalase testlist={tests}/>
+                            <Tools setKeyword={setKeyword}/>
+                            <Etalase testlist={tests} keyword={keyword}/>
                         </div>
                         <div className="maincontent-side">
                             <button className="btn-filter btn-tools">

@@ -1,12 +1,12 @@
 import React from 'react'
 import Styled from '@emotion/styled'
 
-const SimpleSearch = () => {
+const SimpleSearch = ({setKeyword}) => {
     return (
         <StyledSimpleSearch>
             <div className="simplesearch">
                 <form action="" className="form-search">
-                    <input className="inputsearch" type="text" placeholder="Cari Tes"/>
+                    <input className="inputsearch" type="text" placeholder="Cari Tes" onChange={(e) => setKeyword(e.target.value)}/>
                     <button className="btn-cari" type="submit"><img src={require('../assets/img/tools/cari.svg')} alt=""/></button>
                 </form>
             </div>

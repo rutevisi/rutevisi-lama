@@ -3,6 +3,8 @@ import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 import { mbti } from './reducers/mbti'
 import { answer } from './reducers/answer'
 import { test } from './reducers/test'
+import { sort } from './reducers/sort'
+import { filter } from './reducers/filter'
 import thunkMiddleware from 'redux-thunk'
 
 const bindMiddleware = (middleware) => {
@@ -16,7 +18,9 @@ const bindMiddleware = (middleware) => {
 const combinedReducer = combineReducers({
     mbti,
     answer,
-    test
+    test,
+    sort,
+    filter
 })
 
 const reducer = (state, action) => {

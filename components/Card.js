@@ -2,15 +2,11 @@ import React, {useState} from 'react'
 import WormSpinner from './WormSpinner'
 import Styled from '@emotion/styled'
 
-const Card = (props) => {
-    const [title, setTitle] = useState(props.title);
-    const [subtitle, setSubtitle] = useState(props.subtitle);
-    const [seotitle, setSeotitle] = useState(props.seotitle);
-    const [emojicon, setEmojicon] = useState(props.emojicon);
+const Card = ({title, subtitle, seotitle, emojicon, cardColor, available}) => {
     const [spindis, setSpinDis] = useState("none");
     const [spinsid, setSpinSid] = useState("flex");
     const [color, setColor] = useState(()=>{
-        switch (props.cardColor) {
+        switch (cardColor) {
             case "orange": return "#FFCB11";
             case "purple": return "#9B51E0";            
             case "blue": return "#2F80ED";        
@@ -24,7 +20,7 @@ const Card = (props) => {
     }
 
     function spinnerOn() {
-        if(props.available){
+        if(available){
             setSpinDis('unset');
             setSpinSid('none');
         }
@@ -33,7 +29,7 @@ const Card = (props) => {
     return (
         <CardStyled>
             <div className={`card-body`} onClick={()=>spinnerOn()}>
-                {props.available ? '' : <div className="ribbon ribbon-top-right"><span>Segera</span></div>}
+                {available ? '' : <div className="ribbon ribbon-top-right"><span>Segera</span></div>}
                 <div className="overflow-hidden">
                     <h1 className="supertitle">{seotitle}</h1>
                     <div className="div-spinner">
@@ -132,19 +128,19 @@ const Card = (props) => {
             }
 
             .card-body:hover .div-emojicon{
-                filter: ${props.available ? 'opacity(0)' : ''};
+                filter: ${available ? 'opacity(0)' : ''};
             }
             .card-body:hover .div-btnterpilih{
-                filter: ${props.available ? 'opacity(1)' : ''};
+                filter: ${available ? 'opacity(1)' : ''};
             }
             .card-body:hover .div-emojiback{
-                filter: ${props.available ? 'saturate(0.5) opacity(0.7) brightness(0.6)' : ''};
+                filter: ${available ? 'saturate(0.5) opacity(0.7) brightness(0.6)' : ''};
             }
             .card-body:hover .movedikit{
-                transform: ${props.available ? 'translateY(-74px)' : ''};
+                transform: ${available ? 'translateY(-74px)' : ''};
             }
             .card-body:hover .movebanyak{
-                transform: ${props.available ? 'translateY(-102px)' : ''};
+                transform: ${available ? 'translateY(-102px)' : ''};
             }
 
             .overflow-hidden{

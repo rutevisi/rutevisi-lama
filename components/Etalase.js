@@ -1,14 +1,79 @@
 import React, {useState} from 'react'
 import Styled from '@emotion/styled' 
+import { connect } from 'react-redux'
 import Link from 'next/link'
 
 import Card from './Card'
 
-const Etalase = ({testlist}) => {
+const Etalase = ({testlist, sort, keyword, filter}) => {
     const [load, setLoad] = useState(6);        
     const tes = testlist;
     const [sisates, setSisates] = useState(tes.length - 6);        
 
+    function sortByNew( a, b ) {
+        if ( a.dateCreated < b.dateCreated ){
+          return 1;
+        }
+        if ( a.dateCreated > b.dateCreated ){
+          return -1;
+        }
+        return 0;
+    }
+    function sortByPopular( a, b ) {
+        if ( a.likes < b.likes ){
+          return 1;
+        }
+        if ( a.likes > b.likes ){
+          return -1;
+        }
+        return 0;
+    }
+
+     // Pilihan Sort
+     function sorting(e){
+        let result;
+
+        if(e === 'NEW'){
+            result = sortByNew;
+        }
+        else if(e === 'POPULAR'){
+            result = sortByPopular;
+        }
+        else{
+            result = sortByNew;
+        }
+
+        return result;
+    }
+
+    const sorted = testlist.sort(sorting(sort));
+
+    // Fitur filter
+    function filtering(e){
+        let result;
+
+        if(e === 'FUN'){
+            result = sorted.filter(function (item){
+                return item.categories.includes('Fun');
+            })
+        }
+        else if(e === 'PSIKOLOGI'){
+            result = sorted.filter(function (item){
+                return item.categories.includes('Psikologi');
+            })
+        }
+        else if(e === 'KARIR_EDUKASI'){
+            result = sorted.filter(function (item){
+                return item.categories.includes('Karir-Edukasi');
+            })
+        }
+        else{
+            return sorted
+        }
+
+        return result;
+    }
+    
     function loadmore() {
         if(load >= 6){
             setLoad(load + 6);
@@ -20,11 +85,11 @@ const Etalase = ({testlist}) => {
         <StyledEtalase>
             <div className="etalase">
                 <div className="etalase-items">
-                    {tes.slice(0,load).map((tes, index) =>
+                    {filtering(filter).filter((obj) => obj.seotitle.includes(keyword ? keyword : '')).slice(0,load).map((tes, index) =>
                     {
                         if(tes.available){
                             return (
-                                <Link href={`../tes/${tes.slug}`} key={index}>
+                                <Link href={`../tes/${tes.slug}`} key={tes._id}>
                                     <a>
                                         <Card emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
                                     </a>
@@ -32,7 +97,7 @@ const Etalase = ({testlist}) => {
                             )
                         }else{
                             return (
-                                <Card key={index} emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
+                                <Card key={tes._id} emojicon={tes.emojicon} title={tes.title} subtitle={tes.subtitle} seotitle={tes.seotitle} cardColor={tes.color} available={tes.available}/>
                             )
                         }
                     }
@@ -114,4 +179,9 @@ const StyledEtalase = Styled.div`
 }
 `
 
-export default Etalase;
+const mapStateToProps = (state) => ({
+    sort: state.sort.sortby,
+    filter: state.filter.filterby,
+})
+
+export default connect(mapStateToProps, null)(Etalase)

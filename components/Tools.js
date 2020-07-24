@@ -1,31 +1,95 @@
-import React from 'react'
-import Styled from '@emotion/styled'  
+import React, { useState } from 'react'
+import Styled from '@emotion/styled'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { sortByNew, sortByPopular } from '../redux/actions/sortAction'
+import { filterByKarir, filterByFun, filterByPsikologi, noFilter } from '../redux/actions/filterAction'
 
 import SimpleSearch from '../components/SimpleSearch'
 
-const Tools = () => {
+const Tools = ({sortByNew, sortByPopular, setKeyword, filterByFun, filterByKarir, filterByPsikologi, noFilter}) => {
+    const [ filterOpen, setFilterOpen ] = useState(false)
+    const [ sortOpen, setSortOpen ] = useState(false)
+    const [ kategoriOpen, setKategoriOpen ] = useState(false)
+
     return (
         <StyledTools>
             <div className="tools">
                 <div className="utility">
-                    <button className="btn-kategori btn-tools">
+                    <button className={`btn-kategori btn-tools ${kategoriOpen ? 'isopen' : ''}`} onClick={() => setKategoriOpen(!kategoriOpen)}>
                         <img src={require('../assets/img/tools/kategori.svg')} alt="" className="img-kategori"/>
                         <p>Kategori</p>
+                        {
+                            kategoriOpen ? (
+                                <StyledFilter>
+                                    <li onClick={() => noFilter()}>Semua</li>
+                                    <li onClick={() => filterByFun()}>Fun</li>
+                                    <li onClick={() => filterByPsikologi()}>Psikologi</li>
+                                    <li onClick={() => filterByKarir()}>Karir</li>
+                                </StyledFilter>
+                            ) : ''
+                        }
                     </button>
-                    <button className="btn-filter btn-tools">
+                    <button className={`btn-filter btn-tools ${filterOpen ? 'isopen' : ''}`} onClick={() => setFilterOpen(!filterOpen)}>
                         <img src={require('../assets/img/tools/filter.svg')} alt="" className="img-filter"/>
                         <p>Filter</p>
+                        {
+                            filterOpen ? (
+                                <StyledFilter>
+                                    <li onClick={() => noFilter()}>Semua</li>
+                                    <li onClick={() => filterByFun()}>Fun</li>
+                                    <li onClick={() => filterByPsikologi()}>Psikologi</li>
+                                    <li onClick={() => filterByKarir()}>Karir</li>
+                                </StyledFilter>
+                            ) : ''
+                        }
                     </button>
-                    <button className="btn-sort btn-tools">
+                    <button className={`btn-sort btn-tools ${sortOpen ? 'isopen' : ''}`} onClick={() => setSortOpen(!sortOpen)}>
                         <img src={require('../assets/img/tools/sort.svg')} alt="" className="img-sort"/>
                         <p>Sortir</p>
+                        {
+                            sortOpen ? (
+                                <StyledFilter>
+                                    <li onClick={() => sortByNew()}>Baru</li>
+                                    <li onClick={() => sortByPopular()}>Populer</li>
+                                </StyledFilter>
+                            ) : ''
+                        }
                     </button>
                 </div>
-                <SimpleSearch />
+                <SimpleSearch setKeyword={setKeyword}/>
             </div>
         </StyledTools>
     );
 }
+
+const StyledFilter = Styled.ul`
+position:absolute;
+background: #fff;
+list-style: none;
+padding: .75rem;
+box-shadow: 0 4px 8px #00000038;
+z-index: 20;
+border-radius: 4px;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+top:33px;
+left:0;
+color: #969696;
+
+&:hover{
+    color:#969696;
+}
+
+li{
+    padding: .5rem 1rem;
+
+    &:hover{
+        color:#444;
+    }
+}
+`
 
 const StyledTools = Styled.div`
 .tools{
@@ -48,6 +112,9 @@ const StyledTools = Styled.div`
     font-size: 15px;
     line-height: 18px;
     color: #969696;
+    position:relative;
+    padding: .3rem .75rem;
+    border-radius: 8px;
     
     height: 40px;
     border: none;
@@ -56,19 +123,45 @@ const StyledTools = Styled.div`
     justify-content: flex-start;
     align-items: center;
     margin-right: 12px;
-}
-.btn-tools img{
-    margin: 0;
-    margin-right: 10px;
-    filter: grayscale(1) brightness(0.8);
+
+    &:hover{
+        color: #444;
+        background:#eee;
+
+        img{
+            filter: grayscale(1) brightness(0.4);
+        }
+    }
+
+    img{
+        margin: 0;
+        margin-right: 10px;
+        filter: grayscale(1) brightness(0.8);
+    }
 }
 
-.btn-tools:hover{
-    color: #FFCB11;
-}
-.btn-tools:hover img{
-    filter: grayscale(0) brightness(1);
+.isopen{
+    background:#eee;
+    color:#444;
+
+    img{
+        filter: grayscale(1) brightness(0.4) !important;
+    }
+    &:hover{
+        color:#444 !important;
+    }
 }
 `
 
-export default Tools;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        sortByPopular: bindActionCreators(sortByPopular, dispatch),
+        sortByNew: bindActionCreators(sortByNew, dispatch),
+        filterByFun: bindActionCreators(filterByFun, dispatch),
+        filterByKarir: bindActionCreators(filterByKarir, dispatch),
+        filterByPsikologi: bindActionCreators(filterByPsikologi, dispatch),
+        noFilter: bindActionCreators(noFilter, dispatch)
+    }
+ }
+  
+export default connect(null, mapDispatchToProps)(Tools)
