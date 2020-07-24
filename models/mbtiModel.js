@@ -11,18 +11,10 @@ const mbtiQuestionSchema = new mongoose.Schema({
   },
   flip: {
     type: Boolean,
-  },
-  dateCreated: {
-    type: Date,
-    default: Date.now
-  },
-  likes: {
-    type: Number,
-  },
-  categories: {
-    type: Array,
-    required: true
   }
+},
+{
+  timestamps: true,
 });
 
 function modelAreadyDeclared() {

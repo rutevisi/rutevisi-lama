@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { testStart, testEnd } from '../../redux/actions/testAction'
 
-const renderer = ({ hours, minutes, seconds, completed }) => {
+const renderer = ({ hours, minutes, seconds, completed}) => {
     if (completed) {
       return <div>Time is up!</div>;
     } else {
@@ -17,7 +17,7 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
     }
 };
 
-const HeaderTes = ({answered, questionTotal, testEnd, testStart}) =>{
+const HeaderTes = ({answered, questionTotal, testEnd, testStart, tesName }) =>{
 
     const time = 1000 * 60 * 60;
     const [ date, setDate ] = useState(Date.now() + time)
@@ -29,7 +29,7 @@ const HeaderTes = ({answered, questionTotal, testEnd, testStart}) =>{
     return(
         <HeaderStyled>
             <div className="test-title">
-                MBTI
+                {tesName}
             </div>
             <div className="counter">
             <Countdown date={date} renderer={renderer} onComplete={() => testEnd({result: null})}/>

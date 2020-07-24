@@ -1,22 +1,22 @@
 import React from 'react'
-import Layout from '../../components/layouts/Layout'
+import Layout from '../../../components/layouts/Layout'
 import { connect} from 'react-redux';
-import {wrapper} from '../../redux/store';
+import {wrapper} from '../../../redux/store';
 import axios from 'axios'
-import HeaderTes from '../../components/ujian/HeaderTes';
-import Question from '../../components/ujian/Question';
-import FinishScreen from '../../components/ujian/FinishScreen';
-import TestFooter from '../../components/ujian/TestFooter'
+import HeaderTes from '../../../components/ujian/HeaderTes';
+import Question from '../../../components/ujian/Question';
+import FinishScreen from '../../../components/ujian/FinishScreen';
+import TestFooter from '../../../components/ujian/TestFooter'
 
-function Test({mbti, answer, test}){
-    const list = mbti.soal
+function Test({soal, answer, test}){
+    const list = soal.mbti
     const answered = answer.answered.length
-    const questionTotal = mbti.soal.length
+    const questionTotal = soal.mbti.length
     const testIsDone = test.testDone
 
     const testPage = <Layout>
         <div className="content-wrapper">
-            <HeaderTes answered={answered} questionTotal={questionTotal}/>
+            <HeaderTes tesName={'MBTI'} answered={answered} questionTotal={questionTotal}/>
             {
                 list ? list.map((soal, index) => {
                     return(
@@ -46,9 +46,8 @@ function Test({mbti, answer, test}){
 
 export const getServerSideProps = wrapper.getServerSideProps(
     async ({store, req, res, params}) => {
-        const { link } = params;
         
-        const response = await axios.get(`${process.env.DEV_URL}/api/soal/${link}`);
+        const response = await axios.get(`${process.env.DEV_URL}/api/soal/mbti`);
         const soalMBTI = await response.data;
 
         store.dispatch({type: 'FETCH_MBTI', payload: soalMBTI});

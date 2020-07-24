@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createWrapper, HYDRATE } from 'next-redux-wrapper';
-import { mbti } from './reducers/mbti'
+import { soal } from './reducers/soal'
 import { answer } from './reducers/answer'
 import { test } from './reducers/test'
 import { sort } from './reducers/sort'
@@ -16,7 +16,7 @@ const bindMiddleware = (middleware) => {
   }
 
 const combinedReducer = combineReducers({
-    mbti,
+    soal,
     answer,
     test,
     sort,

@@ -28,6 +28,17 @@ const UjianSchema = new mongoose.Schema({
   available: {
     type: Boolean,
     required: true
+  },
+  dateCreated: {
+    type: Date,
+    default: Date.now
+  },
+  likes: {
+    type: Number,
+  },
+  categories: {
+    type: Array,
+    required: true
   }
 },
 {

@@ -2,6 +2,11 @@ export const FETCH_MBTI = 'FETCH_MBTI'
 export const ADD_ANSWER = 'ADD_ANSWER'
 export const ADD_ANSWERED = 'ADD_ANSWERED'
 
+export const FETCH_FAKBOI = 'FETCH_FAKBOI'
+
+export const ADD_PILGAN_ANSWER = 'ADD_PILGAN_ANSWER'
+export const ADD_PILGAN_ANSWERED = 'ADD_PILGAN_ANSWERED'
+
 export const TEST_START = 'TEST_START'
 export const TEST_END = 'TEST_END'
 
