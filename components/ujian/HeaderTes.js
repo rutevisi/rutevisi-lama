@@ -17,7 +17,7 @@ const renderer = ({ hours, minutes, seconds, completed}) => {
     }
 };
 
-const HeaderTes = ({answered, questionTotal, testEnd, testStart, tesName }) =>{
+const HeaderTes = ({answered, questionTotal, testEnd, testStart, tesName, color }) =>{
 
     const time = 1000 * 60 * 60;
     const [ date, setDate ] = useState(Date.now() + time)
@@ -28,13 +28,13 @@ const HeaderTes = ({answered, questionTotal, testEnd, testStart, tesName }) =>{
 
     return(
         <HeaderStyled>
-            <div className="test-title">
+            <div className={`test-title ${color}`}>
                 {tesName}
             </div>
             <div className="counter">
             <Countdown date={date} renderer={renderer} onComplete={() => testEnd({result: null})}/>
             </div>
-            <div className="answered">
+            <div className={`answered ${color}`}>
               {answered} of {questionTotal} answered
             </div>
         </HeaderStyled>
@@ -42,6 +42,10 @@ const HeaderTes = ({answered, questionTotal, testEnd, testStart, tesName }) =>{
 }
 
 const HeaderStyled = Styled.div`
+    box-shadow: 4px 4px 14px rgba(174, 174, 192, 0.54), -8px -8px 10px #FFFFFF;
+    border-radius: 16px;
+
+    z-index:20;
     display: flex;
     position:relative;
     padding: 15px 24px;
@@ -54,10 +58,19 @@ const HeaderStyled = Styled.div`
     position: sticky;
     top: 5rem;
     justify-content: space-between;
-    width: 904px;
+    width: 840px;
     margin-left: auto;
     margin-right: auto;
 
+    .orange{
+      background:#FFCB11 !important;
+    }
+    .purple{
+        background:#9B51E0 !important;
+    }
+    .blue{
+        background:#2F80ED !important;
+    } 
     .timer{
       font-weight: bold;
       font-size: 1rem;
@@ -77,7 +90,7 @@ const HeaderStyled = Styled.div`
         background-color: #ffcb11;
     }
     .answered{
-      background-color:#3beaa1;
+      filter: opacity(0.5);
     }
     .counter{
         position:absolute;

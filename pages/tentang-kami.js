@@ -255,7 +255,7 @@ const StyledTentang = Styled.div`
     width: 100%;
     height: 131px;
     margin: 0 44px;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
 
     background: #F7F7F7;
     box-shadow: 4px 4px 14px rgba(174, 174, 192, 0.54), -8px -8px 10px #FFFFFF, inset 2px 2px 1px rgba(0, 0, 0, 0.05);

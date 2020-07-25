@@ -16,7 +16,7 @@ function Test({soal, answer, test}){
 
     const testPage = <Layout>
         <div className="content-wrapper">
-            <HeaderTes tesName={'MBTI'} answered={answered} questionTotal={questionTotal}/>
+            <HeaderTes tesName={'MBTI+'} color="purple" answered={answered} questionTotal={questionTotal}/>
             {
                 list ? list.map((soal, index) => {
                     return(

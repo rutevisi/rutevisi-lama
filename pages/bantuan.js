@@ -9,10 +9,10 @@ const Dropper = (props) => {
     const [makeOpen, setMakeOpen] = useState(false);
 
     return (
-        <StyledDropper  onClick={()=> setMakeOpen(!makeOpen)}>
+        <StyledDropper onClick={()=> setMakeOpen(!makeOpen)}>
             <div className="question">
                 <p>{props.question}</p>
-                <img src={require('../assets/img/minicon/dropicon.svg')} alt=""/>
+                <img src={require('../assets/img/minicon/dropicon.svg')} className={makeOpen ? "flipup":""} alt=""/>
             </div>
             <hr className="hrdrop"/>
             <div className={`answer ${makeOpen ? "open" : "close"}`}>
@@ -73,6 +73,9 @@ const Bantuan = () => {
 
 
 const StyledDropper = Styled.div`
+.flipup{
+    transform: rotate(-180deg);
+}
 .question{
     height: 58px;
     display: flex;
@@ -90,6 +93,7 @@ const StyledDropper = Styled.div`
 }
 .question img{
     margin-right: 16px;
+    transition: 0.5s;
 }
 .answer p{
     font-family: Montserrat;

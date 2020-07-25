@@ -50,7 +50,7 @@ const Kontak = () => {
                     </div>
                     <div className="quotkon">
                         <img src={require('../assets/img/petik.svg')} alt="" className=""/>
-                        <p>Kami juga selalu terbuka untuk mendiskusikan segala bentuk kerjasama bisnis ataupun pariwara pada situs rutevisi. SIlahkan hubungi kami dengan cara-cara diatas untuk informasi lebih lanjut.</p>
+                        <p>Kami juga selalu terbuka untuk mendiskusikan segala bentuk kerjasama bisnis ataupun pariwara pada situs rutevisi. Silahkan hubungi kami dengan cara-cara diatas untuk informasi lebih lanjut.</p>
                     </div>
                     <div className="kritsar">
                         <p>Kritik &amp; Saran</p>
@@ -70,16 +70,17 @@ const StyledKontak = Styled.div`
 .inputer input{
     position: absolute;
     bottom: 8px;
-    left: 32px;
+    left: 20px;
     width: 240px;
-    height: 34px;
+    height: 22px;
     border: 0;
-    border-bottom: solid 1px gray;
+    box-shadow: inset 4px 0px 0px rgba(0, 0, 0, 0.25);
+    padding-left: 12px;
     transition: 1s;
     &::placeholder{
-        font-family: Montserrat;
+        font-family: Montserrat, sans-serif;
         font-style: italic;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 12px;
         line-height: 22px;
 
@@ -181,7 +182,6 @@ const StyledKontak = Styled.div`
     margin: 40px 40px;
     margin-left: 112px;
     font-family: Montserrat;
-    font-style: italic;
     font-weight: 600;
     font-size: 18px;
     line-height: 24px;
