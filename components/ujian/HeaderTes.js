@@ -42,7 +42,7 @@ const HeaderTes = ({answered, questionTotal, testEnd, testStart, tesName, color 
 }
 
 const HeaderStyled = Styled.div`
-    box-shadow: 4px 4px 14px rgba(174, 174, 192, 0.54), -8px -8px 10px #FFFFFF;
+    box-shadow: 4px 4px 14px rgba(174, 174, 192, 0.54);
     border-radius: 16px;
 
     z-index:20;
