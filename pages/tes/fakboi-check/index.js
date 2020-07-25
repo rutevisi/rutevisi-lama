@@ -11,7 +11,7 @@ import PilGan from '../../../components/ujian/PilGan';
 function Test({test, soal, answer}){
     const listSoal = soal.fakboi;
     const answered = answer.answered.length
-    const questionTotal = soal.fakboi.length
+    const questionTotal = soal.fakboi ? soal.fakboi.length : 0
     const testIsDone = test.testDone
 
     const testPage = <Layout>

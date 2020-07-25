@@ -8,15 +8,14 @@ export const addQuestion = (answer) => ({
 export const addAnswered = (answered) => ({
     type: ADD_ANSWERED,
     payload: answered
-})
+});
 
-// Setara dengan addQuestion
 export const addPilganAnswer = (answer) => ({
     type: ADD_PILGAN_ANSWER,
     payload: answer
-})
+});
 
 export const addPilganAnswered = (answered) => ({
     type: ADD_PILGAN_ANSWERED,
     payload: answered
-})
+});

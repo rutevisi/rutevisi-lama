@@ -11,7 +11,7 @@ import TestFooter from '../../../components/ujian/TestFooter'
 function Test({soal, answer, test}){
     const list = soal.mbti
     const answered = answer.answered.length
-    const questionTotal = soal.mbti.length
+    const questionTotal = soal.mbti ? soal.mbti.length : 0
     const testIsDone = test.testDone
 
     const testPage = <Layout>
