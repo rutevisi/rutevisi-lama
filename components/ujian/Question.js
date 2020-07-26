@@ -130,7 +130,7 @@ const QuestionStyled = Styled.div`
         }
     }
     .container{
-        box-shadow: 4px 4px 14px rgba(174, 174, 192, 0.54), -8px -8px 10px #FFFFFF, inset 2px 2px 1px rgba(0, 0, 0, 0.05);
+        box-shadow: inset 2px 2px 7px rgba(174, 174, 192, 0.54), inset -4px -4px 5px #FFFFFF, inset 2px 2px 1px rgba(0, 0, 0, 0.05);
         
         background-color:#fff;
         background-color: #fff;

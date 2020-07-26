@@ -1,24 +1,45 @@
-indo        tr   is  ur  pres    i   g 
-nigeria     tr   is  r   pres    c   g
-cuba        tr   k   u   one     i   s
-brazil      tr   k   u   pres    c   g
-sgp         tr   b   u   parl    i   s
+malaysia    tr   is  u   king    c   m                     6                   4     2
+indo        tr   is  ur  pres    i   g                     11                  5     3     2     1
+nigeria     tr   is  r   pres    c   g                      3                  2     1
+cuba        tr   k   u   one     i   s                      5                  5
+brazil      tr   k   u   pres    c   g                      1                  1
+sgp         tr   b   u   pres    i   s                      6                  5     1
+vietnam     tr   b   r   one     c   m                      4                  4
+thailand    tr   b   r   king    c   m                      4                  4
 india       tr   h   r   parl    c   ug
 
-turk        te   is  u   pres    c   m
-uzbek       te   is  r   pres    c   m
-usa         te   k   u   pres    c   g
-uk          te   k   u   mon     i   m
-german      te   k   u   parl    c   m
-south afr   te   k   u   pres    c   m
-china       te   b   ur  one     c   ug
-jepang      te   b   u   parl    i   m
-korea
+turk        te   is  u   pres    c   m                      13                 6     4     2     1
+uzbek       te   is  r   pres    c   m                      13                 6     4     2     1
+usa         te   k   u   pres    c   g                      7                  6     1
+uk          te   k   u   king    i   m                      15                 6     5     4  
+german      te   k   u   parl    c   m                      10                 6     4
+south afr   te   k   u   pres    c   m                      11                 6     4     1
+argentina   te   k   u   pres    c   m                      11                 6     4     1
+new zealand te   k   u   king    i   s                      11                 6     5
+canada      te   k   u   king    c   m                      10                 6     4
+china       te   b   ur  one     c   ug                     9                  6     3
+jepang      te   b   u   king    i   m                      15                 6     5     4
+korea       te   b   u   pres    c   m                      11                 6     4     1
 
-saudi       ard  is  u   mon     c   m
-mesir       ard  is  r   pres    c   m
-aussie      ard  k   u   parl    c   m
-spanyol     ard  k   
+saudi       ard  is  u   king    c   m                      6                  4     2
+maroko      ard  is  u   king    c   m                      6                  4     2
+mesir       ard  is  r   pres    c   m                      7                  4     2     1
+pakistan    ard  is  r   pres    c   g                      3                  2     1
+aussie      ard  k   u   king    c   m                      4                  4
+spanyol     ard  k   u   king    c   m                      4                  4
+italy       ard  k   u   parl    c   m                      4                  4
+chile       ard  k   u   pres    c   s                      1                  1
+mexico      ard  k   u   pres    c   m                      5                  4     1
 
-norway      po   k   u   mon     c   s
-rusia       po   k   u   pres    c   m
+norway      po   k   u   king    c   s
+rusia       po   k   u   pres    c   m                      5                  4     1
+islandia    po   k   u   parl    i   s                      5                  5
+finlandia   po   k   u   parl    c   s
+greenland   po   k   u   king    i   s                      5                  5
+
+fiji        pcf  k   ur  parl    i   s                      8                  5     3
+samoa       pcf  k   r   parl    i   s                      5                  5
+micronesia  pcf  k   r   parl    i   s                      5                  5
+
+
+temp island medium ur islam pres
