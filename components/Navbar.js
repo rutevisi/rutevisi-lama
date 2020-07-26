@@ -1,8 +1,11 @@
 import Link from 'next/link'
-import Styled from '@emotion/styled'    
+import Styled from '@emotion/styled'  
+import { connect } from 'react-redux'  
 import { css } from '@emotion/core'
+import { bindActionCreators } from 'redux'
+import { deauthenticate } from '../redux/actions/authAction'
 
-const Navbar = () => {
+const Navbar = ({isAuthenticated, deauthenticate}) => {
     return(
         <NavbarStyled css={mobile}>
             <div className="navbar">
@@ -14,8 +17,10 @@ const Navbar = () => {
                         <div className="sublink">
                             <Link href="/tes"><a className="btn navbar-item">Tes Sekarang</a></Link>
                             <Link href="/artikel"><a className="btn navbar-item">Artikel</a></Link>
-                            <Link href="/masuk"><a className="btn masuk-btn">Masuk</a></Link>
-                            <Link href="/premium"><a className="btn premium-btn">Premium</a></Link>
+                            <Link href="/premium"><a className="btn masuk-btn">Premium</a></Link>
+                            {
+                                isAuthenticated ? <span className="btn premium-btn" onClick={() => deauthenticate()}>Keluar</span> : <Link href="/masuk"><a className="btn premium-btn">Masuk</a></Link>
+                            }
                         </div>   
                     <button className="nav-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span>
@@ -34,7 +39,7 @@ const Navbar = () => {
                                 background-color: red !important;
                             }
                         }
-                        `}
+                    `}
                 </style>
             </div>
         </NavbarStyled>
@@ -113,6 +118,11 @@ const NavbarStyled = Styled.div`
     height: 28px;
     padding: 8px 20px 0 20px;
     height: 32px;
+
+    &:hover{
+        color: white !important;
+        background:#ffd12d;
+    }
 }
 .masuk-btn{
     // box-shadow: inset 0px 0px 0px 1.5px gray;
@@ -124,6 +134,18 @@ const NavbarStyled = Styled.div`
     padding: 8px 20px 0 0;
     height: 32px;
 }
+.btn{
+    cursor:pointer;
+}
 `
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deauthenticate: bindActionCreators(deauthenticate, dispatch),
+    }
+}
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.currentUser.authenticate,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

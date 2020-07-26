@@ -1,0 +1,9 @@
+.svg{
+    height: 20px;
+    width: 20px;
+    stroke: #bbb;
+
+    &:hover{
+        stroke: #888;
+    }
+}

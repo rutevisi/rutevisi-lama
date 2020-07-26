@@ -9,6 +9,7 @@ const Field = (props)=>{
             flex-direction:column;
             width:250px;
             margin-top:20px;
+            position:relative;
         }
         
         `}</style>

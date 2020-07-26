@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../../components/layouts/Layout'
 import { connect} from 'react-redux';
 import {wrapper} from '../../../redux/store';
@@ -10,19 +10,18 @@ import PilGan from '../../../components/ujian/PilGan';
 
 function Test({test, soal, answer}){
     const listSoal = soal.fakboi;
-    const answered = answer.answered.length
+    const answered = answer.answered ? answer.answered.length : 0 
     const questionTotal = soal.fakboi ? soal.fakboi.length : 0
     const testIsDone = test.testDone
+    const [ indexNow, setIndexNow ] = useState(0)
+
+    const soalNow = listSoal[indexNow]
 
     const testPage = <Layout>
         <div className="content-wrapper">
             <HeaderTes answered={answered} questionTotal={questionTotal} tesName={'FAKBOI-CHECK'}/>
             {
-                listSoal ? listSoal.map((soal, index) => {
-                    return(
-                        <PilGan soalIndex={index} arr={answer} key={soal._id} id={soal._id} isFliped={soal.flip} soal={soal.question.soal} pilihanJawaban={soal.question.jawab} indikator={'FAKBOI'}/>
-                    )
-                }) : ''
+                <PilGan total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`FAKBOI`}/>
             }
             <TestFooter/>
         </div>
@@ -37,7 +36,7 @@ function Test({test, soal, answer}){
         `}</style>
     </Layout>
 
-    const endScreen = <Layout><FinishScreen/></Layout>
+    const endScreen = <Layout><FinishScreen hasil={answer} testName={soal.testname}/></Layout>
 
     return (
         testIsDone ? endScreen : testPage

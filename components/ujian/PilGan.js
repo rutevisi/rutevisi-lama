@@ -4,14 +4,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { addPilganAnswered } from '../../redux/actions/answerAction'
 import { addPilganAnswer } from '../../redux/actions/answerAction'
+import { testEnd } from '../../redux/actions/testAction'
 
-function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnswered, id, indikator, arr}){
+function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnswered, id, indikator, arr, setIndexNow, total, testEnd}){
     const [ load, setLoad ] = useState(false);
 
     function addSelected(pilihan){
         if(arr.answers[soalIndex]){
-            console.log(arr.answers[soalIndex].jawab)
-            console.log(arr.answers[soalIndex].answered)
             if(arr.answers[soalIndex].jawab === pilihan && arr.answers[soalIndex].answered === true){
                 return 'selected'
             }
@@ -20,6 +19,8 @@ function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnsw
             }
         }
     }
+
+    console.log(soalIndex, total)
 
     useEffect(() => {
         if(!load){
@@ -38,7 +39,7 @@ function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnsw
                     {
                         pilihanJawaban.map((jawaban, index) => {
                             return(
-                                <div key={index} className={`pilihan ${addSelected(jawaban.poin)}`} onClick={(e) => {addPilganAnswer({questionId: id, index: soalIndex, jawab: jawaban.poin, answered: true}); addPilganAnswered({questionId: id, index: soalIndex, jawab: jawaban.poin, indikator})}}>{jawaban.pilihan}</div>
+                                <div key={index} className={`pilihan ${addSelected(jawaban.poin)}`} onClick={(e) => {addPilganAnswer({questionId: id, index: soalIndex, jawab: jawaban.poin, answered: true}); addPilganAnswered({questionId: id, index: soalIndex, jawab: jawaban.poin, indikator}); soalIndex < total-1 ? setIndexNow(soalIndex+1) : testEnd({result: null});}}>{jawaban.pilihan}</div>
                             )
                         })
                     }
@@ -102,7 +103,8 @@ const PilGanStyled = Styled.div`
 const mapDispatchToProps = (dispatch) => {
     return {
       addPilganAnswered: bindActionCreators(addPilganAnswered, dispatch),
-      addPilganAnswer: bindActionCreators(addPilganAnswer, dispatch)
+      addPilganAnswer: bindActionCreators(addPilganAnswer, dispatch),
+      testEnd: bindActionCreators(testEnd, dispatch),
     }
 }
 

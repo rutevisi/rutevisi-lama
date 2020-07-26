@@ -1,24 +1,27 @@
 import { Formik} from "formik"
 import * as Yup from 'yup'
 import Link from 'next/link'
-import { useState } from 'react'
-import axios from 'axios'
-import { useRouter } from 'next/router'
+import { connect } from 'react-redux'
+import { authenticate } from '../redux/actions/authAction'
+import { Eye, EyeOff } from 'react-feather'
 
 import Input from '../components/form/Input'
 import Field from '../components/form/Field'
 import Label from "../components/form/Label";
 import Button from '../components/form/Button'
+import { useState } from "react"
 
+// Cek apakah input valid atau tidak menggunakan yup
 const SignupSchema = () =>
     Yup.object().shape({
         email: Yup.string().email("Email is not valid").required("Required"),
         password: Yup.string().min(8, "Password is too short").required("Required"),
 });
 
-export default () => {
-    const [errorMsg, setErrorMsg] = useState();
-    const router = useRouter();
+function Masuk({authenticate, currentUser}){
+    const errorMsg = currentUser.errorMessage
+    const isLoading = currentUser.loading
+    const [ passVisible, setPassVisible ] = useState(false)
 
     return(
         <>
@@ -28,7 +31,7 @@ export default () => {
                     {
                         errorMsg ? (
                             <div className="form-message">
-                                {errorMsg}
+                                {errorMsg ? errorMsg : ''}
                             </div>
                         ) : ''
                     }
@@ -39,14 +42,7 @@ export default () => {
                     }}
                     validationSchema={SignupSchema()}
                     onSubmit={(values, { setSubmitting }) => {
-                        console.log(values)
-                        axios.post(`/api/user/auth`, values)
-                            .then(res => {
-                                router.push('/')
-                            })
-                            .catch(err => setErrorMsg(err.response.data.msg))
-
-                        setSubmitting(false)
+                        authenticate(values)
                     }}
                     >
                     {({
@@ -72,16 +68,17 @@ export default () => {
                             <Field>
                                 <Label htmlFor="password" error={touched.password && errors.password} ></Label>
                                 <Input
-                                type="password"
+                                type={passVisible ? 'text' : 'password'}
                                 name="password"
                                 id="password"
                                 placeholder="Password"
                                 {...getFieldProps("password")}
                                 />
+                                <span className="input-icon" onClick={() => setPassVisible(!passVisible)}>{ passVisible ? <EyeOff className="svg"/> : <Eye className="svg"/> }</span>
                             </Field>
                             <Button
-                            disabled={isSubmitting || !isValid}
-                            loading={isSubmitting.toString()}
+                            disabled={isLoading ? isLoading : false|| !isValid}
+                            loading={isLoading ? isLoading.toString() : false.toString()}
                             >
                                 Login
                             </Button>
@@ -92,7 +89,12 @@ export default () => {
                 </div> 
                 </div>
                 <style jsx>{`
-            
+                .input-icon{
+                    position: absolute;
+                    top: 10px;
+                    right: 6px;
+                    cursor:pointer;
+                }
                 p{
                     text-align: center;
                     color: #888;
@@ -125,7 +127,7 @@ export default () => {
                 }
                 .form-message{
                     background: #ffe2e6;
-                    padding: .3rem .5rem;
+                    padding: .6rem .5rem;
                     border: 1px solid #ffa0a0;
                     font-size: .8rem;
                     text-align: center;
@@ -145,3 +147,5 @@ export default () => {
         </>
     )
 }
+
+export default connect(state => state, {authenticate})(Masuk);

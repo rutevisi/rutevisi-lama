@@ -4,87 +4,96 @@ import { connect } from 'react-redux'
 import { testEnd } from '../../redux/actions/testAction'
 import Link from 'next/link'
 
-function FinishScreen({hasil, testEnd}){
+function FinishScreen({hasil, testEnd, testName}){
 
     const terjawab = hasil.answered
-    console.log(terjawab)
-
-    let A = 0;
-    let B = 0;
-    let C = 0;
-    let D = 0;
-    let E = 0;
-
     let resultObj;
 
-    for(let i = 0; i < 15; i++){
-        let indicator = terjawab[i].indikator;
-
-        switch (indicator) {
-            case 'A':
-                A += terjawab[i].jawab;
-                break;
-            case 'B':
-                B += terjawab[i].jawab;
-                break;
-            case 'C':
-                C += terjawab[i].jawab;
-                break;
-            case 'D':
-                D += terjawab[i].jawab;
-                break;
-            case 'E':
-                E += terjawab[i].jawab;
-                break;
-            default:
-                break;
-        }
-
-        console.log(A, B, C, D, E)
-
-        function toPersen(indikatorVal){
-            const jumlahSoal = 22
-            const indicatorTotalValue = jumlahSoal * 2;
-            let indicatorValue;
-            let cap;
-            let persen;
-
-            if(indikatorVal > 0){
-                // Introvert Check
-                indicatorValue = indikatorVal + jumlahSoal;
-                persen = (indicatorValue/indicatorTotalValue)*100;
-            }else{
-                //Extrovert check
-                indicatorValue = Math.abs(indikatorVal - jumlahSoal);
-                persen = -(indicatorValue/indicatorTotalValue)*100;
-            }
-
+    // Cek Nama Tes
+    switch (testName) {
+        // Perhitungan tes MBTI
+        case 'Myers–Briggs Type Indicator':
+            let A = 0;
+            let B = 0;
+            let C = 0;
+            let D = 0;
+            let E = 0;
+        
+            for(let i = 0; i < 55; i++){
+                let indicator = terjawab[i].indikator;
+        
+                switch (indicator) {
+                    case 'A':
+                        A += terjawab[i].jawab;
+                        break;
+                    case 'B':
+                        B += terjawab[i].jawab;
+                        break;
+                    case 'C':
+                        C += terjawab[i].jawab;
+                        break;
+                    case 'D':
+                        D += terjawab[i].jawab;
+                        break;
+                    case 'E':
+                        E += terjawab[i].jawab;
+                        break;
+                    default:
+                        break;
+                }
+        
+                function toPersen(indikatorVal){
+                    const jumlahSoal = 22
+                    const indicatorTotalValue = jumlahSoal * 2;
+                    let indicatorValue;
+                    let cap;
+                    let persen;
+        
+                    if(indikatorVal > 0){
+                        // Introvert Check
+                        indicatorValue = indikatorVal + jumlahSoal;
+                        persen = (indicatorValue/indicatorTotalValue)*100;
+                    }else{
+                        //Extrovert check
+                        indicatorValue = Math.abs(indikatorVal - jumlahSoal);
+                        persen = -(indicatorValue/indicatorTotalValue)*100;
+                    }
+        
+                    
+                    return persen;
+                }
+        
+                resultObj = {
+                    indicatorA: toPersen(A),
+                    indicatorB: toPersen(B),
+                    indicatorC: toPersen(C),
+                    indicatorD: toPersen(D),
+                    indicatorE: toPersen(E),
+                }
             
-            return persen;
-        }
+            }
+        // Perhitungan tes Fakboi
+        case 'Fakboi-Check':
+            const maksNilaiPerSoal = 3;
+            const jumlahSoal = 3;
+            const maksPoin = jumlahSoal*maksNilaiPerSoal;
+            const totalNilai = terjawab.reduce((acc, curr) => parseInt(acc) + parseInt(curr.jawab), 0);
+            
+            const getPercentage = totalNilai/maksPoin*100
+            console.log(getPercentage)
 
-        console.log(`A: ${toPersen(A)}`)
-        console.log(`B: ${toPersen(B)}`)
-        console.log(`C: ${toPersen(C)}`)
-        console.log(`D: ${toPersen(D)}`)
-        console.log(`E: ${toPersen(E)}`)
-
-        resultObj = {
-            indicatorA: toPersen(A),
-            indicatorB: toPersen(B),
-            indicatorC: toPersen(C),
-            indicatorD: toPersen(D),
-            indicatorE: toPersen(E),
-        }
-    
+        default:
+            break;
     }
+
+    console.log(testName)
 
     return(
         <FinishScreenStyled>
             <div className="modal-box">
                 <span className="emoji">🏆</span>
                 <div className="message">
-                    <p>Selamat anda telah berhasil menyelesaikan Myers–Briggs Type Indicator Test! Kilk "See Result" untuk melihat hasilnya.</p>
+                    <p>Selamat anda telah berhasil menyelesaikan {testName} Test! Kilk "See Result" untuk melihat hasilnya.</p>
                 </div>
                 <Link href="/tes/mbti/result">
                 <button className="btn" onClick={() => testEnd({result: resultObj})}>See Result</button>

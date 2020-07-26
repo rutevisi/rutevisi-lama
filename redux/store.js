@@ -5,6 +5,7 @@ import { answer } from './reducers/answer'
 import { test } from './reducers/test'
 import { sort } from './reducers/sort'
 import { filter } from './reducers/filter'
+import { currentUser } from './reducers/currentUser'
 import thunkMiddleware from 'redux-thunk'
 
 const bindMiddleware = (middleware) => {
@@ -19,6 +20,7 @@ const combinedReducer = combineReducers({
     soal,
     answer,
     test,
+    currentUser,
     sort,
     filter
 })

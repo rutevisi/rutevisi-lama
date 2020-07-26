@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'emotion-theming'
 import React from 'react';
+import '../assets/css/style.scss'
 import GlobalStyles from '../components/styles/GlobalStyles'
 import { wrapper } from '../redux/store';
 import NextNProgress from '../components/NextNProgress'
