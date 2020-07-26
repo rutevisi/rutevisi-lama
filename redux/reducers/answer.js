@@ -11,7 +11,6 @@ export const answer = (state = initialState, action) => {
         case ADD_ANSWER:
             const findByPropInObjectArray = (arr, prop) => match => arr.find(e => e[prop] === match)
             const findID = findByPropInObjectArray(state.answers, "questionId");
-
             const result = findID(action.payload.questionId) ? true : false
             
             if(result){
@@ -33,7 +32,7 @@ export const answer = (state = initialState, action) => {
                     answers: [
                         ...state.answers,
                         {
-                            questionId: action.payload.questionId,
+                        questionId: action.payload.questionId,
                         index: action.payload.index,
                         jawab: action.payload.jawab,
                         flip: action.payload.flip,
@@ -46,19 +45,20 @@ export const answer = (state = initialState, action) => {
             const findByPropInArray = (arr, prop) => match => arr.find(e => e[prop] === match)
             const find = findByPropInArray(state.answered, 'questionId');
             const res = find(action.payload.questionId) ? true : false
-            console.log(res)
+            const getIndex = state.answered.findIndex(x => x.questionId === action.payload.questionId);
 
-            console.log(state)
             if(res){
-                return update(state, { 
-                    answered: {
-                        [action.payload.index]: {
-                            questionId: {$set: action.payload.questionId},
-                            jawab: {$set: action.payload.jawab},
-                            indikator: {$set: action.payload.indikator},
-                            }
-                    } 
-                });
+                if(state.answered[getIndex]){
+                    return update(state, { 
+                        answered: {
+                            [getIndex]: {
+                                questionId: {$set: action.payload.questionId},
+                                jawab: {$set: action.payload.jawab},
+                                indikator: {$set: action.payload.indikator},
+                                }
+                        } 
+                    });
+                }
             }
             else{
                 return {
@@ -108,19 +108,21 @@ export const answer = (state = initialState, action) => {
         case ADD_PILGAN_ANSWERED:
             const findPilganByPropInArray = (arr, prop) => match => arr.find(e => e[prop] === match)
             const finding = findPilganByPropInArray(state.answered, "questionId");
-
             const resp = finding(action.payload.questionId) ? true : false
+            const getIndexFakboi = state.answered.findIndex(x => x.questionId === action.payload.questionId);
 
             if(resp){
-                return update(state, { 
-                    answered: {
-                        [action.payload.index]: {
-                            questionId: {$set: action.payload.questionId},
-                            jawab: {$set: action.payload.jawab},
-                            indikator: {$set: action.payload.indikator},
-                            }
-                    } 
-                });
+                if(state.answered[getIndexFakboi]){
+                    return update(state, { 
+                        answered: {
+                            [getIndexFakboi]: {
+                                questionId: {$set: action.payload.questionId},
+                                jawab: {$set: action.payload.jawab},
+                                indikator: {$set: action.payload.indikator},
+                                }
+                        } 
+                    });
+                }
             }
             else{
                 return {
