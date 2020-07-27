@@ -91,7 +91,7 @@ function Masuk({authenticate, currentUser}){
                 <style jsx>{`
                 .input-icon{
                     position: absolute;
-                    top: 10px;
+                    bottom: 7px;
                     right: 6px;
                     cursor:pointer;
                 }

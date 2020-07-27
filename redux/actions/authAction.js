@@ -3,7 +3,7 @@ import axios from 'axios'
 import cookie from 'js-cookie';
 import Router from 'next/router'
 
-// Redux actions
+// Redux action (Untuk login)
 export const authenticate = user => dispatch => {
     dispatch({ type: AUTHENTICATE_LOADING })
 
@@ -16,12 +16,27 @@ export const authenticate = user => dispatch => {
         .catch(err => dispatch({ type: AUTHECTICATE_FAILED, payload: err.response.data.msg }))
 }
 
+// Redux action (Untuk daftar)
+export const register = user => dispatch => {
+    dispatch({ type: AUTHENTICATE_LOADING })
+
+    axios.post(`/api/user/add`, user)
+        .then(res => {
+            Router.push('/user');
+            setCookie('user_token', res.data.token)
+            dispatch({ type: AUTHENTICATE_USER, payload: res.data })
+        })
+        .catch(err => dispatch({ type: AUTHECTICATE_FAILED, payload: err.response.data.msg }))
+}
+
+// Redux action (untuk login ulang jika cookie sudah tersedia)
 export const reauthenticate = data => {
     return dispatch => {
         dispatch({ type: AUTHENTICATE_USER, payload: data });
     };
 };
 
+// Redux action (untuk login gagal / signup gagal / user log out)
 export const deauthenticate = () => {
     return dispatch => {
         removeCookie('user_token');

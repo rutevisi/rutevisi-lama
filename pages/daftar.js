@@ -1,10 +1,11 @@
 import { Formik} from "formik"
 import * as Yup from 'yup'
 import Link from 'next/link'
-import axios from 'axios'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { register } from '../redux/actions/authAction'
+import { connect } from 'react-redux'
 
+import { Eye, EyeOff } from 'react-feather'
 import Input from '../components/form/Input'
 import Field from '../components/form/Field'
 import Label from "../components/form/Label";
@@ -17,9 +18,10 @@ const SignupSchema = () =>
         password: Yup.string().min(8, "Password is too short").required("Required"),
 });
 
-export default () => {
-    const [errorMsg, setErrorMsg] = useState();
-    const router = useRouter();
+function Daftar({register, currentUser}){
+    const errorMsg = currentUser.errorMessage
+    const isLoading = currentUser.loading
+    const [ passVisible, setPassVisible ] = useState(false)
 
     return(
         <>
@@ -29,7 +31,7 @@ export default () => {
                     {
                         errorMsg ? (
                             <div className="form-message">
-                                {errorMsg}
+                                {errorMsg ? errorMsg : ''}
                             </div>
                         ) : ''
                     }
@@ -40,14 +42,8 @@ export default () => {
                         password: "",
                     }}
                     validationSchema={SignupSchema()}
-                    onSubmit={(values, { setSubmitting }) => { 
-                        axios.post(`/api/user/add`, values)
-                            .then(res => {
-                                router.push('/')
-                            })
-                            .catch(err => setErrorMsg(err.response.data.msg))
-
-                        setSubmitting(false)
+                    onSubmit={(values, { setSubmitting }) => {
+                        register(values)
                     }}
                     >
                     {({
@@ -83,16 +79,17 @@ export default () => {
                             <Field>
                                 <Label htmlFor="password" error={touched.password && errors.password} ></Label>
                                 <Input
-                                type="password"
+                                type={passVisible ? 'text' : 'password'}
                                 name="password"
                                 id="password"
                                 placeholder="Password"
                                 {...getFieldProps("password")}
                                 />
+                                <span className="input-icon" onClick={() => setPassVisible(!passVisible)}>{ passVisible ? <EyeOff className="svg"/> : <Eye className="svg"/> }</span>
                             </Field>
                             <Button
-                            disabled={isSubmitting || !isValid}
-                            loading={isSubmitting.toString()}
+                            disabled={isLoading ? isLoading : false|| !isValid}
+                            loading={isLoading ? isLoading.toString() : false.toString()}
                             >
                                 Signup
                             </Button>
@@ -103,7 +100,12 @@ export default () => {
                 </div> 
                 </div>
                 <style jsx>{`
-            
+                .input-icon{
+                    position: absolute;
+                    bottom: 7px;
+                    right: 6px;
+                    cursor:pointer;
+                }
                 p{
                     text-align: center;
                     color: #888;
@@ -156,3 +158,5 @@ export default () => {
         </>
     )
 }
+
+export default connect(state => state, {register})(Daftar);
