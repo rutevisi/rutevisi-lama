@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
-import mongoMiddleware from '../../../lib/api/mongo-middleware';
-import apiHandler from '../../../lib/api/api-handler';
+import mongoMiddleware from '../../../../lib/api/mongo-middleware';
+import apiHandler from '../../../../lib/api/api-handler';
 
 export default mongoMiddleware(async (req, res, connection, models) => {
     const { method } = req;
@@ -8,10 +8,11 @@ export default mongoMiddleware(async (req, res, connection, models) => {
     return new Promise(resolve => {
         apiHandler(res, method, {
             GET: async (response) => {
-                const token = await req.headers.authorization.split(" ")[1];
-
+                const token = await req.headers.authorization;
+                
                 if(token){
-                    jwt.verify(token, process.env.SECRET, (err, decode) => {
+                    const parsedToken = token.split(" ")[1];
+                    jwt.verify(parsedToken, process.env.SECRET, (err, decode) => {
                         if(decode){
                             models.User.findById(decode.id, '-password' ,(err, user) => {
                                 if(user){

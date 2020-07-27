@@ -7,6 +7,7 @@ import Link from 'next/link'
 function FinishScreen({hasil, testEnd, testName}){
 
     const terjawab = hasil.answered
+    console.log(testName)
     let resultObj;
 
     // Cek Nama Tes
@@ -85,8 +86,6 @@ function FinishScreen({hasil, testEnd, testName}){
         default:
             break;
     }
-
-    console.log(testName)
 
     return(
         <FinishScreenStyled>

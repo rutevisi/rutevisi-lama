@@ -37,7 +37,7 @@ function Test({soal, answer, test}){
         `}</style>
     </Layout>
 
-    const endScreen = <Layout><FinishScreen hasil={answer}/></Layout>
+    const endScreen = <Layout><FinishScreen hasil={answer} testName={soal.testname}/></Layout>
 
     return (
         testIsDone ? endScreen : testPage

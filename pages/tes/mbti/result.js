@@ -3,8 +3,14 @@ import Styled from '@emotion/styled'
 import { connect } from 'react-redux'
 import Layout from '../../../components/layouts/Layout'
 import personalityType from '../../../data/personalityType.json'
+import axios from 'axios'
+import Alert from '../../../components/modal/Alert'
+import Router from 'next/router'
 
-function ResultPage({result}){
+function ResultPage({result, testName, currentUser}){
+    const [ modalOpen, setModalOpen ] = useState(true)
+    const [ isSaving, setIsSaving ] = useState(false)
+    const [ saved, setSaved ] = useState(false)
 
     let testa = Math.round(result.indicatorA);
     let testb = Math.round(result.indicatorB);
@@ -208,9 +214,35 @@ function ResultPage({result}){
     // Finding Personality Data
     let typeData = personalityType.find((data) => data.personality_type === personality)
 
+    const storeResult = typeData.personality_name.split(":")[0] + "-" + fifthIndikator;
+    const storeTestName = testName;
+
+    const storeData = { testresult: storeResult, testname: storeTestName }
+    console.log(storeData)
+
+    
+    function postResult(){
+        if(currentUser.authenticate){
+            const userId = currentUser.userData._id
+            if(!saved){
+                setIsSaving(true)
+                axios.post(`/api/user/${userId}`, storeData).then(res => {
+                    setModalOpen(true);
+                    setIsSaving(false);
+                    setSaved(true);
+                }).catch(err => console.log('Something went wrong'))
+            }
+        }
+    }
+
+    function keluar(){
+        Router.push('/')
+    }
+    
     return(
         <Layout>
         <ResultPageStyled>
+            { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
             <div className="page-header">
                 <h1>{typeData.personality_name.split(":")[0] + "-" + fifthIndikator + " :" + typeData.personality_name.split(":")[1]}</h1>
                 <p>{typeData.personality_desc}</p>
@@ -285,6 +317,7 @@ function ResultPage({result}){
                     <div className="percentage perc-right">{assertive}%</div>
                 </div>
             </div>
+            { currentUser.authenticate && !saved ? <button className="btn" disabled={isSaving || saved} onClick={() => postResult()}>Simpan Hasil</button> : <button className="btn" onClick={() => keluar()}>Keluar</button> }
         </ResultPageStyled>
         </Layout>
     )
@@ -306,6 +339,26 @@ const ResultPageStyled = Styled.div`
     font-family:'Montserrat', sans-serif;
     padding-bottom:3rem;
 
+    .btn{
+        text-decoration: none;
+        background-color: #FFCB11;
+        border: none;
+        border-radius: 32px;
+        font-weight: 600;
+        color: white;
+        padding: 8px 20px 8px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor:pointer;
+        margin:0 auto;
+    }
+    button:disabled,button[disabled]{
+        background: #eee;
+        cursor: not-allowed !important;
+        border: 1px solid #ddd;
+        color: #777;
+    }
     .toblack{
         color: gray !important;
     }
@@ -398,6 +451,8 @@ const ResultPageStyled = Styled.div`
 
 const mapStateToProps = (state) => ({
     result: state.test.result,
+    testName: state.soal.testname,
+    currentUser: state.currentUser
 })
 
 export default connect(mapStateToProps, null)(ResultPage)

@@ -6,7 +6,9 @@ import { bindActionCreators } from 'redux'
 import { deauthenticate } from '../redux/actions/authAction'
 import { useState } from 'react'
 
-const Navbar = ({isAuthenticated, deauthenticate}) => {
+const Navbar = ({isAuthenticated, deauthenticate, userData}) => {
+
+    const limitedName = userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1"); 
     const [ menuOpen, setMenuOpen ] = useState(false)
     const userComponent = <>
         <div className="user-ui">
@@ -14,7 +16,7 @@ const Navbar = ({isAuthenticated, deauthenticate}) => {
             {
                 menuOpen ? (
                     <ul className="user-menu">
-                        <span>Yudhatama Indra</span>
+                        <span>{limitedName}</span>
                         <Link href="/user">
                         <a className="user-list">
                             Profil
@@ -79,8 +81,8 @@ const NavbarStyled = Styled.div`
     position:relative;
 
     .user-profile{
-        width:30px;
-        height:30px;
+        width:35px;
+        height:35px;
         border-radius:50%;
         cursor:pointer;
         background:#ccc;
@@ -109,6 +111,7 @@ const NavbarStyled = Styled.div`
             border-bottom: 1px solid #eee;
             justify-content: center;
             margin-bottom:.5rem;
+            text-align:center;
         }
         .user-list{
             padding: .5rem 1rem;
@@ -218,6 +221,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.currentUser.authenticate,
+    userData: state.currentUser.userData
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
