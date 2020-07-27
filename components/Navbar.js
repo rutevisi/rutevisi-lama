@@ -4,8 +4,31 @@ import { connect } from 'react-redux'
 import { css } from '@emotion/core'
 import { bindActionCreators } from 'redux'
 import { deauthenticate } from '../redux/actions/authAction'
+import { useState } from 'react'
 
 const Navbar = ({isAuthenticated, deauthenticate}) => {
+    const [ menuOpen, setMenuOpen ] = useState(false)
+    const userComponent = <>
+        <div className="user-ui">
+            <button className="user-profile" onClick={() => setMenuOpen(!menuOpen)}></button>
+            {
+                menuOpen ? (
+                    <ul className="user-menu">
+                        <span>Yudhatama Indra</span>
+                        <Link href="/user">
+                        <a className="user-list">
+                            Profil
+                        </a>
+                        </Link>
+                        <a className="user-list" onClick={() => deauthenticate()}>
+                            Keluar
+                        </a>
+                    </ul>
+                ) : ''
+            }
+        </div>
+    </>
+
     return(
         <NavbarStyled css={mobile}>
             <div className="navbar">
@@ -19,7 +42,7 @@ const Navbar = ({isAuthenticated, deauthenticate}) => {
                             <Link href="/artikel"><a className="btn navbar-item">Artikel</a></Link>
                             <Link href="/premium"><a className="btn masuk-btn">Premium</a></Link>
                             {
-                                isAuthenticated ? <span className="btn premium-btn" onClick={() => deauthenticate()}>Keluar</span> : <Link href="/masuk"><a className="btn premium-btn">Masuk</a></Link>
+                                isAuthenticated ? userComponent : <Link href="/masuk"><a className="btn premium-btn">Masuk</a></Link>
                             }
                         </div>   
                     <button className="nav-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,6 +74,55 @@ const mobile = css`
 `
 
 const NavbarStyled = Styled.div`
+
+.user-ui{
+    position:relative;
+
+    .user-profile{
+        width:30px;
+        height:30px;
+        border-radius:50%;
+        cursor:pointer;
+        background:#ccc;
+        display:flex;
+        border:none;
+    }
+    .user-menu{
+        position:absolute;
+        list-style: none;
+        padding: 0 0 .5rem 0;
+        background: #fff;
+        box-sizing: border-box;
+        width: 180px;
+        top: 25px;
+        right: -15px;
+        border-radius: .2rem;
+        box-shadow: 0 4px 12px #0000001a;
+        display:flex;
+        flex-direction:column;
+
+        span{
+            padding: .9rem 1rem;
+            display: flex;
+            font-weight: bold;
+            font-size: .9rem;
+            border-bottom: 1px solid #eee;
+            justify-content: center;
+            margin-bottom:.5rem;
+        }
+        .user-list{
+            padding: .5rem 1rem;
+            font-size: .85rem;
+            color:#000 !important;
+            text-decoration:none;
+
+            &:hover{
+                background:#f7f5f5;
+                cursor:pointer;
+            }
+        }
+    }
+}
 .navbar{
     position: fixed;
     top:0;

@@ -40,7 +40,7 @@ export const reauthenticate = data => {
 export const deauthenticate = () => {
     return dispatch => {
         removeCookie('user_token');
-        Router.push('/masuk');
+        Router.push('/');
         dispatch({ type: AUTHENTICATE_DESTROY });
     };
 };
