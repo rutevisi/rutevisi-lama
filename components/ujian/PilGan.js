@@ -39,11 +39,12 @@ function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnsw
                     {
                         pilihanJawaban.map((jawaban, index) => {
                             return(
-                                <div key={index} className={`pilihan ${addSelected(jawaban.poin)}`} onClick={(e) => {addPilganAnswer({questionId: id, index: soalIndex, jawab: jawaban.poin, answered: true}); addPilganAnswered({questionId: id, index: soalIndex, jawab: jawaban.poin, indikator}); soalIndex < total-1 ? setIndexNow(soalIndex+1) : testEnd({result: null});}}>{jawaban.pilihan}</div>
+                                <div key={index} className={`pilihan ${addSelected(jawaban.indikator)}`} onClick={(e) => {addPilganAnswer({questionId: id, index: soalIndex, jawab: jawaban.indikator, answered: true}); addPilganAnswered({questionId: id, index: soalIndex, jawab: jawaban.indikator, indikator});}}>{jawaban.pilihan}</div>
                             )
                         })
                     }
                 </div>
+                <button className="selanjut" onClick={()=> soalIndex < total-1 ? setIndexNow(soalIndex+1) : testEnd({result: null})}>SELANJUTNYA</button>
             </div>
         </PilGanStyled>
     )
@@ -90,7 +91,7 @@ const PilGanStyled = Styled.div`
         background: #f7f7f7;
         padding: .5rem;
         text-align: center;
-        border-radius: 1.5rem;
+        border-radius: 8px;
         cursor:pointer;
         margin-bottom:.75rem;
 

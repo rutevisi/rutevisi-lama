@@ -1,4 +1,4 @@
-import { FETCH_MBTI, FETCH_FAKBOI } from '../actions/types'
+import { FETCH_MBTI, FETCH_FAKBOI, FETCH_NEGARAMANA } from '../actions/types'
 
 const initialState = {
     loading: null,
@@ -17,6 +17,12 @@ export const soal = (state = initialState, action) => {
             return Object.assign({}, state, {
                 fakboi: action.payload,
                 testname: 'Fakboi-Check',
+                loading:false,
+            })
+        case FETCH_NEGARAMANA:
+            return Object.assign({}, state, {
+                negaramana: action.payload,
+                testname: 'Negara Mana',
                 loading:false,
             })
         default:

@@ -1,6 +1,7 @@
 // Question types
 export const FETCH_MBTI = 'FETCH_MBTI'
 export const FETCH_FAKBOI = 'FETCH_FAKBOI'
+export const FETCH_NEGARAMANA = 'FETCH_NEGARAMANA'
 
 // Test types
 export const ADD_ANSWER = 'ADD_ANSWER'
