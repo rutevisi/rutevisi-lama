@@ -21,7 +21,8 @@ const UserSchema = new Schema({
 		testname: { type: String },
 		testresult: { type: String },
 		testdate: { type: Date, default: Date.now }
-	}]
+	}],
+	user_photo: { type: String }
 	},
 {
   	timestamps: true,

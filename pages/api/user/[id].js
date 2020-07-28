@@ -1,5 +1,3 @@
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import mongoMiddleware from '../../../lib/api/mongo-middleware';
 import apiHandler from '../../../lib/api/api-handler';
 

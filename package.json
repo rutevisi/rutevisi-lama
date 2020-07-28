@@ -24,6 +24,7 @@
     "bcrypt": "^5.0.0",
     "caniuse-lite": "^1.0.30001100",
     "emotion-theming": "^10.0.27",
+    "firebase": "^7.17.1",
     "formik": "^2.1.5",
     "gray-matter": "^4.0.2",
     "immutability-helper": "^3.1.1",

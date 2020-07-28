@@ -1,4 +1,5 @@
-import { AUTHENTICATE_USER, AUTHENTICATE_DESTROY, AUTHECTICATE_FAILED, AUTHENTICATE_LOADING } from '../actions/types'
+import { AUTHENTICATE_USER, AUTHENTICATE_DESTROY, AUTHECTICATE_FAILED, AUTHENTICATE_LOADING, UPDATE_PROFILE } from '../actions/types'
+import update from 'immutability-helper';
 
 const initialState = {
     authenticate: false,
@@ -35,6 +36,12 @@ export const currentUser = (state = initialState, action) => {
                 errorMessage: action.payload,
                 loading: false
             }
+        case UPDATE_PROFILE:
+            return update(state, { 
+                userData: {
+                    user_photo: {$set: action.payload}
+                }
+            });
         default:
             return state;
     }

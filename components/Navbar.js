@@ -8,11 +8,19 @@ import { useState } from 'react'
 
 const Navbar = ({isAuthenticated, deauthenticate, userData}) => {
 
+    const defaultPict = userData.user_photo ? userData.user_photo : null
+    const [ userPict, setUserPict ] = useState(defaultPict)
     const limitedName = userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1"); 
     const [ menuOpen, setMenuOpen ] = useState(false)
+    const defaultavatar = limitedName.charAt(0);
+
     const userComponent = <>
         <div className="user-ui">
-            <button className="user-profile" onClick={() => setMenuOpen(!menuOpen)}></button>
+            <button className="user-profile" onClick={() => setMenuOpen(!menuOpen)}>
+                {
+                    userPict ? <img src={userPict} alt="user profile picture"/> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
+                }
+            </button>
             {
                 menuOpen ? (
                     <ul className="user-menu">
@@ -76,7 +84,16 @@ const mobile = css`
 `
 
 const NavbarStyled = Styled.div`
-
+.default-avatar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color:#fff;
+}
 .user-ui{
     position:relative;
 
@@ -85,9 +102,17 @@ const NavbarStyled = Styled.div`
         height:35px;
         border-radius:50%;
         cursor:pointer;
-        background:#ccc;
+        background:#ffcb11;
         display:flex;
         border:none;
+        padding:0;
+
+        img{
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            border-radius:50%;
+        }
     }
     .user-menu{
         position:absolute;
