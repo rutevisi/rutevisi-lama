@@ -1,15 +1,19 @@
 import Styled from '@emotion/styled'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import React, { useState } from 'react'
 import {wrapper} from '../../redux/store';
 import { reauthenticate, getCookie } from '../../redux/actions/authAction';
 import axios from 'axios'
 import Router from 'next/router'
 import { Clipboard } from 'react-feather'
+import { storage } from '../../firebase'
+import { updatePhoto } from '../../redux/actions/updateAction'
 
 import Layout from '../../components/layouts/Layout'
+import ProfileUpdate from '../../components/modal/ProfileUpdate'
 
-function UserPage({isAuthenticated, userData}){
+function UserPage({isAuthenticated, userData, updatePhoto}){
 
     const testHistoryList = userData.testHistory;
     if(!isAuthenticated){
@@ -20,20 +24,67 @@ function UserPage({isAuthenticated, userData}){
         const date =  new Date(dates)
         return date.toDateString()
     }
+
+    const defaultPict = userData.user_photo ? userData.user_photo : 'https://previews.123rf.com/images/leaw197340/leaw1973401802/leaw197340180200044/94998755-colorful-marble-art-for-skin-tile-luxurious-wallpaper.jpg'
+    const [ userPict, setUserPict ] = useState(defaultPict)
+    const [ imageFile, setImageFile ] = useState('')
+    const [ imageUrl, setImageUrl ] = useState()
+    const [ modalOpen, setModalOpen ] = useState(false)
+
+    const handleImageAsFile = (e) => {
+        if(e.target.files[0]){
+            const image = e.target.files[0]
+            setImageFile(() => (image))
+        }
+    }
+
+    const  [ dataTransfered, setDataTransfered] = useState(0);
+    const handleUpload = () => {
+        const uploadTask = storage.ref(`user-images/${userData._id}`).put(imageFile);
+        uploadTask.on('state_changed', 
+        (snapshot) => {
+            // progress
+            const progress = snapshot.bytesTransferred;
+            const totalSize = snapshot.totalBytes;
+            const calculate = progress/totalSize*100
+            setDataTransfered(calculate)
+        },
+        (error) => {
+            // error
+            console.log(error)
+            alert('Ada kesalahan dalam mengunggah gambar')
+        },
+        () => {
+            storage.ref('user-images').child(userData._id).getDownloadURL().then(url => {
+                setImageUrl(url)
+                axios.post(`/api/user/me/upload/${userData._id}`, {user_photo: url})
+                    .then(res => {
+                        alert('Gambar berhasil disimpan!');
+                        setUserPict(url)
+                    })
+                    .catch(err => alert('Ada kesalahan dalam menyimpan gambar'))
+                updatePhoto(url)
+            })
+        })
+    }
+
+    console.log(imageFile)
     
     return(
         <Layout>
             <PageStyled>
+                { modalOpen ? <ProfileUpdate imageFile={imageFile} loaded={`${dataTransfered.toString()}%`} setModalOpen={setModalOpen} handleUpload={handleUpload} handleImageAsFile={handleImageAsFile}/> : '' }
                 <div className="page-grid page-left">
                     <div className="profile-picture">
-                        <img src="https://previews.123rf.com/images/leaw197340/leaw1973401802/leaw197340180200044/94998755-colorful-marble-art-for-skin-tile-luxurious-wallpaper.jpg" alt=""/>
+                        <img src={userPict} alt=""/>
                         <span className="user-tier">Premium</span>
                     </div>
                     <div className="profile-identity">
                         <span className="name">{userData.fullname}</span>
                         <span className="email">{userData.email}</span>
                     </div>
-                    <button className="btn">Verifikasi Email</button>
+                    <button className="btn" onClick={() => setModalOpen(true)}>Sunting Profil</button>
+                    {/* <ImageUplaod handleImageAsFile={handleImageAsFile} handleUpload={handleUpload}/> */}
                 </div>
                 <div className="page-grid page-right">
                     <div className="data-header">
@@ -76,6 +127,7 @@ const PageStyled = Styled.div`
     display:flex;
     flex-wrap: wrap;
     justify-content:space-between;
+    align-items: flex-start;
 
     .empty{
         width:100%;
@@ -103,6 +155,7 @@ const PageStyled = Styled.div`
         min-height:300px;
         display:flex;
         box-sizing:border-box;
+        align-items: normal;
         box-shadow:8px 8px 16px #ededed, -8px -8px 16px #ffffff;
     }
 
@@ -276,7 +329,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        reauthenticate: bindActionCreators(reauthenticate, dispatch)
+        reauthenticate: bindActionCreators(reauthenticate, dispatch),
+        updatePhoto: bindActionCreators(updatePhoto, dispatch)
     }
 }
 
