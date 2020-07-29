@@ -6,7 +6,7 @@ import { addPilganAnswered } from '../../redux/actions/answerAction'
 import { addPilganAnswer } from '../../redux/actions/answerAction'
 import { testEnd } from '../../redux/actions/testAction'
 
-function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnswered, id, indikator, arr, setIndexNow, total, testEnd, listSoal}){
+function PilGanFakboi({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnswered, id, indikator, arr, setIndexNow, total, testEnd, listSoal}){
     const [ load, setLoad ] = useState(false);
 
     function addSelected(pilihan){
@@ -42,7 +42,7 @@ function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnsw
                     {
                         pilihanJawaban.map((jawaban, index) => {
                             return(
-                                <div key={index} className={`pilihan ${addSelected(jawaban.indikator)}`} onClick={(e) => {addPilganAnswer({questionId: id, index: soalIndex, jawab: jawaban.indikator, answered: true}); addPilganAnswered({questionId: id, index: soalIndex, jawab: jawaban.indikator, indikator});}}>{jawaban.pilihan}</div>
+                                <div key={index} className={`pilihan ${addSelected(jawaban.poin)}`} onClick={(e) => {addPilganAnswer({questionId: id, index: soalIndex, jawab: jawaban.poin, answered: true}); addPilganAnswered({questionId: id, index: soalIndex, jawab: jawaban.poin, indikator});}}>{jawaban.pilihan}</div>
                             )
                         })
                     }
@@ -112,4 +112,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(PilGan)
+export default connect(null, mapDispatchToProps)(PilGanFakboi)

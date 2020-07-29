@@ -17,6 +17,7 @@ const GlobalStyles = () => {
               padding: 0;
               margin: 0;
             }
+            
             body{
                 background-color:#F7F7F7;
                 font-family:'Montserrat', sans-serif;

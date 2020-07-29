@@ -49,7 +49,6 @@ const StyledIndex = Styled.div`
 }
 .maincontent-side{
     width: 294px;
-    height: 40px;
 }
 .btn-bantuan{
     width: 92px;

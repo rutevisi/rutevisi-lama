@@ -6,7 +6,7 @@ import axios from 'axios'
 import HeaderTes from '../../../components/ujian/HeaderTes';
 import FinishScreen from '../../../components/ujian/FinishScreen';
 import TestFooter from '../../../components/ujian/TestFooter'
-import PilGan from '../../../components/ujian/PilGan';
+import PilGanFakboi from '../../../components/ujian/PilGanFakboi';
 
 function Test({test, soal, answer}){
     const listSoal = soal.fakboi;
@@ -21,9 +21,9 @@ function Test({test, soal, answer}){
         <div className="content-wrapper">
             <HeaderTes answered={answered} questionTotal={questionTotal} tesName={'FAKBOI CHECK'}/>
             {
-                soalNow ? <PilGan listSoal={listSoal} total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`FAKBOI`}/> : ''
+                soalNow ? <PilGanFakboi listSoal={listSoal} total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`FAKBOI`}/> : ''
             }
-            <TestFooter/>
+            <TestFooter answers={answer.answers} answered={answer.answered} soalIndex={indexNow} setIndexNow={setIndexNow} total={questionTotal}/>
         </div>
 
         <style jsx>{`

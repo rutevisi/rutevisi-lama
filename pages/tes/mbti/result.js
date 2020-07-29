@@ -8,7 +8,7 @@ import Alert from '../../../components/modal/Alert'
 import Router from 'next/router'
 
 function ResultPage({result, testName, currentUser}){
-    const [ modalOpen, setModalOpen ] = useState(true)
+    const [ modalOpen, setModalOpen ] = useState(false)
     const [ isSaving, setIsSaving ] = useState(false)
     const [ saved, setSaved ] = useState(false)
 

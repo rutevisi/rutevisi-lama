@@ -21,7 +21,7 @@ function Test({test, soal, answer}){
         <div className="content-wrapper">
             <HeaderTes answered={answered} questionTotal={questionTotal} tesName={'NEGARA MANA'}/>
             {
-                <PilGan total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`FAKBOI`}/>
+                <PilGan total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`NEGARA MANA`} listSoal={soal.negaramana}/>
             }
             <TestFooter answers={answer.answers} answered={answer.answered} soalIndex={indexNow} setIndexNow={setIndexNow} total={questionTotal}/>
         </div>

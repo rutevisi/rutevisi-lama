@@ -24,7 +24,7 @@ function Test({soal, answer, test}){
                     )
                 }) : ''
             }
-            <TestFooter/>
+            <TestFooter answers={answer.answers} answered={answer.answered} total={questionTotal}/>
         </div>
 
         <style jsx>{`

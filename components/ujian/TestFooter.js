@@ -7,15 +7,16 @@ import { testEnd } from '../../redux/actions/testAction'
 function TestFooter({testEnd, answers, answered, soalIndex, setIndexNow, total}){
 
     function doNext(){
-        soalIndex < total-1 ? setIndexNow(soalIndex+1) : testEnd({result: null})
+            soalIndex < total-1 ? setIndexNow(soalIndex+1) : testEnd({result: null})
     }
 
-    console.log(answers.length + " " + answered.length);
+    console.log(answers ? answers.length : 0 + " " + answered.length);
 
     function allAnswered(){
-        answers.length === answered.length
-    }
-
+        return answers.length === answered.length
+    }   
+     console.log(allAnswered);
+    
     return(
         <FooterStyled>
             <button className="btn" onClick={() =>{ allAnswered() ? testEnd({result: null}) : doNext()}}>{ allAnswered() ? "SELESAI" : "SELANJUTNYA"}</button>

@@ -3,86 +3,43 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { testEnd } from '../../redux/actions/testAction'
 import Link from 'next/link'
+import { mbtiCalc } from './Kalkulasi/mbti'
+import { fakboiCalc } from './Kalkulasi/fakboi'
 
 function FinishScreen({hasil, testEnd, testName}){
 
     const terjawab = hasil.answered
     console.log(testName)
-    let resultObj;
-
+    let resultSend;
+    let linker;
     // Cek Nama Tes
     switch (testName) {
         // Perhitungan tes MBTI
         case 'Myers–Briggs Type Indicator':
-            let A = 0;
-            let B = 0;
-            let C = 0;
-            let D = 0;
-            let E = 0;
-        
-            for(let i = 0; i < 55; i++){
-                let indicator = terjawab[i].indikator;
-        
-                switch (indicator) {
-                    case 'A':
-                        A += terjawab[i].jawab;
-                        break;
-                    case 'B':
-                        B += terjawab[i].jawab;
-                        break;
-                    case 'C':
-                        C += terjawab[i].jawab;
-                        break;
-                    case 'D':
-                        D += terjawab[i].jawab;
-                        break;
-                    case 'E':
-                        E += terjawab[i].jawab;
-                        break;
-                    default:
-                        break;
-                }
-        
-                function toPersen(indikatorVal){
-                    const jumlahSoal = 22
-                    const indicatorTotalValue = jumlahSoal * 2;
-                    let indicatorValue;
-                    let cap;
-                    let persen;
-        
-                    if(indikatorVal > 0){
-                        // Introvert Check
-                        indicatorValue = indikatorVal + jumlahSoal;
-                        persen = (indicatorValue/indicatorTotalValue)*100;
-                    }else{
-                        //Extrovert check
-                        indicatorValue = Math.abs(indikatorVal - jumlahSoal);
-                        persen = -(indicatorValue/indicatorTotalValue)*100;
-                    }
-        
-                    
-                    return persen;
-                }
-        
-                resultObj = {
-                    indicatorA: toPersen(A),
-                    indicatorB: toPersen(B),
-                    indicatorC: toPersen(C),
-                    indicatorD: toPersen(D),
-                    indicatorE: toPersen(E),
-                }
+            resultSend = mbtiCalc(hasil, testEnd, testName, terjawab, resultSend)
+            linker = "mbti";
+            // Perhitungan tes Fakboi
             
-            }
-        // Perhitungan tes Fakboi
         case 'Fakboi-Check':
-            const maksNilaiPerSoal = 3;
-            const jumlahSoal = 3;
-            const maksPoin = jumlahSoal*maksNilaiPerSoal;
-            const totalNilai = terjawab.reduce((acc, curr) => parseInt(acc) + parseInt(curr.jawab), 0);
-            
-            const getPercentage = totalNilai/maksPoin*100
-            console.log(getPercentage)
+            resultSend = fakboiCalc(terjawab)
+            console.log(resultSend)
+            linker = "fakboi-check";
 
+            break;
+
+        //Perhitungan Negara Mana
+        case 'Negara Mana' :
+            console.log(hasil);
+            resultSend = [
+                hasil.answered[0].jawab,
+                hasil.answered[1].jawab,
+                hasil.answered[2].jawab,
+                hasil.answered[3].jawab,
+                hasil.answered[4].jawab,
+                hasil.answered[5].jawab
+            ]
+            linker = "negara-mana";
+            console.log(resultSend)
         default:
             break;
     }
@@ -94,8 +51,8 @@ function FinishScreen({hasil, testEnd, testName}){
                 <div className="message">
                     <p>Selamat anda telah berhasil menyelesaikan {testName} Test! Kilk "See Result" untuk melihat hasilnya.</p>
                 </div>
-                <Link href="/tes/mbti/result">
-                <button className="btn" onClick={() => testEnd({result: resultObj})}>See Result</button>
+                <Link href={`/tes/${linker}/result`}>
+                <button className="btn" onClick={() => testEnd({result: resultSend})}>See Result</button>
                 </Link>
             </div>
         </FinishScreenStyled>
