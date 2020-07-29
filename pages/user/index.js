@@ -15,6 +15,7 @@ import ProfileUpdate from '../../components/modal/ProfileUpdate'
 
 function UserPage({isAuthenticated, userData, updatePhoto}){
 
+    // Ketika user tidak terautentikasi, redirect user ke homepage
     const testHistoryList = userData.testHistory;
     if(!isAuthenticated){
         Router.push('/')
@@ -27,10 +28,12 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
 
     const defaultPict = userData.user_photo ? userData.user_photo : 'https://previews.123rf.com/images/leaw197340/leaw1973401802/leaw197340180200044/94998755-colorful-marble-art-for-skin-tile-luxurious-wallpaper.jpg'
     const [ userPict, setUserPict ] = useState(defaultPict)
+
     const [ imageFile, setImageFile ] = useState('')
     const [ imageUrl, setImageUrl ] = useState()
     const [ modalOpen, setModalOpen ] = useState(false)
 
+    // Menangkap gambar dari input dan menyimpannya sebagai file
     const handleImageAsFile = (e) => {
         if(e.target.files[0]){
             const image = e.target.files[0]
@@ -43,32 +46,33 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
         const uploadTask = storage.ref(`user-images/${userData._id}`).put(imageFile);
         uploadTask.on('state_changed', 
         (snapshot) => {
-            // progress
+            // kalkulasi persentase file diupload
             const progress = snapshot.bytesTransferred;
             const totalSize = snapshot.totalBytes;
             const calculate = progress/totalSize*100
             setDataTransfered(calculate)
         },
         (error) => {
-            // error
+            // peringatan ketika terjadi kesalahan
             console.log(error)
             alert('Ada kesalahan dalam mengunggah gambar')
         },
         () => {
             storage.ref('user-images').child(userData._id).getDownloadURL().then(url => {
                 setImageUrl(url)
+                // menyimpan url ke database user
                 axios.post(`/api/user/me/upload/${userData._id}`, {user_photo: url})
                     .then(res => {
                         alert('Gambar berhasil disimpan!');
                         setUserPict(url)
                     })
                     .catch(err => alert('Ada kesalahan dalam menyimpan gambar'))
+
+                // ketika semua proses selesai, ubah tampilan gambar
                 updatePhoto(url)
             })
         })
     }
-
-    console.log(imageFile)
     
     return(
         <Layout>
@@ -84,7 +88,6 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                         <span className="email">{userData.email}</span>
                     </div>
                     <button className="btn" onClick={() => setModalOpen(true)}>Sunting Profil</button>
-                    {/* <ImageUplaod handleImageAsFile={handleImageAsFile} handleUpload={handleUpload}/> */}
                 </div>
                 <div className="page-grid page-right">
                     <div className="data-header">
@@ -266,15 +269,19 @@ export const getServerSideProps = wrapper.getServerSideProps(
     async ({store, req, res, params}) => {
         const isClient = process.browser;
 
+        // Mengecek apakah user berada di server
         if(!isClient){
+            // Mengambil token dari cookie
             if (req.headers.cookie) {
                 const token = getCookie('user_token', req);
 
                 if(!token){
+                    // Ketika token tidak tersedia, redirect user ke halaman login
                     res.writeHead(302, { Location: '/masuk' });
                     res.end();
                 }
                 if(token){
+                    // mencari data user yang telah terautentikasi
                     await axios.get(`${process.env.DEV_URL}/api/user/me`, {
                         headers: {
                             Authorization: 'Bearer ' + token
@@ -282,8 +289,10 @@ export const getServerSideProps = wrapper.getServerSideProps(
                     }).then(res => {
                         if (res.data) {
                             const pengguna = res.data;
+                            // Mengirim data ke redux store
                             store.dispatch(reauthenticate(pengguna));
     
+                            // Mereturn data pengguna
                             return {
                                 props : { pengguna }
                             };
@@ -295,14 +304,18 @@ export const getServerSideProps = wrapper.getServerSideProps(
                     })
                 }                
             }
+            // Mengecek apakah user berada di client
         }else{
+            // Mengambil token dari redux store
             const token = store.getState().currentUser.userData.token;
 
+            // Ketika token tidak tersedia, redirect user ke halaman login
             if(!token){
                 res.writeHead(302, { Location: '/masuk' });
                 res.end();
             }
             if(token){
+                // mencari data user yang telah terautentikasi
                 await axios.get(`${process.env.DEV_URL}/api/user/me`, {
                     headers: {
                         Authorization: 'Bearer ' + token
@@ -313,6 +326,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
                     if (pengguna) {
                         store.dispatch(reauthenticate(pengguna));
         
+                        // Mereturn data pengguna
                         return {
                           props : { pengguna }
                         };

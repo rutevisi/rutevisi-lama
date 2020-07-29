@@ -15,13 +15,13 @@ function Test({test, soal, answer}){
     const testIsDone = test.testDone
     const [ indexNow, setIndexNow ] = useState(0)
 
-    const soalNow = listSoal[indexNow]
+    const soalNow = listSoal ? listSoal[indexNow] : ''
 
     const testPage = <Layout>
         <div className="content-wrapper">
             <HeaderTes answered={answered} questionTotal={questionTotal} tesName={'FAKBOI-CHECK'}/>
             {
-                <PilGan total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`FAKBOI`}/>
+                soalNow ? <PilGan listSoal={listSoal} total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`FAKBOI`}/> : ''
             }
             <TestFooter/>
         </div>

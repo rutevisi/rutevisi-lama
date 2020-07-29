@@ -6,7 +6,7 @@ import { addPilganAnswered } from '../../redux/actions/answerAction'
 import { addPilganAnswer } from '../../redux/actions/answerAction'
 import { testEnd } from '../../redux/actions/testAction'
 
-function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnswered, id, indikator, arr, setIndexNow, total, testEnd}){
+function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnswered, id, indikator, arr, setIndexNow, total, testEnd, listSoal}){
     const [ load, setLoad ] = useState(false);
 
     function addSelected(pilihan){
@@ -20,12 +20,15 @@ function PilGan({soal, soalIndex, pilihanJawaban, addPilganAnswer, addPilganAnsw
         }
     }
 
-    console.log(soalIndex, total)
+    const jumlahSoal = listSoal.length
+    console.log(jumlahSoal)
 
     useEffect(() => {
         if(!load){
-            addPilganAnswer({questionId: id, index: soalIndex, jawab: 5, answered: false})
-            setLoad(true)
+            for(let i = 0; i < jumlahSoal; i++){
+                addPilganAnswer({questionId: listSoal[i]._id, index: i, jawab: 5, answered: false})
+                setLoad(true)
+            }
         }
     })
 

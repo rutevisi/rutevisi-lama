@@ -1,6 +1,7 @@
 ---
 title: "Tipe Kepribadian Advokat (INFJ-T/INFJ-A)"
 date: "2020-07-22"
+image: "https://www.verywellmind.com/thmb/p7L8AwDPLJ6KHSkLwfiD1STOEz0=/1500x1000/filters:no_upscale():max_bytes(150000):strip_icc()/infj-introverted-intuitive-feeling-judging-2795978-5c2d04f846e0fb0001dddc1a.png"
 ---
 ## Apa Itu Kepribadian Advokat?
 > Pendiam yang mistis tapi idealis yang sangat menginspirasi dan tak kenal lelah.
