@@ -1,12 +1,13 @@
-malaysia    tr   is  u   king    c   m      r       o       n
+malaysia    tr   is  u   king    c   m      r       o       n      
 indo        tr   is  ur  pres    i   g      r       o       n
-nigeria     tr   is  r   pres    c   g      rcw     al      c
+nigeria     tr   i,c r   pres    c   g      rcw     al      c
 cuba        tr   k   u   one     i   s      rcw     al      c
 brazil      tr   k   u   pres    c   g      c       al      c
 sgp         tr   b   u   pres    i   s      r       al      n
 vietnam     tr   b   r   one     c   m      r       al      n
 thailand    tr   b   r   king    c   m      r       al      c
 india       tr   h   r   parl    c   ug     rw      o       c
+central af  tr   
 
 turk        te   is  u   pres    c   m      w       o       c
 uzbek       te   is  r   pres    c   m      w       o       c
@@ -39,8 +40,8 @@ finlandia   po   k   u   parl    c   s      w       al      e
 greenland   po   k   u   king    i   s      w       al      c
 
 fiji        pcf  k   ur  parl    i   s      w       o       c
-samoa       pcf  k   r   parl    i   s      w       o       
-micronesia  pcf  k   r   parl    i   s      w       o
+samoa       pcf  k   r   parl    i   s      w       o       c
+micronesia  pcf  k   r   parl    i   s      w       o       c
 
 temp island medium ur islam pres
 islam temp giant continental urban president

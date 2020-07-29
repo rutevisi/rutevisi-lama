@@ -19,7 +19,7 @@ function Test({test, soal, answer}){
 
     const testPage = <Layout>
         <div className="content-wrapper">
-            <HeaderTes answered={answered} questionTotal={questionTotal} tesName={'FAKBOI-CHECK'}/>
+            <HeaderTes answered={answered} questionTotal={questionTotal} tesName={'FAKBOI CHECK'}/>
             {
                 soalNow ? <PilGan listSoal={listSoal} total={questionTotal} soalIndex={indexNow} setIndexNow={setIndexNow} arr={answer} key={soalNow._id} id={soalNow._id} isFliped={soalNow.flip} soal={soalNow.question.soal} pilihanJawaban={soalNow.question.jawab} indikator={`FAKBOI`}/> : ''
             }

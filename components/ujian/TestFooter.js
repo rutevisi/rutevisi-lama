@@ -1,12 +1,24 @@
 import Styled from '@emotion/styled'
+import { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { testEnd } from '../../redux/actions/testAction'
 
-function TestFooter({testEnd}){
+function TestFooter({testEnd, answers, answered, soalIndex, setIndexNow, total}){
+
+    function doNext(){
+        soalIndex < total-1 ? setIndexNow(soalIndex+1) : testEnd({result: null})
+    }
+
+    console.log(answers.length + " " + answered.length);
+
+    function allAnswered(){
+        answers.length === answered.length
+    }
+
     return(
         <FooterStyled>
-            <button className="btn" onClick={() => testEnd({result: null})}>Selesai</button>
+            <button className="btn" onClick={() =>{ allAnswered() ? testEnd({result: null}) : doNext()}}>{ allAnswered() ? "SELESAI" : "SELANJUTNYA"}</button>
         </FooterStyled>
     )
 }
