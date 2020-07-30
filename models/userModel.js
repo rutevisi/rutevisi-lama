@@ -2,6 +2,20 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const resultSchema = new Schema({
+	testname: {
+		type: String,
+		required: true,
+	},
+	testresult: {
+		type: String,
+		required: true,
+		unique: true
+    }
+},{
+  	timestamps: true,
+});
+
 const UserSchema = new Schema({
 	fullname: {
 		type: String,
@@ -17,11 +31,10 @@ const UserSchema = new Schema({
 		required: true,
 		minlength: 8
 	},
-	testHistory: [{
-		testname: { type: String },
-		testresult: { type: String },
-		testdate: { type: Date, default: Date.now }
-	}],
+	tier: {
+		type: String
+	},
+	testHistory: [resultSchema],
 	user_photo: { type: String }
 	},
 {

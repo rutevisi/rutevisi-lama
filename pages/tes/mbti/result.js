@@ -218,8 +218,6 @@ function ResultPage({result, testName, currentUser}){
     const storeTestName = testName;
 
     const storeData = { testresult: storeResult, testname: storeTestName }
-    console.log(storeData)
-
     
     function postResult(){
         if(currentUser.authenticate){
