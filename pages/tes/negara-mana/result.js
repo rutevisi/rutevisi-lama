@@ -89,13 +89,27 @@ function ResultPage({result, testName, currentUser}){
                 co.korut += priority[0];
                 break;
             case "C":
-                co.saudi
+                co.saudi += priority[0];
+                co.marroko += priority[0];
+                co.mesir += priority[0];
+                co.pakistan += priority[0];
+                co.aussie += priority[0];
+                co.spanyol += priority[0];
+                co.italia += priority[0];
+                co.chile += priority[0];
+                co.mexico += priority[0];
                 break;
             case "D":
-                
+                co.norway += priority[0];
+                co.russia += priority[0];
+                co.islandia += priority[0];
+                co.finlandia += priority[0];
+                co.greenland += priority[0];
                 break;
             case "E":
-                
+                co.fiji += priority[0];
+                co.samoa += priority[0];
+                co.micronesia += priority[0];
                 break;
         
             default:
