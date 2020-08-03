@@ -1,11 +1,11 @@
 import { AUTHENTICATE_USER, AUTHENTICATE_DESTROY, AUTHECTICATE_FAILED, AUTHENTICATE_LOADING, UPDATE_PROFILE } from '../actions/types'
-import update from 'immutability-helper';
 
 const initialState = {
     authenticate: false,
     errorMessage: null,
     userData: {},
     loading: null,
+    userProfile: null
 }
 
 export const currentUser = (state = initialState, action) => {
@@ -18,6 +18,7 @@ export const currentUser = (state = initialState, action) => {
         case AUTHENTICATE_USER:
             return {
                 userData: action.payload,
+                userProfile: action.payload.user_photo,
                 authenticate: true,
                 errorMessage: null,
                 loading: false
@@ -26,6 +27,7 @@ export const currentUser = (state = initialState, action) => {
             return {
                 userData: null,
                 authenticate: false,
+                userProfile: null,
                 errorMessage: null,
                 loading: false
             }
@@ -33,15 +35,15 @@ export const currentUser = (state = initialState, action) => {
             return {
                 userData: null,
                 authenticate: false,
+                userProfile: null,
                 errorMessage: action.payload,
                 loading: false
             }
         case UPDATE_PROFILE:
-            return update(state, { 
-                userData: {
-                    user_photo: {$set: action.payload}
-                }
-            });
+            return Object.assign({}, state, {
+                ...state,
+                userProfile: action.payload,
+            })
         default:
             return state;
     }

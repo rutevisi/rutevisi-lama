@@ -9,9 +9,23 @@ export const authenticate = user => dispatch => {
 
     axios.post(`/api/user/auth`, user)
         .then(res => {
-            Router.push('/user');
+            console.log("Sedang auth")
             setCookie('user_token', res.data.token)
-            dispatch({ type: AUTHENTICATE_USER, payload: res.data })
+            axios.get(`/api/user/me`, {
+                headers: {
+                    Authorization: 'Bearer ' + res.data.token
+                }
+            }).then(res => {
+                console.log("Sedang mengambil data")
+                const pengguna = res.data;
+                if (pengguna) {
+                    dispatch({ type: AUTHENTICATE_USER, payload: pengguna });
+                    Router.push('/user')
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+            // dispatch({ type: AUTHENTICATE_USER, payload: res.data })
         })
         .catch(err => dispatch({ type: AUTHECTICATE_FAILED, payload: err.response.data.msg }))
 }

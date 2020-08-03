@@ -15,18 +15,18 @@ import ProfileUpdate from '../../components/modal/ProfileUpdate'
 
 function UserPage({isAuthenticated, userData, updatePhoto}){
 
-    // Ketika user tidak terautentikasi, redirect user ke homepage
-    const testHistoryList = userData.testHistory;
-    if(!isAuthenticated){
-        Router.push('/')
-    }
+    const testHistoryList = userData ? userData.testHistory : '';
+    const limitedName = userData ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
+    const defaultavatar = limitedName.charAt(0);
+    const namaPanjang = userData ? userData.fullname : ''
+    const emailUser = userData ? userData.email : ''
 
     function getDate(dates){
         const date =  new Date(dates)
         return date.toDateString()
     }
 
-    const defaultPict = userData.user_photo ? userData.user_photo : 'https://previews.123rf.com/images/leaw197340/leaw1973401802/leaw197340180200044/94998755-colorful-marble-art-for-skin-tile-luxurious-wallpaper.jpg'
+    const defaultPict = userData ? userData.user_photo : null
     const [ userPict, setUserPict ] = useState(defaultPict)
 
     const [ imageFile, setImageFile ] = useState('')
@@ -80,12 +80,15 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                 { modalOpen ? <ProfileUpdate imageFile={imageFile} loaded={`${dataTransfered.toString()}%`} setModalOpen={setModalOpen} handleUpload={handleUpload} handleImageAsFile={handleImageAsFile}/> : '' }
                 <div className="page-grid page-left">
                     <div className="profile-picture">
-                        <img src={userPict} alt=""/>
+                        {
+                            defaultPict ? <img src={userPict} alt=""/> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
+                        }
+                        
                         <span className="user-tier">Premium</span>
                     </div>
                     <div className="profile-identity">
-                        <span className="name">{userData.fullname}</span>
-                        <span className="email">{userData.email}</span>
+                        <span className="name">{namaPanjang}</span>
+                        <span className="email">{emailUser}</span>
                     </div>
                     <button className="btn" onClick={() => setModalOpen(true)}>Sunting Profil</button>
                 </div>
@@ -265,52 +268,18 @@ const PageStyled = Styled.div`
         }
     }
 `
-export const getServerSideProps = wrapper.getServerSideProps(
-    async ({store, req, res, params}) => {
-        const isClient = process.browser;
 
-        // Mengecek apakah user berada di server
-        if(!isClient){
-            // Mengambil token dari cookie
-            if (req.headers.cookie) {
-                const token = getCookie('user_token', req);
+UserPage.getInitialProps = async ({store, pathname, req, res}) => {
+    const isClient = process.browser;
 
-                if(!token){
-                    // Ketika token tidak tersedia, redirect user ke halaman login
-                    res.writeHead(302, { Location: '/masuk' });
-                    res.end();
-                }
-                if(token){
-                    // mencari data user yang telah terautentikasi
-                    await axios.get(`${process.env.DEV_URL}/api/user/me`, {
-                        headers: {
-                            Authorization: 'Bearer ' + token
-                        }
-                    }).then(res => {
-                        if (res.data) {
-                            const pengguna = res.data;
-                            // Mengirim data ke redux store
-                            store.dispatch(reauthenticate(pengguna));
-    
-                            // Mereturn data pengguna
-                            return {
-                                props : { pengguna }
-                            };
-                        }  
-                    }).catch(err => {
-                        console.log(err.response.data.msg);
-                        res.writeHead(302, { Location: '/masuk' });
-                        res.end();
-                    })
-                }                
-            }
-            // Mengecek apakah user berada di client
-        }else{
-            // Mengambil token dari redux store
-            const token = store.getState().currentUser.userData.token;
+    // Mengecek apakah user berada di server
+    if(!isClient){
+        // Mengambil token dari cookie
+        if (req.headers.cookie) {
+            const token = getCookie('user_token', req);
 
-            // Ketika token tidak tersedia, redirect user ke halaman login
             if(!token){
+                // Ketika token tidak tersedia, redirect user ke halaman login
                 res.writeHead(302, { Location: '/masuk' });
                 res.end();
             }
@@ -321,25 +290,55 @@ export const getServerSideProps = wrapper.getServerSideProps(
                         Authorization: 'Bearer ' + token
                     }
                 }).then(res => {
-                    const pengguna = res.data;
-    
-                    if (pengguna) {
+                    if (res.data) {
+                        const pengguna = res.data;
+                        // Mengirim data ke redux store
                         store.dispatch(reauthenticate(pengguna));
-        
+
                         // Mereturn data pengguna
                         return {
-                          props : { pengguna }
+                            props : { pengguna }
                         };
-                    }
+                    }  
                 }).catch(err => {
                     console.log(err.response.data.msg);
                     res.writeHead(302, { Location: '/masuk' });
                     res.end();
                 })
-            }
+            }                
+        }
+        // Mengecek apakah user berada di client
+    }else{
+        // Mengambil token dari redux store
+        const token = await store.getState().currentUser.userData.token;
+
+        // Ketika token tidak tersedia, redirect user ke halaman login
+        if(!token){
+            console.log("NO TOKEN")
+        }
+        if(token){
+            // mencari data user yang telah terautentikasi
+            await axios.get(`${process.env.DEV_URL}/api/user/me`, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                }
+            }).then(res => {
+                const pengguna = res.data;
+
+                if (pengguna) {
+                    store.dispatch(reauthenticate(pengguna));
+    
+                    // Mereturn data pengguna
+                    return {
+                        props : { pengguna }
+                    };
+                }
+            }).catch(err => {
+                console.log(err)
+            })
         }
     }
-);
+};
 
 const mapDispatchToProps = (dispatch) => {
     return {

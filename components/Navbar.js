@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux'
 import { deauthenticate } from '../redux/actions/authAction'
 import { useState } from 'react'
 
-const Navbar = ({isAuthenticated, deauthenticate, userData}) => {
+const Navbar = ({isAuthenticated, deauthenticate, userData, userProfile}) => {
 
-    const defaultPict = userData.user_photo ? userData.user_photo : null
+    const defaultPict = userProfile ? userProfile : null
     const [ userPict, setUserPict ] = useState(defaultPict)
-    const limitedName = userData.fullname ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
+    const limitedName = isAuthenticated ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
     const [ menuOpen, setMenuOpen ] = useState(false)
     const defaultavatar = limitedName.charAt(0);
 
@@ -18,7 +18,7 @@ const Navbar = ({isAuthenticated, deauthenticate, userData}) => {
         <div className="user-ui">
             <button className="user-profile" onClick={() => setMenuOpen(!menuOpen)}>
                 {
-                    userPict ? <img src={userPict} alt="user profile picture"/> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
+                    userPict ? <span className="default-avatar"></span> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
                 }
             </button>
             {
@@ -40,7 +40,7 @@ const Navbar = ({isAuthenticated, deauthenticate, userData}) => {
     </>
 
     return(
-        <NavbarStyled css={mobile}>
+        <NavbarStyled css={mobile} image={defaultPict}>
             <div className="navbar">
                 <div className="nav-wrap">
                     <Link href="/"><a className="navbar-brand">
@@ -106,6 +106,8 @@ const NavbarStyled = Styled.div`
         display:flex;
         border:none;
         padding:0;
+        background-size:cover;
+        background-image:url(${ props => props.image });
 
         img{
             width:100%;
@@ -246,7 +248,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => ({
     isAuthenticated: state.currentUser.authenticate,
-    userData: state.currentUser.userData
+    userData: state.currentUser.userData,
+    userProfile: state.currentUser.userProfile,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)
