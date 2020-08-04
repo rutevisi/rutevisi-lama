@@ -9,7 +9,20 @@ Rutevisi merupakan sebuah website yang menyediakan berbagai macam tes untuk meng
 - MongoDB
 - Firebase
 
-## Developer Team
-Developed by:
-- github.com/stackoverprof
-- github.com/dev-ardha
+## API Endpoints
+### Api Soal-Soal
+* **/api/soal/nama-tes** - Mengambil soal berdasar nama tes
+* **/api/soal/nama-tes/add** - Menambahkan soal
+
+### Api Info Tes
+* **/api/tes** - Mengambil macam-macam tes yang tersedia
+* **/api/tes/nama-tes** - Mengambil tes tertentu berdasar nama
+
+### Api User
+* **/api/user/add** - User Signup
+* **/api/user/auth** - User Login
+* **/api/user/{id}**
+
+Private API yang hanya bisa diakses ketika user telah login
+* **/api/user/me** - Mengambil semua data user
+* **/api/user/me/upload/{id}** - Untuk fitur upload foto profil
