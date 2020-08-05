@@ -1,6 +1,6 @@
 export const fakboiCalc = (terjawab) => {
     const maksNilaiPerSoal = 3;
-    const jumlahSoal = 3;
+    const jumlahSoal = 6;
     const maksPoin = jumlahSoal*maksNilaiPerSoal;
     const totalNilai = terjawab.reduce((acc, curr) => parseInt(acc) + parseInt(curr.jawab), 0);
     

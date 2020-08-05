@@ -46,8 +46,6 @@ class MyApp extends App{
 					res.end();
 				})
 			}        
-		}else{
-			console.log("Di Client")
 		}
 
         const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};

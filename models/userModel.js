@@ -11,9 +11,11 @@ const resultSchema = new Schema({
 		type: String,
 		required: true,
 		unique: true
-    }
-},{
-  	timestamps: true,
+	},
+	testdate: {
+		type: Date,
+		default: Date.now()
+	}
 });
 
 const UserSchema = new Schema({

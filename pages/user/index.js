@@ -1,15 +1,15 @@
 import Styled from '@emotion/styled'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import React, { useState } from 'react'
-import {wrapper} from '../../redux/store';
+import React, { useState, useEffect } from 'react'
 import { reauthenticate, getCookie } from '../../redux/actions/authAction';
 import axios from 'axios'
-import Router from 'next/router'
 import { Clipboard } from 'react-feather'
 import { storage } from '../../firebase'
 import { updatePhoto } from '../../redux/actions/updateAction'
+import cookie from 'js-cookie';
 
+import WormSpinner from '../../components/WormSpinner'
 import Layout from '../../components/layouts/Layout'
 import ProfileUpdate from '../../components/modal/ProfileUpdate'
 
@@ -20,6 +20,10 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
     const defaultavatar = limitedName.charAt(0);
     const namaPanjang = userData ? userData.fullname : ''
     const emailUser = userData ? userData.email : ''
+
+    // User Variables
+    const [ userLoading, setUserLoading ] = useState(true)
+    const [ userTest, setUserTest ] = useState()
 
     function getDate(dates){
         const date =  new Date(dates)
@@ -73,6 +77,47 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
             })
         })
     }
+
+    useEffect(() => {
+        if(localStorage.getItem("latesttest_history")){
+            console.log("Ambil result dari local storage dijalankan")
+            const jsonString = localStorage.getItem("latesttest_history")
+            const storeData = JSON.parse(jsonString)
+    
+            axios.post(`/api/user/${userData._id}`, storeData).then(res => {
+                if(isAuthenticated){
+                    const tookfromcook = cookie.get("user_token")
+                    axios.get(`/api/user/me`, {
+                        headers: {
+                            Authorization: 'Bearer ' + tookfromcook
+                        }
+                    }).then(res => {
+                        if (res.data) {
+                            const pengguna = res.data;
+                            setUserTest(pengguna.testHistory)
+                            setUserLoading(false)
+                        }
+                    }).catch(err => console.log('Terjadi kesalahan'))
+                }
+                localStorage.removeItem("latesttest_history");
+            }).catch(err => console.log('Terjadi kesalahan'));
+        }else{
+            if(isAuthenticated){
+                const tookfromcook = cookie.get("user_token")
+                axios.get(`/api/user/me`, {
+                    headers: {
+                        Authorization: 'Bearer ' + tookfromcook
+                    }
+                }).then(res => {
+                    if (res.data) {
+                        const pengguna = res.data;
+                        setUserTest(pengguna.testHistory)
+                        setUserLoading(false)
+                    }
+                }).catch(err => console.log('Terjadi kesalahan'))
+            }
+        }
+    })
     
     return(
         <Layout>
@@ -83,7 +128,6 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                         {
                             defaultPict ? <img src={userPict} alt=""/> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
                         }
-                        
                         <span className="user-tier">Premium</span>
                     </div>
                     <div className="profile-identity">
@@ -97,29 +141,33 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                         <h2>Riwayat Tes</h2>
                     </div>
                     {
-                        testHistoryList ? (
-                            <ul>
-                                {
-                                    testHistoryList.map(tes => {
-                                        return(
-                                            <li key={tes._id}>
-                                                <div className="test-history">
-                                                    <span className="test-name">{tes.testname}</span>
-                                                    <span className="test-date">{getDate(tes.testdate)}</span>
-                                                </div>
-                                                <div className="test-result">
-                                                    <span className="result">{tes.testresult}</span>
-                                                </div>
-                                            </li>
-                                        )
-                                    })
-                                }
-                            </ul>
+                        userLoading ? (
+                            <WormSpinner color={'#ffcb11'}/>
                         ) : (
-                            <div className="empty">
-                                <Clipboard/>
-                                <h2>Riwayat kosong</h2>
-                            </div>
+                            userTest ? (
+                                <ul>
+                                    {
+                                        userTest.map(tes => {
+                                            return(
+                                                <li key={tes._id}>
+                                                    <div className="test-history">
+                                                        <span className="test-name">{tes.testname}</span>
+                                                        <span className="test-date">{getDate(tes.testdate)}</span>
+                                                    </div>
+                                                    <div className="test-result">
+                                                        <span className="result">{tes.testresult}</span>
+                                                    </div>
+                                                </li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            ) : (
+                                <div className="empty">
+                                    <Clipboard/>
+                                    <h2>Riwayat kosong</h2>
+                                </div>
+                            )
                         )
                     }
                 </div>
@@ -221,6 +269,7 @@ const PageStyled = Styled.div`
     .page-right{
         width:55%;
         padding: 2rem 2.5rem;
+        position:relative;
         flex-direction:column;
 
         h2{
@@ -285,7 +334,7 @@ UserPage.getInitialProps = async ({store, pathname, req, res}) => {
             }
             if(token){
                 // mencari data user yang telah terautentikasi
-                await axios.get(`${process.env.DEV_URL}/api/user/me`, {
+                axios.get(`${process.env.DEV_URL}/api/user/me`, {
                     headers: {
                         Authorization: 'Bearer ' + token
                     }
@@ -314,7 +363,7 @@ UserPage.getInitialProps = async ({store, pathname, req, res}) => {
 
         // Ketika token tidak tersedia, redirect user ke halaman login
         if(!token){
-            console.log("NO TOKEN")
+            
         }
         if(token){
             // mencari data user yang telah terautentikasi

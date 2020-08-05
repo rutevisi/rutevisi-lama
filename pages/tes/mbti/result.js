@@ -19,7 +19,7 @@ function ResultPage({result, testName, currentUser}){
     let teste = Math.round(result.indicatorE);
 
     let radRight = '0rem 2rem 2rem 0rem';
-    let radLeft = '2rem 0rem 0rem 2rem'
+    let radLeft = '2rem 0rem 0rem 2rem';
     let posRight = 'margin-left: auto;';
     let posLeft = 'margin-right: auto;';
 

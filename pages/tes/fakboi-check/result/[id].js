@@ -1,16 +1,18 @@
 import Styled from '@emotion/styled'
 import { useEffect, useState } from 'react'
-import Layout from '../../../components/layouts/Layout'
+import Layout from '../../../../components/layouts/Layout'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import Alert from '../../../components/modal/Alert'
+import Alert from '../../../../components/modal/Alert'
 import Router from 'next/router'
 
-function FakboiResult({result, currentUser, testName}){
+function FakboiResult({currentUser, result, queryid}){
     const [ modalOpen, setModalOpen ] = useState(false)
     const [ isSaving, setIsSaving ] = useState(false)
     const [ saved, setSaved ] = useState(false)
-    const percentage = Math.round(result ? result.percentage : 0)
+
+    const objectfication = JSON.parse(result.result)
+    const percentage = objectfication.percentage;
 
     let title;
     let message;
@@ -21,22 +23,22 @@ function FakboiResult({result, currentUser, testName}){
         message = 'Tidak bisa berkata-kata, kamu adalah seorang fakboi sejati.'
         fakboiEmoji = '🐶'
     }
-    else if(percentage < 20 ){
+    else if(percentage < 30 ){
         title = 'Bukan Fakboi:('
         message = 'Hasil di bawah standar, perlu belajar lagi.'
         fakboiEmoji = '👶'
     }
-    else if(percentage < 40 ){
-        title = 'Fakboi Pemula'
+    else if(percentage < 50 ){
+        title = 'Berpotensial Fakboi'
         message = 'Jangan pantang menyerah, masih banyak kesempatan!'
         fakboiEmoji = '🤓'
     }
-    else if(percentage < 60 ){
-        title = 'Calon Fakboi'
+    else if(percentage < 70 ){
+        title = 'Fakboi Pemula'
         message = 'Lumayan, kamu adalah seorang calon fakboi! Tingkatkan lagi kemampuanmu.'
         fakboiEmoji = '😘'
     }
-    else if(percentage < 80 ){
+    else if(percentage < 90 ){
         title = 'Fresh Graduated Fakboi'
         message = 'Kamu telah memenuhi syarat untuk menjadi seorang fakboi. Selamat!'
         fakboiEmoji = '👨‍🎓'
@@ -47,8 +49,8 @@ function FakboiResult({result, currentUser, testName}){
         fakboiEmoji = '😎'
     }
 
-    const storeResult = `${percentage} Fakboi`;
-    const storeTestName = testName;
+    const storeResult = `${title} ${fakboiEmoji}`;
+    const storeTestName = "Fakboi-Check";
     const storeData = { testresult: storeResult, testname: storeTestName }
 
     function postResult(){
@@ -59,7 +61,7 @@ function FakboiResult({result, currentUser, testName}){
                 setModalOpen(true);
                 setIsSaving(false);
                 setSaved(true);
-            }).catch(err => console.log('Something went wrong'))
+            }).catch(err => console.log('Ada kesalahan'))
         }
     }
 
@@ -105,6 +107,17 @@ const ResultStyled = Styled.div`
     padding-top:2.5rem;
     font-family:'Montserrat', sans-serif;
     padding-bottom:3rem;
+
+    .form-message{
+        background: #ffe2e6;
+        padding: .3rem .5rem;
+        border: 1px solid #ffa0a0;
+        font-size: .9rem;
+        text-align: center;
+        color: red;
+        border-radius: .3rem;
+        margin-bottom:1.5rem;
+    }
 
     .btn{
         text-decoration: none;
@@ -193,10 +206,15 @@ const ResultStyled = Styled.div`
     }
 `
 
-const mapStateToProps = (state) => ({
-    result: state.test.result,
-    currentUser: state.currentUser,
-    testName: state.soal.testname,
-})
+FakboiResult.getInitialProps = async ({store, pathname, req, res, query}) => {
 
-export default connect(mapStateToProps, null)(FakboiResult)
+    const id = query.id
+    const response = await axios.get(`${process.env.DEV_URL}/api/tes/result/${id}`)
+
+    return {
+        currentUser: store.getState().currentUser,
+        result: response.data,
+    };
+};
+
+export default connect(state => state)(FakboiResult)

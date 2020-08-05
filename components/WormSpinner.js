@@ -1,9 +1,9 @@
 import React from 'react'
 import Styled from '@emotion/styled'
 
-const WormSpinner = () => {
+const WormSpinner = ({color}) => {
     return (
-        <StyledWormSpinner>
+        <StyledWormSpinner color={color ? color : ''}>
             <div className="spinner">
                 <div className="right-side">
                     <div className="bar"></div>
@@ -59,7 +59,7 @@ const StyledWormSpinner = Styled.div`
     width: 100%;
     height: 100%;
     border-radius: 200px 0 0 200px;
-    border: 10px solid white;
+    border: 10px solid ${props => props.color ? props.color : 'white'};
     position: relative;
   }
   .bar:after {
@@ -67,7 +67,7 @@ const StyledWormSpinner = Styled.div`
     width: 10px;
     height: 10px;
     display: block;
-    background: white;
+    background: ${props => props.color ? props.color : 'white'};
     position: absolute;
     border-radius: 10px;
   }
