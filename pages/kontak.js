@@ -3,10 +3,14 @@ import Styled from '@emotion/styled'
 import LayoutFull from '../components/layouts/LayoutFull'
 import HeadPage from '../components/HeadPage'
 import Link from 'next/link'
+import Head from 'next/head'
     
 const Kontak = () => {
     return (
         <StyledKontak>
+            <Head>
+                <title>Kontak - Rutevisi.com</title>
+            </Head>
             <LayoutFull>
                 <HeadPage title="Kontak" />
                 <div className="maincontent">

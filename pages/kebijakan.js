@@ -3,10 +3,14 @@ import Styled from '@emotion/styled'
 import LayoutFull from '../components/layouts/LayoutFull'
 import HeadPage from '../components/HeadPage'
 import Link from 'next/link'
+import Head from 'next/head'
     
 const Kebijakan = () => {
     return (
         <StyledKebijakan>
+            <Head>
+                <title>Kebijakan - Rutevisi.com</title>
+            </Head>
             <LayoutFull>
                 <HeadPage title="Kebijakan" />
                 <div className="maincontent">

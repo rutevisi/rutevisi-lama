@@ -6,6 +6,7 @@ import personalityType from '../../../data/personalityType.json'
 import axios from 'axios'
 import Alert from '../../../components/modal/Alert'
 import Router from 'next/router'
+import Head from 'next/head'
 
 function ResultPage({result, testName, currentUser}){
     const [ modalOpen, setModalOpen ] = useState(false)
@@ -239,6 +240,9 @@ function ResultPage({result, testName, currentUser}){
     
     return(
         <Layout>
+            <Head>
+                <title>Hasil - Mayers-Brigs Test Indicator</title>
+            </Head>
         <ResultPageStyled>
             { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
             <div className="page-header">

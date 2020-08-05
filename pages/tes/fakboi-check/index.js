@@ -7,6 +7,7 @@ import HeaderTes from '../../../components/ujian/HeaderTes';
 import FinishScreen from '../../../components/ujian/FinishScreen';
 import TestFooter from '../../../components/ujian/TestFooter'
 import PilGanFakboi from '../../../components/ujian/PilGanFakboi';
+import Head from 'next/head'
 
 function Test({test, soal, answer}){
     const listSoal = soal.fakboi;
@@ -39,7 +40,12 @@ function Test({test, soal, answer}){
     const endScreen = <Layout><FinishScreen hasil={answer} testName={soal.testname}/></Layout>
 
     return (
-        testIsDone ? endScreen : testPage
+        <>
+        <Head>
+            <title>Fakboi-Check - Apakah Kamu Seorang Fakboi?</title>
+        </Head>
+        {testIsDone ? endScreen : testPage}
+        </>
     )
 }
 

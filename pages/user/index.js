@@ -8,18 +8,30 @@ import { Clipboard } from 'react-feather'
 import { storage } from '../../firebase'
 import { updatePhoto } from '../../redux/actions/updateAction'
 import cookie from 'js-cookie';
-
+import Head from 'next/head'
+import Message from '../../components/form/Message'
 import WormSpinner from '../../components/WormSpinner'
 import Layout from '../../components/layouts/Layout'
 import ProfileUpdate from '../../components/modal/ProfileUpdate'
 
 function UserPage({isAuthenticated, userData, updatePhoto}){
-
-    const testHistoryList = userData ? userData.testHistory : '';
     const limitedName = userData ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
     const defaultavatar = limitedName.charAt(0);
     const namaPanjang = userData ? userData.fullname : ''
     const emailUser = userData ? userData.email : ''
+    const [ error, setError ] = useState();
+    const [ loaded, setLoaded ] = useState(false);
+    
+    function badgeColor(e){
+        switch (e) {
+            case 'Developer':
+                return 'purple'
+            case 'Premium':
+                return 'gold'
+            default:
+                break;
+        }
+    }
 
     // User Variables
     const [ userLoading, setUserLoading ] = useState(true)
@@ -58,8 +70,7 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
         },
         (error) => {
             // peringatan ketika terjadi kesalahan
-            console.log(error)
-            alert('Ada kesalahan dalam mengunggah gambar')
+            setError('Terjadi kesalahan dalam mengunggah. Tunggu beberapa saat dan coba lagi.')
         },
         () => {
             storage.ref('user-images').child(userData._id).getDownloadURL().then(url => {
@@ -70,7 +81,7 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                         alert('Gambar berhasil disimpan!');
                         setUserPict(url)
                     })
-                    .catch(err => alert('Ada kesalahan dalam menyimpan gambar'))
+                    .catch(err => setError('Terjadi kesalahan dalam menyimpan gambar. Tunggu beberapa saat dan coba lagi.'))
 
                 // ketika semua proses selesai, ubah tampilan gambar
                 updatePhoto(url)
@@ -80,7 +91,6 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
 
     useEffect(() => {
         if(localStorage.getItem("latesttest_history")){
-            console.log("Ambil result dari local storage dijalankan")
             const jsonString = localStorage.getItem("latesttest_history")
             const storeData = JSON.parse(jsonString)
     
@@ -97,79 +107,88 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                             setUserTest(pengguna.testHistory)
                             setUserLoading(false)
                         }
-                    }).catch(err => console.log('Terjadi kesalahan'))
+                    }).catch(err => setError('Terjadi kesalahan. Tunggu beberapa saat dan coba muat ulang halaman.'))
                 }
                 localStorage.removeItem("latesttest_history");
-            }).catch(err => console.log('Terjadi kesalahan'));
+            }).catch(err => setError('Terjadi kesalahan. Tunggu beberapa saat dan coba muat ulang halaman.'));
         }else{
             if(isAuthenticated){
-                const tookfromcook = cookie.get("user_token")
-                axios.get(`/api/user/me`, {
-                    headers: {
-                        Authorization: 'Bearer ' + tookfromcook
-                    }
-                }).then(res => {
-                    if (res.data) {
-                        const pengguna = res.data;
-                        setUserTest(pengguna.testHistory)
-                        setUserLoading(false)
-                    }
-                }).catch(err => console.log('Terjadi kesalahan'))
+                if(!loaded){
+                    const tookfromcook = cookie.get("user_token")
+                    axios.get(`/api/user/me`, {
+                        headers: {
+                            Authorization: 'Bearer ' + tookfromcook
+                        }
+                    }).then(res => {
+                        if (res.data) {
+                            const pengguna = res.data;
+                            setUserTest(pengguna.testHistory)
+                            setUserLoading(false)
+                            setLoaded(true)
+                        }
+                    }).catch(err => setError('Terjadi kesalahan. Tunggu beberapa saat dan coba muat ulang halaman.'))
+                }
             }
         }
     })
     
     return(
         <Layout>
+            <Head>
+                <title>Profil - Rutevisi.com</title>
+            </Head>
             <PageStyled>
-                { modalOpen ? <ProfileUpdate imageFile={imageFile} loaded={`${dataTransfered.toString()}%`} setModalOpen={setModalOpen} handleUpload={handleUpload} handleImageAsFile={handleImageAsFile}/> : '' }
-                <div className="page-grid page-left">
-                    <div className="profile-picture">
+                {error ? <Message msg={error} style={'error'}/> : ''}
+                <div className="content-container">
+                    { modalOpen ? <ProfileUpdate imageFile={imageFile} loaded={`${dataTransfered.toString()}%`} setModalOpen={setModalOpen} handleUpload={handleUpload} handleImageAsFile={handleImageAsFile}/> : '' }
+                    <div className="page-grid page-left">
+                        <div className="profile-picture">
+                            {
+                                defaultPict ? <img src={userPict} alt=""/> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
+                            }
+                            { userData.role !== 'Pengguna' ? <span className={`user-tier ${badgeColor(userData.role)}`}>{userData.role}</span> : '' }
+                        </div>
+                        <div className="profile-identity">
+                            <span className="name">{namaPanjang}</span>
+                            <span className="email">{emailUser}</span>
+                        </div>
+                        <button className="btn" onClick={() => setModalOpen(true)}>Sunting Profil</button>
+                    </div>
+                    <div className="page-grid page-right">
+                        <div className="data-header">
+                            <h2>Riwayat Tes</h2>
+                        </div>
                         {
-                            defaultPict ? <img src={userPict} alt=""/> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
-                        }
-                        <span className="user-tier">Premium</span>
-                    </div>
-                    <div className="profile-identity">
-                        <span className="name">{namaPanjang}</span>
-                        <span className="email">{emailUser}</span>
-                    </div>
-                    <button className="btn" onClick={() => setModalOpen(true)}>Sunting Profil</button>
-                </div>
-                <div className="page-grid page-right">
-                    <div className="data-header">
-                        <h2>Riwayat Tes</h2>
-                    </div>
-                    {
-                        userLoading ? (
-                            <WormSpinner color={'#ffcb11'}/>
-                        ) : (
-                            userTest ? (
-                                <ul>
-                                    {
-                                        userTest.map(tes => {
-                                            return(
-                                                <li key={tes._id}>
-                                                    <div className="test-history">
-                                                        <span className="test-name">{tes.testname}</span>
-                                                        <span className="test-date">{getDate(tes.testdate)}</span>
-                                                    </div>
-                                                    <div className="test-result">
-                                                        <span className="result">{tes.testresult}</span>
-                                                    </div>
-                                                </li>
-                                            )
-                                        })
-                                    }
-                                </ul>
+                            userLoading ? (
+                                <WormSpinner color={'#ffcb11'}/>
                             ) : (
-                                <div className="empty">
-                                    <Clipboard/>
-                                    <h2>Riwayat kosong</h2>
-                                </div>
+                                userTest ? (
+                                    <ul>
+                                        {
+                                            userTest.map(tes => {
+                                                return(
+                                                    <li key={tes._id}>
+                                                        <div className="test-history">
+                                                            <span className="test-name">{tes.testname}</span>
+                                                            <span className="test-date">{getDate(tes.testdate)}</span>
+                                                        </div>
+                                                        <div className="test-result">
+                                                            <span className="result">{tes.testresult}</span>
+                                                        </div>
+                                                    </li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                ) : (
+                                    <div className="empty">
+                                        <Clipboard/>
+                                        <h2>Riwayat kosong</h2>
+                                    </div>
+                                )
                             )
-                        )
-                    }
+                        }
+                    </div>
                 </div>
             </PageStyled>
         </Layout>
@@ -178,10 +197,13 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
 
 const PageStyled = Styled.div`
     padding:3rem 48px;
-    display:flex;
-    flex-wrap: wrap;
-    justify-content:space-between;
-    align-items: flex-start;
+
+    .content-container{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        align-items: flex-start;
+    }
 
     .empty{
         width:100%;
@@ -235,13 +257,20 @@ const PageStyled = Styled.div`
             .user-tier{
                 padding: .3rem 1.25rem;
                 color: #fff;
-                background: #ffcb11;
                 border-radius: 2rem;
                 font-weight: bold;
                 position: absolute;
                 font-size: 1.1rem;
                 bottom: -5px;
                 left: 19%;
+            }
+
+            .gold{
+                background: #ffcb11;
+            }
+
+            .purple{
+                background: #9B51E0;
             }
         }
         .profile-identity{

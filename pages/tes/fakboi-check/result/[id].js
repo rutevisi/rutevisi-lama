@@ -1,10 +1,11 @@
 import Styled from '@emotion/styled'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Layout from '../../../../components/layouts/Layout'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import Alert from '../../../../components/modal/Alert'
 import Router from 'next/router'
+import Head from 'next/head'
 
 function FakboiResult({currentUser, result, queryid}){
     const [ modalOpen, setModalOpen ] = useState(false)
@@ -71,6 +72,9 @@ function FakboiResult({currentUser, result, queryid}){
 
     return(
         <Layout>
+            <Head>
+                <title>Hasil - Fakboi-Check</title>
+            </Head>
             <ResultStyled>
                 { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
                 <div className="page-header">

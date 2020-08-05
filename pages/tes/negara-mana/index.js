@@ -7,6 +7,7 @@ import HeaderTes from '../../../components/ujian/HeaderTes';
 import FinishScreen from '../../../components/ujian/FinishScreen';
 import TestFooter from '../../../components/ujian/TestFooter'
 import PilGan from '../../../components/ujian/PilGan';
+import Head from 'next/head'
 
 function Test({test, soal, answer}){
     const listSoal = soal.negaramana;
@@ -41,7 +42,12 @@ function Test({test, soal, answer}){
     const endScreen = <Layout><FinishScreen hasil={answer} testName={soal.testname}/></Layout>
 
     return (
-        testIsDone ? endScreen : testPage
+        <>
+        <Head>
+            <title>Negara Mana - Tes Negara Mana yang Cocok Buatmu</title>
+        </Head>
+        {testIsDone ? endScreen : testPage}
+        </>
     )
 }
 

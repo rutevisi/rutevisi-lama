@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { register } from '../redux/actions/authAction'
 import { connect } from 'react-redux'
-
+import Head from 'next/head'
 import { Eye, EyeOff } from 'react-feather'
 import Input from '../components/form/Input'
 import Field from '../components/form/Field'
@@ -25,6 +25,9 @@ function Daftar({register, currentUser}){
 
     return(
         <>
+            <Head>
+                <title>Daftar - Rutevisi.com</title>
+            </Head>
             <div className="form-page">
                 <div className="form-container">
                     <h1>Signup</h1>

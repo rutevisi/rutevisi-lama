@@ -5,6 +5,7 @@ import Layout from '../../../components/layouts/Layout'
 import axios from 'axios'
 import Alert from '../../../components/modal/Alert'
 import Router from 'next/router'
+import Head from 'next/head'
 
 function ResultPage({result, testName, currentUser}){
     const [ modalOpen, setModalOpen ] = useState(false)
@@ -119,6 +120,9 @@ function ResultPage({result, testName, currentUser}){
 
     return(
         <Layout>
+            <Head>
+                <title>Hasil - Negara Mana</title>
+            </Head>
             <div>
                 <p>haha</p>
             </div>

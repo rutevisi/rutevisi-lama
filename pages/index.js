@@ -7,6 +7,7 @@ import KodeKelasBox from '../components/KodeKelasBox'
 import ForHRD from '../components/ForHRD'
 import Jumbotron from '../components/Jumbotron'
 import axios from 'axios'
+import Head from 'next/head'
 import Link from 'next/link'
 
 function Index({tests}){
@@ -14,6 +15,9 @@ function Index({tests}){
 
     return(
         <StyledIndex>
+            <Head>
+                <title>Rutevisi.com - Pelajari Karakteristikmu Lebih Dalam</title>
+            </Head>
             <div>
                 <LayoutFull>
                     <Jumbotron />

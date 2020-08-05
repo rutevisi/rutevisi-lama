@@ -33,8 +33,9 @@ const UserSchema = new Schema({
 		required: true,
 		minlength: 8
 	},
-	tier: {
-		type: String
+	role: {
+		type: String,
+		default: 'Pengguna'
 	},
 	testHistory: [resultSchema],
 	user_photo: { type: String }

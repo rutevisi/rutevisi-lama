@@ -4,10 +4,14 @@ import LayoutFull from '../components/layouts/LayoutFull'
 import HeadPage from '../components/HeadPage'
 import Link from 'next/link'
 import DevProfile from '../components/DevProfile'
+import Head from 'next/head'
 
 const Tentang = () => {
     return(
         <StyledTentang>
+            <Head>
+                <title>Tentang Kami - Rutevisi.com</title>
+            </Head>
             <div>
                 <LayoutFull>
                     <HeadPage title="Tentang Kami" />

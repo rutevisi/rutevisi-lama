@@ -3,6 +3,7 @@ import Styled from '@emotion/styled'
 import LayoutFull from '../components/layouts/LayoutFull'
 import HeadPage from '../components/HeadPage'
 import Link from 'next/link'
+import Head from 'next/head'
 
 const Dropper = (props) => {
 
@@ -10,6 +11,9 @@ const Dropper = (props) => {
 
     return (
         <StyledDropper onClick={()=> setMakeOpen(!makeOpen)}>
+            <Head>
+                <title>Bantuan - Rutevisi.com</title>
+            </Head>
             <div className="question">
                 <p>{props.question}</p>
                 <img src={require('../assets/img/minicon/dropicon.svg')} className={makeOpen ? "flipup":""} alt=""/>

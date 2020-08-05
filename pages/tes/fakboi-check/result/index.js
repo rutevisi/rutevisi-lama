@@ -6,6 +6,7 @@ import axios from 'axios'
 import Alert from '../../../../components/modal/Alert'
 import Router from 'next/router'
 import Link from 'next/link'
+import Head from 'next/head'
 
 function FakboiResult({result, currentUser, testName}){
     const [ modalOpen, setModalOpen ] = useState(false)
@@ -87,6 +88,9 @@ function FakboiResult({result, currentUser, testName}){
 
     return(
         <Layout>
+            <Head>
+                <title>Hasil - Fakboi-Check</title>
+            </Head>
             <ResultStyled>
                 { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
                 <div className="page-header">

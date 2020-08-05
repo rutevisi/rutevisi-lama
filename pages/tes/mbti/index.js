@@ -7,6 +7,7 @@ import HeaderTes from '../../../components/ujian/HeaderTes';
 import Question from '../../../components/ujian/Question';
 import FinishScreen from '../../../components/ujian/FinishScreen';
 import TestFooter from '../../../components/ujian/TestFooter'
+import Head from 'next/head'
 
 function Test({soal, answer, test}){
     const list = soal.mbti
@@ -40,7 +41,12 @@ function Test({soal, answer, test}){
     const endScreen = <Layout><FinishScreen hasil={answer} testName={soal.testname}/></Layout>
 
     return (
-        testIsDone ? endScreen : testPage
+        <>
+        <Head>
+            <title>Mayers-Brigs Test Indicator - Tes Kepribadian MBTI</title>
+        </Head>
+        {testIsDone ? endScreen : testPage}
+        </>
     )
 }
 

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { connect } from 'react-redux'
 import { authenticate } from '../redux/actions/authAction'
 import { Eye, EyeOff } from 'react-feather'
-
+import Head from 'next/head'
 import Input from '../components/form/Input'
 import Field from '../components/form/Field'
 import Label from "../components/form/Label";
@@ -25,6 +25,9 @@ function Masuk({authenticate, currentUser}){
 
     return(
         <>
+            <Head>
+                <title>Masuk - Rutevisi.com</title>
+            </Head>
             <div className="form-page">
                 <div className="form-container">
                     <h1>Login</h1>
