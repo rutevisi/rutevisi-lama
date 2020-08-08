@@ -3,15 +3,11 @@ import { useEffect, useState } from 'react'
 import Layout from '../../../../components/layouts/Layout'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import Alert from '../../../../components/modal/Alert'
 import Router from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 
 function FakboiResult({result, currentUser, testName}){
-    const [ modalOpen, setModalOpen ] = useState(false)
-    const [ isSaving, setIsSaving ] = useState(false)
-    const [ saved, setSaved ] = useState(false)
     const percentage = Math.round(result ? result.percentage : 0)
 
     let title;
@@ -51,19 +47,7 @@ function FakboiResult({result, currentUser, testName}){
 
     const storeResult = `${title} ${fakboiEmoji}`;
     const storeTestName = testName;
-    const storeData = { testresult: storeResult, testname: storeTestName }
-
-    function postResult(){
-        if(currentUser.authenticate){
-            const userId = currentUser.userData._id
-            setIsSaving(true)
-            axios.post(`/api/user/${userId}`, storeData).then(res => {
-                setModalOpen(true);
-                setIsSaving(false);
-                setSaved(true);
-            }).catch(err => console.log('Something went wrong'))
-        }
-    }
+    let isSaved = false
 
     useEffect(() => {
         const resultData = {
@@ -72,14 +56,40 @@ function FakboiResult({result, currentUser, testName}){
             },
             testname: "Fakboi-Check"
         }
-        // Ketika user belum login, data disimpan di localstorage untuk sementara
-        if(currentUser.authenticate === false){
-            localStorage.setItem("latesttest_history", JSON.stringify(storeData));
+
+        if(isSaved === false){
+            console.log('1. Save hasil tes ke database')
+            // Autosave record ke database untuk melacak jumlah tes yang dijalankan
+            axios.post(`/api/tes/result`, resultData).then(res => {
+
+                const testid = res.data._id
+                const storeData = { 
+                    testresult: storeResult, 
+                    testname: storeTestName, 
+                    testlink: `tes/fakboi-check/result/${testid}` 
+                }
+
+                console.log('2. ', testid)
+    
+                isSaved = true;
+                // Auto save record ke profil user jika user sudah login
+                if(currentUser.authenticate){
+                    console.log('3. Auto save hasil tes ke profil user ');
+                    const userId = currentUser.userData._id;
+
+                    axios.post(`/api/user/${userId}`, storeData).then(res => {
+                        console.log('4. Hasil tes berhasil disimpan')
+                    }).catch(err => console.log('Something went wrong'))
+                }
+
+                // Ketika user belum login, data disimpan di localstorage untuk sementara
+                if(currentUser.authenticate === false){
+                    localStorage.setItem("latesttest_history", JSON.stringify(storeData));
+                }
+
+            }).catch(err => console.log(err))
         }
-        // Autosave record ke database untuk melacak jumlah tes yang dijalankan
-        axios.post(`/api/tes/result`, resultData).then(res => {}).catch(err => console.log(err))
-        
-    })
+    }, [])
 
     function keluar(){
         Router.push('/')
@@ -91,13 +101,12 @@ function FakboiResult({result, currentUser, testName}){
                 <title>Hasil - Fakboi-Check</title>
             </Head>
             <ResultStyled>
-                { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
                 <div className="page-header">
                     {
                         currentUser.authenticate
                         ? ''
                         : <div className="form-message">
-                              Halaman akan kadaluarsa dalam 24 jam. <Link href="/daftar"><a>Buat akun</a></Link> untuk dapat menyimpan setiap tes yang kamu ikuti.
+                              <Link href="/daftar"><a>Buat akun</a></Link> untuk dapat menyimpan setiap tes yang kamu ikuti.
                           </div> 
                     }
                     <h1>{title} {fakboiEmoji}</h1>
@@ -123,7 +132,7 @@ function FakboiResult({result, currentUser, testName}){
                         </div>
                     </div>
                 </div>
-                { currentUser.authenticate && !saved ? <button className="btn" disabled={isSaving || saved} onClick={() => postResult()}>Simpan Hasil</button> : <button className="btn" onClick={() => keluar()}>Keluar</button> }
+                <button className="btn" onClick={() => keluar()}>Keluar</button>
             </ResultStyled>
         </Layout>
     )

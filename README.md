@@ -18,7 +18,7 @@ Rutevisi merupakan sebuah website yang menyediakan berbagai macam tes untuk meng
 * **/api/tes** - Mengambil macam-macam tes yang tersedia
 * **/api/tes/nama-tes** - Mengambil tes tertentu berdasar nama
 * **/api/tes/result** - Mengambil seluruh riwayat tes
-* **/api/tes/result/{id}** - Mengambil seluruh riwayat tes user tertentu
+* **/api/tes/result/{id}** - Mengambil detail tes berdasar testId
 
 ### Api User
 * **/api/user/add** - User Signup
@@ -27,4 +27,4 @@ Rutevisi merupakan sebuah website yang menyediakan berbagai macam tes untuk meng
 
 Private API yang hanya bisa diakses ketika user telah login
 * **/api/user/me** - Mengambil semua data user
-* **/api/user/me/upload/{id}** - Untuk fitur upload foto profil
+* **/api/user/me/upload/{id}** - Upload foto profil user ke firestore

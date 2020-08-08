@@ -63,7 +63,7 @@ const HeaderStyled = Styled.div`
     margin-right: auto;
 
     .orange{
-      background:#FFCB11 !important;
+      background:#ffcb11 !important;
     }
     .purple{
         background:#9B51E0 !important;
@@ -90,7 +90,7 @@ const HeaderStyled = Styled.div`
         background-color: #ffcb11;
     }
     .answered{
-      filter: opacity(0.5);
+      filter: opacity(1);
     }
     .counter{
         position:absolute;

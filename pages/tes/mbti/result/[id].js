@@ -4,16 +4,11 @@ import { connect } from 'react-redux'
 import Layout from '../../../../components/layouts/Layout'
 import personalityType from '../../../../data/personalityType.json'
 import axios from 'axios'
-import Alert from '../../../../components/modal/Alert'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 
 function ResultPage({result, currentUser}){
-    const [ modalOpen, setModalOpen ] = useState(false)
-    const [ isSaving, setIsSaving ] = useState(false)
-    const [ saved, setSaved ] = useState(false)
-
     const objectfication = JSON.parse(result.result)
     const realresult = objectfication.result
 
@@ -212,52 +207,21 @@ function ResultPage({result, currentUser}){
 
     // Mengambil personality data
     let typeData = personalityType.find((data) => data.personality_type === personality)
-
-    const storeResult = typeData.personality_name.split(":")[0] + "-" + fifthIndikator;
-    const storeTestName = 'Mayers-Brigs Test Indicator';
-    const storeData = { testresult: storeResult, testname: storeTestName }
     
-    // Simpan data ke profil user (Jika sudah terautentikasi)
-    function postResult(){
-        if(currentUser.authenticate){
-            const userId = currentUser.userData._id
-            if(!saved){
-                setIsSaving(true)
-                axios.post(`/api/user/${userId}`, storeData).then(res => {
-                    setModalOpen(true);
-                    setIsSaving(false);
-                    setSaved(true);
-                }).catch(err => console.log('Something went wrong'))
-            }
-        }
-    }
-
     useEffect(() => {
         // Set state 'zero' untuk animasi chart
         setTimeout(() => {
             setZero(false)
         }, 200);
-    })
-
-    function keluar(){
-        Router.push('/')
-    }
+    }, [])
     
     return(
         <Layout>
             <Head>
-                <title>Hasil - Mayers-Brigs Test Indicator</title>
+                <title>Hasil - Myers-Brigs Test Indicator</title>
             </Head>
         <ResultPageStyled>
-            { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
             <div className="page-header">
-                {
-                    currentUser.authenticate
-                    ? ''
-                    : <div className="form-message">
-                            Halaman akan kadaluarsa dalam 24 jam. <Link href="/daftar"><a>Buat akun</a></Link> untuk dapat menyimpan setiap tes yang kamu ikuti.
-                        </div> 
-                }
                 <h1>{typeData.personality_name.split(":")[0] + "-" + fifthIndikator + " :" + typeData.personality_name.split(":")[1]}</h1>
                 <p>{typeData.personality_desc}</p>
             </div>

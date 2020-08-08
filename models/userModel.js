@@ -5,16 +5,16 @@ const Schema = mongoose.Schema;
 const resultSchema = new Schema({
 	testname: {
 		type: String,
-		required: true,
 	},
 	testresult: {
 		type: String,
-		required: true,
-		unique: true
 	},
 	testdate: {
 		type: Date,
 		default: Date.now()
+	},
+	testlink: {
+		type: String
 	}
 });
 
@@ -38,7 +38,10 @@ const UserSchema = new Schema({
 		default: 'Pengguna'
 	},
 	testHistory: [resultSchema],
-	user_photo: { type: String }
+	user_photo: { 
+		type: String,
+		default: ''
+	}
 	},
 {
   	timestamps: true,

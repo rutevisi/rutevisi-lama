@@ -7,6 +7,7 @@ export default mongoMiddleware(async (req, res, connection, models) => {
 
     const testname = req.body.testname
     const testresult = req.body.testresult
+    const testlink = req.body.testlink
 
     return new Promise(resolve => {
         apiHandler(res, method, {
@@ -32,7 +33,7 @@ export default mongoMiddleware(async (req, res, connection, models) => {
                 if(getUser){
                     models.User.updateOne(
                         { _id: id }, 
-                        { $push: { testHistory: {testname, testresult} } },
+                        { $push: { testHistory: {testname, testresult, testlink} } },
                         (err, data) => {
                             if(err){
                                 connection.close();

@@ -10,7 +10,7 @@ const Navbar = ({isAuthenticated, deauthenticate, userData, userProfile}) => {
 
     const defaultPict = userProfile ? userProfile : null
     const [ userPict, setUserPict ] = useState(defaultPict)
-    const limitedName = isAuthenticated ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
+    const limitedName = isAuthenticated && userData.fullname ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
     const [ menuOpen, setMenuOpen ] = useState(false)
     const defaultavatar = limitedName.charAt(0);
 

@@ -4,16 +4,11 @@ import { connect } from 'react-redux'
 import Layout from '../../../../components/layouts/Layout'
 import personalityType from '../../../../data/personalityType.json'
 import axios from 'axios'
-import Alert from '../../../../components/modal/Alert'
 import Router from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 
 function ResultPage({result, testName, currentUser}){
-    const [ modalOpen, setModalOpen ] = useState(false)
-    const [ isSaving, setIsSaving ] = useState(false)
-    const [ saved, setSaved ] = useState(false)
-
     let testa = Math.round(result.indicatorA);
     let testb = Math.round(result.indicatorB);
     let testc = Math.round(result.indicatorC);
@@ -212,43 +207,53 @@ function ResultPage({result, testName, currentUser}){
 
     const storeResult = typeData.personality_name.split(":")[0] + "-" + fifthIndikator;
     const storeTestName = testName;
-    const storeData = { testresult: storeResult, testname: storeTestName }
+    let isSaved = false
 
     useEffect(() => {
         const resultData = {
             result : {
                 result
             },
-            testname: "Mayers-Brigs Test Indicator"
+            testname: "Myers-Brigs Test Indicator"
         }
         // Set state 'zero' untuk animasi chart
         setTimeout(() => {
             setZero(false)
         }, 200);
 
-        // Ketika user belum login, data disimpan di localstorage untuk sementara
-        if(currentUser.authenticate === false){
-            localStorage.setItem("latesttest_history", JSON.stringify(storeData));
-        }
+        if(isSaved === false){
+            console.log('1. Save hasil tes ke database')
+            // Autosave record ke database untuk melacak jumlah tes yang dijalankan
+            axios.post(`/api/tes/result`, resultData).then(res => {
+                const testid = res.data._id;
+                const storeData = { 
+                    testresult: storeResult, 
+                    testname: storeTestName, 
+                    testlink: `tes/mbti/result/${testid}` 
+                };
 
-        // Autosave record ke database untuk melacak jumlah tes yang dijalankan
-        axios.post(`/api/tes/result`, resultData).then(res => {}).catch(err => console.log(err))
-    })
+                console.log('2. ', testid)
     
-    // Simpan data ke profil user (Jika sudah terautentikasi)
-    function postResult(){
-        if(currentUser.authenticate){
-            const userId = currentUser.userData._id
-            if(!saved){
-                setIsSaving(true)
-                axios.post(`/api/user/${userId}`, storeData).then(res => {
-                    setModalOpen(true);
-                    setIsSaving(false);
-                    setSaved(true);
-                }).catch(err => console.log('Something went wrong'))
-            }
+                isSaved = true
+                // Auto save record ke profil user jika user sudah login
+                if(currentUser.authenticate){
+                    console.log('3. Auto save hasil tes ke profil user ')
+                    const userId = currentUser.userData._id
+
+                    axios.post(`/api/user/${userId}`, storeData).then(res => {
+                        console.log('4. Hasil tes berhasil disimpan')
+                    }).catch(err => console.log('Something went wrong'))
+                }
+
+                // Ketika user belum login, data disimpan di localstorage untuk sementara
+                if(currentUser.authenticate === false){
+                    localStorage.setItem("latesttest_history", JSON.stringify(storeData));
+                }
+
+            }).catch(err => console.log(err))
+
         }
-    }
+    }, [])
 
     function keluar(){
         Router.push('/')
@@ -257,16 +262,15 @@ function ResultPage({result, testName, currentUser}){
     return(
         <Layout>
             <Head>
-                <title>Hasil - Mayers-Brigs Test Indicator</title>
+                <title>Hasil - Myers-Brigs Test Indicator</title>
             </Head>
         <ResultPageStyled>
-            { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
             <div className="page-header">
                 {
                     currentUser.authenticate
                     ? ''
                     : <div className="form-message">
-                            Halaman akan kadaluarsa dalam 24 jam. <Link href="/daftar"><a>Buat akun</a></Link> untuk dapat menyimpan setiap tes yang kamu ikuti.
+                            <Link href="/daftar"><a>Buat akun</a></Link> untuk dapat menyimpan setiap tes yang kamu ikuti.
                         </div> 
                 }
                 <h1>{typeData.personality_name.split(":")[0] + "-" + fifthIndikator + " :" + typeData.personality_name.split(":")[1]}</h1>
@@ -342,7 +346,7 @@ function ResultPage({result, testName, currentUser}){
                     <div className="percentage perc-right">{assertive}%</div>
                 </div>
             </div>
-            { currentUser.authenticate && !saved ? <button className="btn" disabled={isSaving || saved} onClick={() => postResult()}>Simpan Hasil</button> : <button className="btn" onClick={() => keluar()}>Keluar</button> }
+            <button className="btn" onClick={() => keluar()}>Keluar</button>
         </ResultPageStyled>
         </Layout>
     )

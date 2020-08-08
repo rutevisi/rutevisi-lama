@@ -8,10 +8,6 @@ import Router from 'next/router'
 import Head from 'next/head'
 
 function FakboiResult({currentUser, result, queryid}){
-    const [ modalOpen, setModalOpen ] = useState(false)
-    const [ isSaving, setIsSaving ] = useState(false)
-    const [ saved, setSaved ] = useState(false)
-
     const objectfication = JSON.parse(result.result)
     const percentage = objectfication.percentage;
 
@@ -24,22 +20,22 @@ function FakboiResult({currentUser, result, queryid}){
         message = 'Tidak bisa berkata-kata, kamu adalah seorang fakboi sejati.'
         fakboiEmoji = '🐶'
     }
-    else if(percentage < 30 ){
+    else if(percentage < 20 ){
         title = 'Bukan Fakboi:('
         message = 'Hasil di bawah standar, perlu belajar lagi.'
         fakboiEmoji = '👶'
     }
-    else if(percentage < 50 ){
+    else if(percentage < 40 ){
         title = 'Berpotensial Fakboi'
         message = 'Jangan pantang menyerah, masih banyak kesempatan!'
         fakboiEmoji = '🤓'
     }
-    else if(percentage < 70 ){
+    else if(percentage < 60 ){
         title = 'Fakboi Pemula'
         message = 'Lumayan, kamu adalah seorang calon fakboi! Tingkatkan lagi kemampuanmu.'
         fakboiEmoji = '😘'
     }
-    else if(percentage < 90 ){
+    else if(percentage < 80 ){
         title = 'Fresh Graduated Fakboi'
         message = 'Kamu telah memenuhi syarat untuk menjadi seorang fakboi. Selamat!'
         fakboiEmoji = '👨‍🎓'
@@ -50,33 +46,12 @@ function FakboiResult({currentUser, result, queryid}){
         fakboiEmoji = '😎'
     }
 
-    const storeResult = `${title} ${fakboiEmoji}`;
-    const storeTestName = "Fakboi-Check";
-    const storeData = { testresult: storeResult, testname: storeTestName }
-
-    function postResult(){
-        if(currentUser.authenticate){
-            const userId = currentUser.userData._id
-            setIsSaving(true)
-            axios.post(`/api/user/${userId}`, storeData).then(res => {
-                setModalOpen(true);
-                setIsSaving(false);
-                setSaved(true);
-            }).catch(err => console.log('Ada kesalahan'))
-        }
-    }
-
-    function keluar(){
-        Router.push('/')
-    }
-
     return(
         <Layout>
             <Head>
                 <title>Hasil - Fakboi-Check</title>
             </Head>
             <ResultStyled>
-                { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
                 <div className="page-header">
                     <h1>{title} {fakboiEmoji}</h1>
                     <p>{message}</p>

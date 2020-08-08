@@ -13,12 +13,14 @@ import Message from '../../components/form/Message'
 import WormSpinner from '../../components/WormSpinner'
 import Layout from '../../components/layouts/Layout'
 import ProfileUpdate from '../../components/modal/ProfileUpdate'
+import Link from 'next/link'
 
 function UserPage({isAuthenticated, userData, updatePhoto}){
-    const limitedName = userData ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
+    const limitedName = isAuthenticated && userData.fullname ? userData.fullname.replace(/^(.{20}[^\s]*).*/, "$1") : '' 
     const defaultavatar = limitedName.charAt(0);
-    const namaPanjang = userData ? userData.fullname : ''
-    const emailUser = userData ? userData.email : ''
+    const namaPanjang = isAuthenticated ? userData.fullname : ''
+    const emailUser = isAuthenticated ? userData.email : ''
+    const userRole = isAuthenticated ? userData.role : ''
     const [ error, setError ] = useState();
     const [ loaded, setLoaded ] = useState(false);
     
@@ -146,7 +148,7 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                             {
                                 defaultPict ? <img src={userPict} alt=""/> : <span className="default-avatar">{defaultavatar.toUpperCase()}</span>
                             }
-                            { userData.role !== 'Pengguna' ? <span className={`user-tier ${badgeColor(userData.role)}`}>{userData.role}</span> : '' }
+                            { userRole !== 'Pengguna' ? <span className={`user-tier ${badgeColor(userRole)}`}>{userRole}</span> : '' }
                         </div>
                         <div className="profile-identity">
                             <span className="name">{namaPanjang}</span>
@@ -162,14 +164,16 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                             userLoading ? (
                                 <WormSpinner color={'#ffcb11'}/>
                             ) : (
-                                userTest ? (
+                                userTest.length !== 0 ? (
                                     <ul>
                                         {
                                             userTest.map(tes => {
                                                 return(
                                                     <li key={tes._id}>
                                                         <div className="test-history">
-                                                            <span className="test-name">{tes.testname}</span>
+                                                            <Link href={tes.testlink}>
+                                                            <a><span className="test-name">{tes.testname}</span></a>
+                                                            </Link>
                                                             <span className="test-date">{getDate(tes.testdate)}</span>
                                                         </div>
                                                         <div className="test-result">
@@ -241,11 +245,18 @@ const PageStyled = Styled.div`
         padding: 2rem 1.5rem;
 
         .profile-picture{
-            width:200px;
-            height:200px;
-            border-radius:50%;
-            align-self:center;
-            position:relative;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            border-radius: 50%;
+            align-self: center;
+            position: relative;
+            background: #ffcb11;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            font-weight: 600;
+            color: #fff;
     
             img{
                 width:100%;
@@ -321,10 +332,17 @@ const PageStyled = Styled.div`
                     display:flex;
                     flex-direction:column;
 
+                    a{
+                        text-decoration:none;
+                    }
+
                     .test-name{
                         font-weight:bold;
                         font-size:1.1rem;
                         color:#434343;
+                        &:hover{
+                            color:#ffcb11 !important;
+                        }
                     }
                     .test-date{
                         color:#aaa;

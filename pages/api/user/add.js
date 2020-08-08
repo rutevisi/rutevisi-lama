@@ -26,6 +26,7 @@ export default mongoMiddleware(async (req, res, connection, models) => {
                 }else{
                     models.User.create({fullname, email, password}, (error, user) => {
                         if (error) {
+                            console.log(error)
                             connection.close();
                             response.status(500).json({auth: false, msg: 'Maaf, ada kesalahan'});
                         } else {
