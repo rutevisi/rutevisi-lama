@@ -12,7 +12,6 @@ function FakboiResult({result, currentUser, testName}){
     const [ modalOpen, setModalOpen ] = useState(false)
     const [ isSaving, setIsSaving ] = useState(false)
     const [ saved, setSaved ] = useState(false)
-    const [ tesId, setTesId ] = useState()
     const percentage = Math.round(result ? result.percentage : 0)
 
     let title;
@@ -73,11 +72,11 @@ function FakboiResult({result, currentUser, testName}){
             },
             testname: "Fakboi-Check"
         }
-
+        // Ketika user belum login, data disimpan di localstorage untuk sementara
         if(currentUser.authenticate === false){
             localStorage.setItem("latesttest_history", JSON.stringify(storeData));
         }
-
+        // Autosave record ke database untuk melacak jumlah tes yang dijalankan
         axios.post(`/api/tes/result`, resultData).then(res => {}).catch(err => console.log(err))
         
     })

@@ -101,7 +101,6 @@ function FakboiResult({currentUser, result, queryid}){
                         </div>
                     </div>
                 </div>
-                { currentUser.authenticate && !saved ? <button className="btn" disabled={isSaving || saved} onClick={() => postResult()}>Simpan Hasil</button> : <button className="btn" onClick={() => keluar()}>Keluar</button> }
             </ResultStyled>
         </Layout>
     )

@@ -17,14 +17,14 @@ function FinishScreen({hasil, testEnd, testName}){
         // Perhitungan tes MBTI
         case 'Myers–Briggs Type Indicator':
             resultSend = mbtiCalc(hasil, testEnd, testName, terjawab, resultSend)
+            console.log(resultSend)
             linker = "mbti";
-            // Perhitungan tes Fakboi
-            
+            break;
+
+        // Perhitungan tes Fakboi
         case 'Fakboi-Check':
             resultSend = fakboiCalc(terjawab)
-            console.log(resultSend)
             linker = "fakboi-check";
-
             break;
 
         //Perhitungan Negara Mana

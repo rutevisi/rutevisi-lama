@@ -10,12 +10,9 @@ function TestFooter({testEnd, answers, answered, soalIndex, setIndexNow, total})
             soalIndex < total-1 ? setIndexNow(soalIndex+1) : testEnd({result: null})
     }
 
-    console.log(answers ? answers.length : 0 + " " + answered.length);
-
     function allAnswered(){
         return answers.length === answered.length
-    }   
-     console.log(allAnswered);
+    }
     
     return(
         <FooterStyled>

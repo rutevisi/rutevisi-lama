@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import Styled from '@emotion/styled'
 import { connect } from 'react-redux'
-import Layout from '../../../components/layouts/Layout'
-import personalityType from '../../../data/personalityType.json'
+import Layout from '../../../../components/layouts/Layout'
+import personalityType from '../../../../data/personalityType.json'
 import axios from 'axios'
-import Alert from '../../../components/modal/Alert'
+import Alert from '../../../../components/modal/Alert'
 import Router from 'next/router'
 import Head from 'next/head'
+import Link from 'next/link'
 
 function ResultPage({result, testName, currentUser}){
     const [ modalOpen, setModalOpen ] = useState(false)
@@ -206,20 +207,35 @@ function ResultPage({result, testName, currentUser}){
         var right5 = "toblack";
     }
 
-    useEffect(() => {
-        setTimeout(() => {
-            setZero(false)
-        }, 200);
-    })
-
-    // Finding Personality Data
+    // Mengambil personality data
     let typeData = personalityType.find((data) => data.personality_type === personality)
 
     const storeResult = typeData.personality_name.split(":")[0] + "-" + fifthIndikator;
     const storeTestName = testName;
-
     const storeData = { testresult: storeResult, testname: storeTestName }
+
+    useEffect(() => {
+        const resultData = {
+            result : {
+                result
+            },
+            testname: "Mayers-Brigs Test Indicator"
+        }
+        // Set state 'zero' untuk animasi chart
+        setTimeout(() => {
+            setZero(false)
+        }, 200);
+
+        // Ketika user belum login, data disimpan di localstorage untuk sementara
+        if(currentUser.authenticate === false){
+            localStorage.setItem("latesttest_history", JSON.stringify(storeData));
+        }
+
+        // Autosave record ke database untuk melacak jumlah tes yang dijalankan
+        axios.post(`/api/tes/result`, resultData).then(res => {}).catch(err => console.log(err))
+    })
     
+    // Simpan data ke profil user (Jika sudah terautentikasi)
     function postResult(){
         if(currentUser.authenticate){
             const userId = currentUser.userData._id
@@ -246,6 +262,13 @@ function ResultPage({result, testName, currentUser}){
         <ResultPageStyled>
             { modalOpen ? <Alert setModalOpen={setModalOpen}/> : '' }
             <div className="page-header">
+                {
+                    currentUser.authenticate
+                    ? ''
+                    : <div className="form-message">
+                            Halaman akan kadaluarsa dalam 24 jam. <Link href="/daftar"><a>Buat akun</a></Link> untuk dapat menyimpan setiap tes yang kamu ikuti.
+                        </div> 
+                }
                 <h1>{typeData.personality_name.split(":")[0] + "-" + fifthIndikator + " :" + typeData.personality_name.split(":")[1]}</h1>
                 <p>{typeData.personality_desc}</p>
             </div>
@@ -340,6 +363,21 @@ const ResultPageStyled = Styled.div`
     padding-top:2.5rem;
     font-family:'Montserrat', sans-serif;
     padding-bottom:3rem;
+
+    .form-message{
+        background: #ffe2e6;
+        padding: .3rem .5rem;
+        border: 1px solid #ffa0a0;
+        font-size: .9rem;
+        text-align: center;
+        color: red;
+        border-radius: .3rem;
+        margin-bottom:1.5rem;
+
+        a{
+            color:red;
+        }
+    }
 
     .btn{
         text-decoration: none;

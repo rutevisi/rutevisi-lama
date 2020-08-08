@@ -32,7 +32,7 @@
     "jsondiffpatch": "^0.4.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
-    "mongoose": "^5.9.24",
+    "mongoose": "^5.9.27",
     "next": "^9.4.4",
     "next-images": "^1.4.0",
     "next-redux-wrapper": "^6.0.2",
