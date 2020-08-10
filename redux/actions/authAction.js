@@ -38,7 +38,21 @@ export const register = user => dispatch => {
         .then(res => {
             Router.push('/user');
             setCookie('user_token', res.data.token)
-            dispatch({ type: AUTHENTICATE_USER, payload: res.data })
+            axios.get(`/api/user/me`, {
+                headers: {
+                    Authorization: 'Bearer ' + res.data.token
+                }
+            }).then(res => {
+                console.log("Sedang mengambil data")
+                const pengguna = res.data;
+                if (pengguna) {
+                    dispatch({ type: AUTHENTICATE_USER, payload: pengguna });
+                    Router.push('/user')
+                }
+            }).catch(err => {
+                console.log(err)
+            })
+            // dispatch({ type: AUTHENTICATE_USER, payload: res.data })
         })
         .catch(err => dispatch({ type: AUTHECTICATE_FAILED, payload: err.response.data.msg }))
 }
