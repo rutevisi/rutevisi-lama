@@ -28,7 +28,7 @@ export default mongoMiddleware(async (req, res, connection, models) => {
                         if (error) {
                             console.log(error)
                             connection.close();
-                            response.status(500).json({auth: false, msg: 'Maaf, ada kesalahan'});
+                            response.status(400).json({auth: false, msg: 'Maaf, ada kesalahan'});
                         } else {
                             // Membuat token
                             const token = jwt.sign({ id: user._id }, process.env.SECRET, {

@@ -108,10 +108,10 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                             const pengguna = res.data;
                             setUserTest(pengguna.testHistory)
                             setUserLoading(false)
+                            localStorage.removeItem("latesttest_history");
                         }
                     }).catch(err => setError('Terjadi kesalahan. Tunggu beberapa saat dan coba muat ulang halaman.'))
                 }
-                localStorage.removeItem("latesttest_history");
             }).catch(err => setError('Terjadi kesalahan. Tunggu beberapa saat dan coba muat ulang halaman.'));
         }else{
             if(isAuthenticated){

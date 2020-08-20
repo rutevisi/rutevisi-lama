@@ -55,7 +55,7 @@ const Navbar = ({isAuthenticated, deauthenticate, userData, userProfile}) => {
                                 isAuthenticated ? userComponent : <Link href="/masuk"><a className="btn premium-btn">Masuk</a></Link>
                             }
                         </div>   
-                    <button className="nav-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="btn-dropper">
                         <span>
                             <div className="hamburger">
                                 <div className="burger"></div>
@@ -84,6 +84,25 @@ const mobile = css`
 `
 
 const NavbarStyled = Styled.div`
+.btn-dropper{
+    border: none;
+    background: none;
+    display: none;
+}
+.hamburger{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 28px;
+}
+.burger{
+    width: 34px;
+    height: 6px;
+    
+    background: #4A4A4A;
+    border-radius: 80px;
+}
 .default-avatar{
     width: 100%;
     height: 100%;
@@ -174,7 +193,6 @@ const NavbarStyled = Styled.div`
     margin: 0 48px;
 }
 .nav-toggler{
-    display: none;
 }
 .sublink{
     display: flex;

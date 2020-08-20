@@ -33,9 +33,10 @@ export const authenticate = user => dispatch => {
 // Redux action (Untuk daftar)
 export const register = user => dispatch => {
     dispatch({ type: AUTHENTICATE_LOADING })
-
+    console.log('register fired!')
     axios.post(`/api/user/add`, user)
         .then(res => {
+            console.log('1. Menambahkan User')
             Router.push('/user');
             setCookie('user_token', res.data.token)
             axios.get(`/api/user/me`, {
