@@ -132,7 +132,7 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
                 }
             }
         }
-    })
+    }, [])
     
     return(
         <Layout>

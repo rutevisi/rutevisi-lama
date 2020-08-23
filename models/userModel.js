@@ -37,7 +37,10 @@ const UserSchema = new Schema({
 		type: String,
 		default: 'Pengguna'
 	},
-	testHistory: [resultSchema],
+	testHistory: {
+		type: [resultSchema],
+		sparse: true
+	},
 	user_photo: { 
 		type: String,
 		default: ''
