@@ -8,6 +8,7 @@ import App from 'next/app';
 import { AUTHENTICATE_USER } from '../redux/actions/types'
 import { getCookie } from '../redux/actions/authAction'
 import axios from 'axios'
+import Head from 'next/head'
 
 // mendefinisikan tema dengan nama defaultTheme
 const defaultTheme = {
@@ -59,6 +60,9 @@ class MyApp extends App{
 
 		return (
 			<>
+			  <Head>
+			  	<link rel="shortcut icon" href={require('../assets/img/logo-p.png')} />
+			  </Head>
 			  <GlobalStyles/>
 			  <ThemeProvider theme={defaultTheme} >
 				<NextNProgress

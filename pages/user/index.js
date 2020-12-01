@@ -137,7 +137,7 @@ function UserPage({isAuthenticated, userData, updatePhoto}){
     return(
         <Layout>
             <Head>
-                <title>Profil - Rutevisi.com</title>
+                <title>Profil - Personalitika.com</title>
             </Head>
             <PageStyled>
                 {error ? <Message msg={error} style={'error'}/> : ''}

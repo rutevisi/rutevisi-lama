@@ -26,7 +26,7 @@ function Masuk({authenticate, currentUser}){
     return(
         <>
             <Head>
-                <title>Masuk - Rutevisi.com</title>
+                <title>Masuk - Personalitika.com</title>
             </Head>
             <div className="form-page">
                 <div className="form-container">

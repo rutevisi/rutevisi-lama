@@ -9,7 +9,7 @@ const Kebijakan = () => {
     return (
         <StyledKebijakan>
             <Head>
-                <title>Kebijakan - Rutevisi.com</title>
+                <title>Kebijakan - Personalitika.com</title>
             </Head>
             <LayoutFull>
                 <HeadPage title="Kebijakan" />

@@ -9,7 +9,7 @@ const Kontak = () => {
     return (
         <StyledKontak>
             <Head>
-                <title>Kontak - Rutevisi.com</title>
+                <title>Kontak - Personalitika.com</title>
             </Head>
             <LayoutFull>
                 <HeadPage title="Kontak" />
@@ -31,7 +31,7 @@ const Kontak = () => {
                                 </div>
                                 <p className="sur">SUREL</p>
                             </div>
-                            <p className="sure">bantuan@rutevisi.com</p>
+                            <p className="sure">bantuan@personalitika.com</p>
                         </div>
                         <div className="eachkontak">
                             <div className="subeach">
@@ -54,7 +54,7 @@ const Kontak = () => {
                     </div>
                     <div className="quotkon">
                         <img src={require('../assets/img/petik.svg')} alt="" className=""/>
-                        <p>Kami juga selalu terbuka untuk mendiskusikan segala bentuk kerjasama bisnis ataupun pariwara pada situs rutevisi. Silahkan hubungi kami dengan cara-cara diatas untuk informasi lebih lanjut.</p>
+                        <p>Kami juga selalu terbuka untuk mendiskusikan segala bentuk kerjasama bisnis ataupun pariwara pada situs personalitika. Silahkan hubungi kami dengan cara-cara diatas untuk informasi lebih lanjut.</p>
                     </div>
                     <div className="kritsar">
                         <p>Kritik &amp; Saran</p>

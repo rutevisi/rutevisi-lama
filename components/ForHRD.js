@@ -7,7 +7,7 @@ const ForHRD = () => {
             <div className="forhrd">
                 <div className="hrdatas">
                     <div className="hrdatas-kiri">
-                        <p className="p-rutevisiuntuk">Rutevisi untuk</p>
+                        <p className="p-personalitikauntuk">Personalitika untuk</p>
                         <p className="p-bisnishrd">BISNIS &amp; HRD</p>
                         <p className="p-penjelasan">Jadikan platform kami bagian dalam rekrutmen kandidatmu</p>
                     </div>
@@ -57,7 +57,7 @@ const StyledForHRD = Styled.div`
     justify-content: space-between;
     align-items: center;
 }
-.p-rutevisiuntuk{
+.p-personalitikauntuk{
     font-family: Montserrat;
     font-style: normal;
     font-weight: 800;

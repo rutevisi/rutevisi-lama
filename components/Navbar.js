@@ -44,8 +44,8 @@ const Navbar = ({isAuthenticated, deauthenticate, userData, userProfile}) => {
             <div className="navbar">
                 <div className="nav-wrap">
                     <Link href="/"><a className="navbar-brand">
-                        <img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
-                        <h1 className="nav-title">Rutevisi</h1>
+                        <img className="icon-nav" src={require('../assets/img/logo-p.png')} alt="logo"/>
+                        <h1 className="nav-title">Personalitika</h1>
                     </a></Link>             
                         <div className="sublink">
                             <Link href="/tes"><a className="btn navbar-item">Tes Sekarang</a></Link>
@@ -213,6 +213,11 @@ const NavbarStyled = Styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    img{
+        width: 42px;
+        height: 42px;
+    }
 }
 .navbar-links{
     display: flex;

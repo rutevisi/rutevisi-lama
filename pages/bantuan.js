@@ -12,7 +12,7 @@ const Dropper = (props) => {
     return (
         <StyledDropper onClick={()=> setMakeOpen(!makeOpen)}>
             <Head>
-                <title>Bantuan - Rutevisi.com</title>
+                <title>Bantuan - Personalitika.com</title>
             </Head>
             <div className="question">
                 <p>{props.question}</p>
@@ -62,7 +62,7 @@ const Bantuan = () => {
                     <div className="div-kontak">
                         <div className="surel">
                             <p className="p-atas">SUREL</p>
-                            <p className="p-bawah">bantuan@rutevisi.com</p>
+                            <p className="p-bawah">bantuan@personalitika.com</p>
                         </div>
                         <div className="telepon">
                             <p className="p-atas">TELEPON/WA</p>

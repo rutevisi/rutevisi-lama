@@ -26,7 +26,7 @@ function Daftar({register, currentUser}){
     return(
         <>
             <Head>
-                <title>Daftar - Rutevisi.com</title>
+                <title>Daftar - Personalitika.com</title>
             </Head>
             <div className="form-page">
                 <div className="form-container">

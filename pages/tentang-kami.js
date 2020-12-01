@@ -10,7 +10,7 @@ const Tentang = () => {
     return(
         <StyledTentang>
             <Head>
-                <title>Tentang Kami - Rutevisi.com</title>
+                <title>Tentang Kami - Personalitika.com</title>
             </Head>
             <div>
                 <LayoutFull>
@@ -32,8 +32,8 @@ const Tentang = () => {
                             </div>
                         </div>
                         <div className="katakata">
-                            <p className="paraf"> <strong style={{fontWeight:800}}>Rutevisi</strong> berkomitmen untuk menjadi situs terbaik penyedia berbagai tes online seru berbahasa Indonesia, yang meliputi tes kepribadian, karir, edukasi serta berbagai tes lucu yang Indonesia banget dan pasti kamu suka.</p>
-                            <p className="paraf"> <strong style={{fontWeight:800}}>Rutevisi</strong> dengan bangga menjunjung tinggi penggunaan Bahasa Indonesia pada situsnya. Yang mana dengan demikian kami yakin dapat membantu meningkatkan pemahaman pengguna, yaitu netizen indonesia, dalam mengerjakan tes-tes psikologi yang selama ini hampir seluruhnya tersedia dalam bahasa asing. Dengan pemahaman yang lebih baik, hasil pun dengan pastinya akan jauh lebih akurat.</p>
+                            <p className="paraf"> <strong style={{fontWeight:800}}>Personalitika</strong> berkomitmen untuk menjadi situs terbaik penyedia berbagai tes online seru berbahasa Indonesia, yang meliputi tes kepribadian, karir, edukasi serta berbagai tes lucu yang Indonesia banget dan pasti kamu suka.</p>
+                            <p className="paraf"> <strong style={{fontWeight:800}}>Personalitika</strong> dengan bangga menjunjung tinggi penggunaan Bahasa Indonesia pada situsnya. Yang mana dengan demikian kami yakin dapat membantu meningkatkan pemahaman pengguna, yaitu netizen indonesia, dalam mengerjakan tes-tes psikologi yang selama ini hampir seluruhnya tersedia dalam bahasa asing. Dengan pemahaman yang lebih baik, hasil pun dengan pastinya akan jauh lebih akurat.</p>
                         </div>
                         <div className="div-pengembang">
                             <p className="p-pengembang">PENGEMBANG</p>
@@ -48,7 +48,7 @@ const Tentang = () => {
                             <p className="p-hubkami">Hubungi Kami</p>
                             <div className="surel">
                                 <p className="p-atas">SUREL</p>
-                                <p className="p-bawah">bantuan@rutevisi.com</p>
+                                <p className="p-bawah">bantuan@personalitika.com</p>
                             </div>
                             <div className="telepon">
                                 <p className="p-atas">TELEPON/WA</p>
@@ -58,15 +58,15 @@ const Tentang = () => {
                         <div className="sosialmedia">
                             <div className="eachsosmed">
                                 <img src={require('../assets/img/socmed/instagram.svg')} alt=""/>
-                                <p>@rutevisi</p>
+                                <p>@personalitika</p>
                             </div>
                             <div className="eachsosmed">
                                 <img src={require('../assets/img/socmed/twitter.svg')} alt=""/>
-                                <p>@rutevisi</p>
+                                <p>@personalitika</p>
                             </div>
                             <div className="eachsosmed">
                                 <img src={require('../assets/img/socmed/facebook.svg')} alt=""/>
-                                <p>Rutevisi</p>
+                                <p>Personalitika</p>
                             </div>
                         </div>
                     </div>

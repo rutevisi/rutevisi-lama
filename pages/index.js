@@ -16,7 +16,7 @@ function Index({tests}){
     return(
         <StyledIndex>
             <Head>
-                <title>Rutevisi.com - Pelajari Karakteristikmu Lebih Dalam</title>
+                <title>Personalitika.com - Pelajari Karakteristikmu Lebih Dalam</title>
             </Head>
             <div>
                 <LayoutFull>

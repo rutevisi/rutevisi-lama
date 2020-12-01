@@ -5,59 +5,56 @@ export const mbtiCalc = (hasil, testEnd, testName, terjawab, resultObj) => {
     let D = 0;
     let E = 0;
 
+    console.log(terjawab)
+
     for(let i = 0; i < 55; i++){
         let indicator = terjawab[i].indikator;
-
-        switch (indicator) {
-            case 'A':
-                A += terjawab[i].jawab;
-                break;
-            case 'B':
-                B += terjawab[i].jawab;
-                break;
-            case 'C':
-                C += terjawab[i].jawab;
-                break;
-            case 'D':
-                D += terjawab[i].jawab;
-                break;
-            case 'E':
-                E += terjawab[i].jawab;
-                break;
-            default:
-                break;
+        
+        if (indicator == 'A') {
+            A += terjawab[i].jawab;
+        } 
+         else if (indicator == 'B') {
+            B += terjawab[i].jawab;
         }
-
-        function toPersen(indikatorVal){
-            const jumlahSoal = 22
-            const indicatorTotalValue = jumlahSoal * 2;
-            let indicatorValue;
-            let cap;
-            let persen;
-
-            if(indikatorVal > 0){
-                // Introvert Check
-                indicatorValue = indikatorVal + jumlahSoal;
-                persen = (indicatorValue/indicatorTotalValue)*100;
-            }else{
-                //Extrovert check
-                indicatorValue = Math.abs(indikatorVal - jumlahSoal);
-                persen = -(indicatorValue/indicatorTotalValue)*100;
-            }
-
-            
-            return persen;
+         else if (indicator == 'C') {
+            C += terjawab[i].jawab;
         }
-
-        resultObj = {
-            indicatorA: toPersen(A),
-            indicatorB: toPersen(B),
-            indicatorC: toPersen(C),
-            indicatorD: toPersen(D),
-            indicatorE: toPersen(E),
+         else if (indicator == 'D') {
+            D += terjawab[i].jawab;
         }
-
-        return resultObj;
-    
+         else if (indicator == 'E') {
+            E += terjawab[i].jawab;
+        }
     }
+        
+    function toPersen(indikatorVal){
+        const jumlahSoal = 22
+        const indicatorTotalValue = jumlahSoal * 2;
+        let indicatorValue;
+        let cap;
+        let persen;
+
+        if(indikatorVal > 0){
+            // Introvert Check
+            indicatorValue = indikatorVal + jumlahSoal;
+            persen = (indicatorValue/indicatorTotalValue)*100;
+        }else{
+            //Extrovert check
+            indicatorValue = Math.abs(indikatorVal - jumlahSoal);
+            persen = -(indicatorValue/indicatorTotalValue)*100;
+        }
+
+        
+        return persen;
+    }
+
+    resultObj = {
+        indicatorA: toPersen(A),
+        indicatorB: toPersen(B),
+        indicatorC: toPersen(C),
+        indicatorD: toPersen(D),
+        indicatorE: toPersen(E),
+    }
+
+    return resultObj;
 }

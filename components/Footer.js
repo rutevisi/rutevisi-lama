@@ -34,10 +34,10 @@ const Footer = () => {
                 </div>
                 <div className="barefoot">
                     <div className="barecontent">
-                        <p className="made">Made in Indonesia&nbsp;<img src={require('../assets/img/idflag.svg')} alt="" className="idflag"/>&ensp; <span style={{fontWeight: "500"}}>2020 © Rutevisi.com</span></p>
+                        <p className="made">Made in Indonesia&nbsp;<img src={require('../assets/img/idflag.svg')} alt="" className="idflag"/>&ensp; <span style={{fontWeight: "500"}}>2020 © Personalitika.com</span></p>
                         <Link href="/tentang-kami"><a className="navbar-brand">
-                            <img className="icon-nav" src={require('../assets/img/logo.svg')} alt="logo"/>
-                            <h1 className="nav-title">Rutevisi</h1>
+                            <img className="icon-nav" src={require('../assets/img/logo-p.png')} alt="logo"/>
+                            <h1 className="nav-title">Personalitika</h1>
                         </a></Link>
                     </div>
                 </div>
@@ -215,6 +215,11 @@ margin-top: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    img{
+        width: 42px;
+        height: 42px;
+    }
 }
 `
 
