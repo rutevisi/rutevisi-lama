@@ -7,26 +7,24 @@ export const mbtiCalc = (hasil, testEnd, testName, terjawab, resultObj) => {
 
     for(let i = 0; i < 55; i++){
         let indicator = terjawab[i].indikator;
-
-        switch (indicator) {
-            case 'A':
-                A += terjawab[i].jawab;
-                break;
-            case 'B':
-                B += terjawab[i].jawab;
-                break;
-            case 'C':
-                C += terjawab[i].jawab;
-                break;
-            case 'D':
-                D += terjawab[i].jawab;
-                break;
-            case 'E':
-                E += terjawab[i].jawab;
-                break;
-            default:
-                break;
+        
+        if (indicator == 'A') {
+            A += terjawab[i].jawab;
+        } 
+         else if (indicator == 'B') {
+            B += terjawab[i].jawab;
         }
+         else if (indicator == 'C') {
+            C += terjawab[i].jawab;
+        }
+         else if (indicator == 'D') {
+            D += terjawab[i].jawab;
+        }
+         else if (indicator == 'E') {
+            E += terjawab[i].jawab;
+        }
+    }
+        
 
         function toPersen(indikatorVal){
             const jumlahSoal = 22
@@ -60,4 +58,3 @@ export const mbtiCalc = (hasil, testEnd, testName, terjawab, resultObj) => {
         return resultObj;
     
     }
-}
