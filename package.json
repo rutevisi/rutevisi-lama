@@ -20,7 +20,7 @@
     "@next/mdx": "^9.4.4",
     "@svgr/webpack": "^5.4.0",
     "@zeit/next-sass": "^1.0.1",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
     "caniuse-lite": "^1.0.30001100",
     "emotion-theming": "^10.0.27",
